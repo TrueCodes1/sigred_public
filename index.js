@@ -1049,7 +1049,7 @@ app.get('/messages', csurfMiddleware, (req, res) => {
         })
 })
 */
-
+/*
 app.get('/terms-of-use', csurfMiddleware, (req, res) => {
 
     let sessionCookie = req.cookies.session || "";
@@ -1094,7 +1094,7 @@ app.get('/terms-of-use', csurfMiddleware, (req, res) => {
             res.render('terms-of-use', {title: 'Terms of Use', status: 'out'})
         })
 })
-
+*/
 /*
 app.get('/privacy-policy', csurfMiddleware, (req, res) => {
 
