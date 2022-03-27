@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/cookie_consent.ejs') %> 
+    <%- include('./partials/head.ejs') %>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="about.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="all.js" defer></script>
+</head>
+<body>
+    <div class="intro" id="intro">
+        <div class="diamonds">
+            <img src="diamond.svg" alt="" class="diamond1">
+            <img src="diamond_2.svg" alt="" class="diamond2">
+        </div>
+        <div class="mobile-top">
+            <div class="top-burger" id="top-burger">
+                <img src="burger.svg" alt="">
+            </div>
+            <div class="top-branding">
+                <div class="branding-name">
+                    About
+                </div>
+                <div class="branding-logo">
+                    <img src="mobile_logo.png" alt="">
+                </div>
+            </div>
+        </div>
+        <% if (status == 'in') {%> 
+            <%- include('./partials/nav_profile.ejs')  %>
+        <% } else { %>    
+            <%- include('./partials/nav.ejs')  %>
+        <% } %> 
+        <%- include('./partials/sidebar.ejs')  %>   
+        <%- include('./partials/logo.ejs')  %>   
+        <h1>About Us</h1>
+        <!--
+        <form action="/login" method="GET" class="login-form">
+            <label for="">name:</label>
+            <input type="text" id="name">
+            <label for="">password:</label>
+            <input type="password" id="pwd">
+            <button type="submit" class="submit login-submit">Prihlásiť</button>
+        </form>-->
+        <div class="scroll desktop" onclick="window.scroll({
+            top: window.innerHeight+240,
+            behavior: 'smooth'
+        })">meet us</div>
+        <div class="mobile-intro">
+            <div class="scroll-mobile mobile-classic" onclick="
+            let height = document.getElementById('intro').clientHeight;
+            document.body.scrollTo({
+            top: (height+240),
+            behavior: 'smooth'
+        })">
+                meet us
+            </div>
+        </div>
+    </div>
+    </div>
+    <%- include('./partials/stripes.ejs')  %>
+    <div class="about-whole">
+        <img src="/big_logo.svg" alt="" class="big-logo desktop">
+        <div class="about-header">
+            Hey <span style="font-weight: 1000;">Sigredian!</span><br> <span style="opacity: .5;">We are Samuel and Adam.</span>
+        </div>
+        <div class="about-photo">
+            <img src="/about_photo.jpg" class="desktop" alt="Sorry, but for some reason, you cannot see our photo at the moment. :-/">
+        </div>
+        <div class="about-text desktop">
+            <span> 
+                <a href='/index' style="color: #0a5a55; text-decoration: none;">Sigred.org</a> is a platform mostly for the
+                 students of high schools and colleges, 
+                 where we can sell items <b><span style="font-size: 1.5rem;">Safely, Simply and 
+                 Fast</span></b> within the community.<!-- The name 'Sigred' 
+                 means beautiful victory, which symbolizes 
+                 that both the sides- buyers and sellers as 
+                 well, should be satisfied with the deal that 
+                 they participated in. Our vision is to provide 
+                 the community mainly for the young people, 
+                 where they would sell and buy items and build 
+                 rapports anytime from any place safely, simple 
+                 and fast.-->
+            </span>
+        </div>
+        <div class="about-text mobile">
+            <span> 
+                <div class="text-sub first">
+                    <a href='/index' style="color: #0a5a55; text-decoration: none;">Sigred.org</a> is a platform mostly for the
+                    students of high schools and colleges, 
+                    where we can sell items 
+                </div>
+                <div class="text-main">
+                     Safely, Simply and Fast
+                </div> 
+                <div class="text-sub second">
+                    within the community.
+                </div><!-- The name 'Sigred' 
+                 means beautiful victory, which symbolizes 
+                 that both the sides- buyers and sellers as 
+                 well, should be satisfied with the deal that 
+                 they participated in. Our vision is to provide 
+                 the community mainly for the young people, 
+                 where they would sell and buy items and build 
+                 rapports anytime from any place safely, simple 
+                 and fast.-->
+            </span>
+        </div>
+        <div class="sigred-meaning desktop">
+            <img src="/sigred_meaning.svg" alt="" class="sigred-meaning-img desktop">
+        </div>
+        <div class="sigred-meaning-mobile">
+            <img src="/sigred_meaning.svg" alt="" class="sigred-meaning-img mobile">
+        </div>
+        <div class="scroll-2 desktop" onclick="window.scroll({
+            top: (window.innerHeight*2)+240,
+            behavior: 'smooth'
+        })">
+            discover&nbsp<b>Sigecoin</b>
+        </div>
+    </div>
+    <div class="sigecoin-whole">
+        <div class="footer">
+            <%- include('./partials/footer-mobile.ejs') %>
+        </div>
+        <div class="sigc-get-div">
+            <div class="sigc-get mobile">
+                get my first Sigecoin
+            </div>
+        </div>
+        <div class="sigc-intro desktop">
+            <a href='/sigecoin'><img src="/sigecoin.svg" alt="" class="sigc-img desktop"></a>
+        </div>
+        <div class="sigc-intro mobile">
+            <img src="/sigecoin.png" alt="" class="sigc-img mobile">
+        </div>
+        <div class="sigc-word desktop">
+            <img src="/sigecoin_word.svg" alt="" class="word-img desktop">
+        </div>
+        <div class="sigc-word mobile">
+            <img src="/sigecoin_word.png" alt="" class="word-img mobile">
+        </div>
+    </div>
+</body>
+<script>
+    let viewHeight = $(window).height();
+    let viewWidth = $(window).width();
+    document.getElementById('intro').style.minHeight = viewHeight+'px';
+    document.getElementById('intro').style.maxHeight = viewHeight+'px';
+    let viewport = document.querySelector('meta[name=viewport]');
+    viewport.setAttribute('content', 'height=' + viewHeight + 'px, width=' + viewWidth + 'px, initial-scale = 1.0');
+</script>
+<%- include('./partials/footer.ejs') %>
+</html>

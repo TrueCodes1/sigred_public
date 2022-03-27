@@ -1,0 +1,291 @@
+@media only screen and (max-width: 480px) {
+    .login-form{
+        box-sizing: border-box;
+        position: absolute;
+        min-width: 100vw;
+        max-width: 100vw;
+        min-height: 50vh;
+        max-height: 50vh;
+        top: 30vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .login-form #email, .login-form #password{
+        min-width: 90vw;
+        max-width: 90vw;
+        border: 1px solid #FFE0C4;
+        background-color: #ffe0c442;
+        font-size: 4.65vw;
+        padding: .4em;
+        color: #FFE0C4;
+        font-family: 'Montserrat';
+        font-weight: 100;
+        margin: 8px 0;
+        border-radius: .25em;
+        text-align: center;
+    }
+    .login-form #email::placeholder, .login-form #password::placeholder{
+        color: #ffe0c469;
+    }
+    .login-form #email:focus, .login-form #password:focus{
+        outline: none;
+        border: 1px solid #FFE0C4;
+    }
+    .login-submit{
+        background-color: transparent;
+        border: 1px solid transparent;
+        font-family: 'Montserrat';
+        color: #0a5a55;
+        background: #FFE0C4;
+        font-size: 4.5vw;
+        transition: all .15s ease;
+        margin-bottom: 8px;
+        margin-top: 8px;
+        padding: .5em;
+        min-width: 50vw;
+        max-width: 50vw;
+        border-radius: .25em;
+    }
+    .login-opts{
+        color: #FFE0C4;
+        min-width: 50vw;
+        max-width: 50vw;
+        margin-top: 8px;
+        padding-top: 8px;
+        border-top: .5px solid #FFE0C4;
+        text-align: center;
+        font-size: 4.5vw;
+    }
+    #opt-reg{
+        border: none;
+        padding: .5em;
+        border-radius: .25em;
+        cursor: pointer;
+        margin-top: 8px;
+        font-size: 4.65vw;
+        min-width: 50vw;
+        max-width: 50vw;
+        border: 1px solid #FFE0C4;
+    }
+    .reg-whole{
+        box-sizing: border-box;
+        position: absolute;
+        min-width: 100vw;
+        max-width: 100vw;
+        left: 0;
+        top: calc(100vh + 240px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-top: 20px;
+        padding-bottom: 5vh;
+    }
+    .reg-whole>*, .reg-whole>*>*{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        min-width: 100vw;
+        max-width: 100vw;
+    }
+    .form-1 input, .form-2 input, .form-1 select, .form-2 select{
+        border: none;
+        outline: none;
+        font-family: 'Montserrat';
+        font-size: 4.5vw;
+        padding: .55em;
+        border: 1px solid #FFE0C4;
+        border-radius: .5em;
+        background: #ffe0c442;
+        margin: 10px 0;
+        min-width: 95vw;
+        max-width: 95vw;
+        color: #0a5a55;    
+    }
+    .form-2{
+        margin-top: -26px;
+    }
+    #reg-country, #reg-age{
+        margin: 10px 0;
+    }
+    #reg-city{
+        margin-top: -7px;
+    }
+    #unhide_pwd{
+        transform: translateX(40vw) translateY(-200%);
+    }
+    .password-check, .password-state{
+        min-width: 95vw;
+        max-width: 95vw;
+        padding-left: 2px;
+        transform: translateY(-100%);
+        font-size: .75rem;
+        margin-left: 1em;
+    }
+    .password-state{
+        margin-bottom: 15px;
+        color: red;
+    }
+    .reg-terms-whole, .reg-age-whole{
+        min-width: 95vw;
+        max-width: 95vw;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin: 10px 0;
+    }
+    .reg-terms-whole label, .reg-age-whole label{
+        text-align: justify;
+        min-width: 85vw;
+        max-width: 85vw;
+        font-size: 3vw;
+    }
+    .reg-submit{
+        min-width: 95vw;
+        max-width: 95vw;
+        font-size: 4.5vw;
+        padding: 1.5em 0;
+        border-radius: .25em;
+        margin: 10px 0;
+    }
+}
+
+@media only screen and (min-width: 1385px) and (max-width: 1700px) {
+    .login-form{
+        margin-left: 60px;
+    }
+    #email, #password, #email:hover, #password:hover, #email:focus, #password:focus{
+        border: 1px solid #FFE0C4;
+        background-color: #ffe0c442;
+        font-size: 1.15rem;
+        padding: .4em;
+        color: #FFE0C4;
+        font-family: 'Montserrat';
+        font-weight: 100;
+        margin: 15px;
+    }
+    #email:-webkit-autofill{
+        background-color: red;
+        color: red;
+    }
+    #email::placeholder, #password::placeholder{
+        color: #FFE0C4;
+    }
+    .login-form input, .login-submit{
+        border-radius: .25em;
+    }
+    .login-submit{
+        background-color: transparent;
+        border: 1px solid transparent;
+        font-family: 'Montserrat';
+        color: #0a5a55;
+        background: #FFE0C4;
+        font-size: 1.1rem;
+        transition: all .15s ease;
+        margin-bottom: 1em;
+        padding: .5em;
+        min-width: 12vw;
+        max-width: 12vw;
+    }
+    .login-submit:hover{
+        border: 1px solid #FFE0C4;
+        transition: all .15s ease;
+        padding: .5em;
+    }
+    .login-opts{
+        color: #FFE0C4;
+        margin-top: -.25em;
+        padding-top: .35em;
+        min-width: 12vw;
+        max-width: 12vw;
+        border-top: .5px solid #FFE0C4;
+        text-align: center;
+    }
+    #opt-reg{
+        margin-top: .5em;
+        border: none;
+        color: #FFE0C4;
+        padding: .75em;
+        border-radius: .5em;
+        cursor: pointer;
+        border: 1px solid #FFE0C4;
+        min-width: 12vw;
+        max-width: 12vw;
+    }
+    .reg-whole{
+        position: absolute;
+        min-width: 100vw;
+        max-width: 100vw;
+        min-height: 100vh;
+        max-height: 100vh;
+        left: 0;
+        top: calc(100vh + 240px);
+        z-index: 99999999;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        padding-left: 2vw;
+    }
+    .reg-form{
+        min-width: 100vw;
+        max-width: 100vw;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+    .reg-form *{
+        font-family: 'Montserrat';
+    }
+    .reg-form >*{
+        max-width: 26vw;
+    }
+    .reg-form input, .reg-form select {
+        border: none;
+        outline: none;
+        font-family: 'Montserrat';
+        font-size: 1.15rem;
+        padding: .55em;
+        border: 1px solid #FFE0C4;
+        border-radius: .5em;
+        background: #ffe0c442;
+        margin: 10px;
+        min-width: 25vw;
+        max-width: 25vw;
+        color: #0a5a55;
+    }
+    #reg-password, #reg-password-rep{
+        padding-right: 50px;
+    } 
+    #unhide_pwd{
+        margin-left: -55px;
+        cursor: pointer;
+    }
+    .password-check{
+        margin-left: 1em;
+        font-size: .75rem;
+    }
+    .password-state{
+        margin-left: 1em;
+        font-size: .75rem;
+    }
+    .reg-terms-whole, .reg-age-whole{
+        min-width: 25vw;
+        max-width: 25vw;
+        margin-left: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        font-size: .8rem;
+        text-align: justify;
+        margin: 8px 0;
+        user-select: none;
+    }
+}

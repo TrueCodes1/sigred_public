@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+    <%- include('./partials/head.ejs') %>
+    <link rel="stylesheet" href="index.css">
+    <script src="all.js" defer></script>
+    <script src="index.js" defer></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+</head>
+<body>
+    <%- include('./partials/cookie_consent.ejs') %> 
+    <%- include('./partials/index_intro.ejs') %> 
+    <%- include('./partials/stripes.ejs')  %>
+    <div class="content">
+        <div class="products-header">products nearby</div>
+
+        <img src='/handle_left.png' class="handlebar handle-left" onclick="handle_left()">
+        <img src='/handle_right.png' class="handlebar handle-right" onclick="handle_right()">
+        
+        <div class="products-products" id="products-products">
+            <img src="diamond_content.svg" alt="" class="diamond3 diamond-single">
+            <img src="diamond_2_content.svg" alt="" class="diamond4 diamond-single">
+            <img src="diamond_content.svg" alt="" class="diamond5 diamond-single">
+            <img src="diamond_2_content.svg" alt="" class="diamond6 diamond-single">
+        <% for (i in first_nine) {%>  
+            <div class="products-product">
+                <div class="product-image">
+                    <video loop muted class="video" preload='' playsinline>
+                        <source src="<%= first_nine[i].video_link %> " type="video/mp4">
+                    <video>
+                </div>
+                <div class="product-name">
+                    <%= first_nine[i].item_name %> 
+                </div>
+                <div class="product-desc">
+                    <%= first_nine[i].item_desc %> 
+                </div>
+                <div class="product-seller">
+                    <div class="seller-photo">
+                        <img src="nopic_transparent.svg" alt="">
+                    </div>
+                    <div class="seller-name">
+                        <%= first_nine[i].item_seller %> 
+                    </div>
+                    <div class="seller-price">
+                        <div class="price-number">
+                            <%= first_nine[i].item_price %> 
+                        </div>
+                        <img src="sigecoin_icon_currency.png" alt="" class="price-currency">
+                    </div>
+                </div>
+                <div class="product-distance"><%= first_nine[i].item_location %> </div>
+                <div class="open">
+                    <div class="open-open">
+                        open
+                    </div>
+                    <div class="open-buy">
+                        buy now
+                    </div>
+                </div>
+            </div>
+        <% } %>   
+        <%- include('./partials/footer-mobile.ejs') %>
+        </div>
+    </div>
+</body>
+<script>
+    let viewHeight = $(window).height();
+    let viewWidth = $(window).width();
+    document.getElementById('intro').style.minHeight = viewHeight+'px';
+    document.getElementById('intro').style.maxHeight = viewHeight+'px';
+    let viewport = document.querySelector('meta[name=viewport]');
+    viewport.setAttribute('content', 'height=' + viewHeight + 'px, width=' + viewWidth + 'px, initial-scale = 1.0');
+</script>
+<%- include('./partials/footer.ejs') %>
+</html>

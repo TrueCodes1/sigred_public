@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/cookie_consent.ejs') %> 
+    <%- include('./partials/head.ejs') %>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="404.css">
+</head>
+<body>
+    <div class="intro">
+        <%- include('./partials/nav.ejs')  %> 
+        <%- include('./partials/sidebar.ejs')  %>   
+        <div class="error-handler">
+            <p class="main"><span class="req-route"> <%= page %> </span>doesn't exist.</p>
+            <p class="side"> Use the navbar to find the one you're looking for.</p>
+        </div>
+        <!--
+        <form action="/login" method="GET" class="login-form">
+            <label for="">name:</label>
+            <input type="text" id="name">
+            <label for="">password:</label>
+            <input type="password" id="pwd">
+            <button type="submit" class="submit login-submit">Prihlásiť</button>
+        </form>-->
+    </div>
+</body>
+</html>

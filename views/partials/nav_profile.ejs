@@ -1,0 +1,85 @@
+
+    <div class="routes" id="routes">
+        <div class="mobile-close-routes" id="mobile-close-routes">
+            <img src="/close.svg" alt="">
+        </div>
+        <a href="/index" id="button" class="route">Home</a>
+        <a href="/about" id="button" class="route">About</a>
+        <a href="/contact" id="button" class="route">Contact</a>
+        <% if (title != 'Dashboard' && title!='User' && title!= 'Item') { %>
+        
+            <div class="route" id="profile-route" style="display: flex; flex-direction: column; align-items: center; box-sizing: border-box; z-index: 2;">
+                <a id="button" class='profile-link' style="color: #0a5a55;">
+                    <%= info.name %>
+                    <div class="me_expanded" id="me_expanded" style="display: none;">
+                        <a href="/profile" id="button">My Profile</a>
+                        <a href="/wallet" id="button">My Wallet</a>
+                        <a href="/items" id="button">My Items</a>
+                        <a href="/messages" id="button">My Messages</a>
+                    </div>
+                </a>
+            </div>
+        
+        <% } %>
+        <script>
+            var toRollDown = document.getElementById('me_expanded');
+            function rollMe() {
+                if (toRollDown.style.display == 'none'){
+                    toRollDown.style.display = 'flex';
+                    toRollDown.classList.add('rollDownMe');
+                    toRollDown.addEventListener('animationend', ()=>{
+                        toRollDown.classList.remove('rollDownMe');
+                        toRollDown.style.opacity = '1';
+                        toRollDown.style.transform = 'translateY(0)';
+                        toRollDown.style.display = 'flex'
+                    })
+                } 
+        }
+            function rollUp() {
+                if (toRollDown.style.display != 'none') { 
+                toRollDown.classList.add('rollUpMe');
+                toRollDown.addEventListener('animationend', ()=>{
+                    toRollDown.classList.remove('rollUpMe');
+                    toRollDown.style.opacity = '0';
+                    toRollDown.style.transform = 'translateY(-20px)';
+                    toRollDown.style.display = 'none';
+                })
+                }
+            }
+            function roll(){
+                if (toRollDown.style.display == 'none'){
+                    toRollDown.style.display = 'flex';
+                    toRollDown.classList.add('rollDownMe');
+                    toRollDown.addEventListener('animationend', ()=>{
+                        toRollDown.classList.remove('rollDownMe');
+                        toRollDown.style.opacity = '1';
+                        toRollDown.style.display = 'flex'
+                    })
+                } else { 
+                    toRollDown.classList.add('rollUpMe');
+                    toRollDown.addEventListener('animationend', ()=>{
+                        toRollDown.classList.remove('rollUpMe');
+                        toRollDown.style.opacity = '0';
+                        toRollDown.style.display = 'none';
+                    })
+                }
+            }
+            if (screen.width>480){
+                document.getElementById('profile-route').addEventListener('mouseleave', rollUp);
+                document.getElementById('profile-route').addEventListener('mouseover', rollMe);
+            } else {
+                document.getElementById('profile-route').addEventListener('click', roll);
+            }
+        </script>
+        <a href="/help-centre" id="button" class="route" style="z-index: 1;">Help Centre</a>
+        <a href="/sessionLogout" id="button" class="route" style="z-index: 1;">Log out</a>
+        <% 
+        
+            if (admin == true) {
+                %>
+                    <a href="/admin" id="button" class="route" style="z-index: 1;">Admin</a>
+                <%
+            }
+        
+        %>
+    </div>

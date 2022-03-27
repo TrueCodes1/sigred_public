@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/cookie_consent.ejs') %> 
+    <%- include('./partials/head.ejs') %>
+    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="/login.css">
+    <link rel="stylesheet" href="/admin-user.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.5.3"></script>
+    <script src="/all.js" defer></script>
+</head>
+<body>
+    <div class="intro" id="intro">
+        <div class="diamonds">
+            <img src="/diamond.svg" alt="" class="diamond1">
+            <img src="/diamond_2.svg" alt="" class="diamond2">
+        </div>
+        <div class="mobile-top">
+            <div class="top-burger" id="top-burger">
+                <img src="/burger.svg" alt="">
+            </div>
+            <div class="top-branding">
+                <div class="branding-name">
+                    User | Admin
+                </div>
+                <div class="branding-logo">
+                    <img src="/mobile_logo.png" alt="">
+                </div>
+            </div>
+        </div>
+        <% if (status == 'in') {%> 
+            <%- include('./partials/nav_profile.ejs')  %>
+        <% } else { %>    
+            <%- include('./partials/nav.ejs')  %>
+        <% } %> 
+        <%- include('./partials/sidebar.ejs')  %>   
+        <%- include('./partials/logo.ejs')  %>   
+        <h1>User</h1>
+
+        <div class="scroll desktop" style="left:40vw" onclick="window.scroll({
+            top: (window.innerHeight)+240,
+            behavior: 'smooth'
+        })">view user</div>
+        <div class="mobile-intro">
+            <div class="scroll-mobile mobile-classic" onclick="
+            let height = document.getElementById('intro').clientHeight;
+            document.body.scrollTo({
+            top: (height+240),
+            behavior: 'smooth'
+        })">
+                view user
+            </div>
+        </div>
+
+        <%- include('./partials/stripes.ejs')  %>
+        <div class="content">
+            <div class="back" onclick="window.location.assign('/admin-dashboard')">
+                back to users
+            </div>
+            <div class="user">
+                <%if (userInfo.status == 'enabled') {%>
+                    <div id="account-tag-enabled">
+                        account created on <%=userInfo.established.split(',')[0]%>
+                    </div>
+                <% } else { %>
+                    <div id="account-tag-disabled">
+                        account created on <%=userInfo.established.split(',')[0]%>,<b> disabled on <%=userInfo.date.split(',')[0]%></b>
+                    </div>
+                <%}%>
+                <div class="user-info">
+                    <div class="info-photo">
+                    </div>
+                    <div class="info-name">
+                        <span id="user-name"><%= userInfo.info.name %> <%= userInfo.info.lastName %>, </span><span id="user-age"> &nbsp;<%= userInfo.info.age %></span>
+                    </div>
+                    <div class="info-message">
+                        <div class="message-email" id="user-email"><%=userInfo.info.email%></div>
+                        <div class="message-button" style="cursor: pointer;" onclick="openMessage()">
+                            message
+                        </div>
+                    </div>
+                    <div class="info-info">
+                        <div class="info-geolocation">
+                            <span id="user-city"><%= userInfo.info.city %>, </span> <%= userInfo.info.country %>
+                        </div>
+                    </div>
+                    <%if (userInfo.status == 'enabled') {%>
+                        <div class="change-state disable" onclick="disableAccount()">
+                            disable account
+                        </div>
+                    <% } else { %>
+                        <div class="change-state enable" onclick="enableAccount()">
+                            enable account
+                        </div>
+                    <%}%>
+                </div>
+                <div class="user-items" id="user-items" onmouseleave="neutralizeItems()">
+                    <div class="user-items-selling start" id="user-items-selling" onmouseover="switchBetweenItems(this.id)">
+                        <div class="items-header">
+                            selling
+                        </div>
+                        <div class="items-content">
+                            <% if (userInfo.selling.length == 0) {%>
+                                <p class="no-content-tag">no items so far</p>
+                            <% } else { %> 
+                                <div class="items">
+                                    <% 
+                                        let num = 0;
+                                        for (let key of Object.keys(userInfo.selling)) {
+                                    
+                                    %>
+                                    
+                                    <div class="item" id="<%=key%>">
+                                        <div class="item-video">                
+                                            <video loop muted autoplay class="video" preload='' playsinline>
+                                                <source src="<%=userInfo.selling[key].video_link%>" type="video/mp4">
+                                            <video>
+                                        </div>
+                                        <div class="item-name">
+                                            <%=userInfo.selling[key].item_name%>
+                                        </div>
+                                        <div class="item-price">
+                                            <div class="price">    
+                                                <span id="price-number">
+                                                    <%=userInfo.selling[key].item_price%>
+                                                </span>
+                                                <span id="price-sign">
+                                                    <img src="/sigecoin_icon_currency_light.png" alt="sigecoin">
+                                                </span>
+                                            </div>
+                                            <div class="check">
+                                                <img src="/tick-mark.png" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <%
+                                        num+=1
+                                        }
+                                    %>
+
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="user-items-sold start" id="user-items-sold" onmouseover="switchBetweenItems(this.id)">
+                        <div class="items-header">
+                            sold
+                        </div>
+                        <div class="items-content">
+                            <% if (userInfo.sold.length == 0) {%>
+                                <p class="no-content-tag">no items so far</p>
+                            <% } else { %> 
+
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="user-items-bought start" id="user-items-bought" onmouseover="switchBetweenItems(this.id)">
+                        <div class="items-header">
+                            bought
+                        </div>
+                        <div class="items-content">
+                            <% if (userInfo.bought.length == 0) {%>
+                                <p class="no-content-tag">no items so far</p>
+                            <% } else { %> 
+
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+                <%- include('./partials/admin-message-to-user.ejs')  %>   
+                <%- include('./partials/admin-disable-form.ejs')  %>   
+            </div>
+        </div>
+        <script src="/admin-user.js" defer></script>
+</body>
+<script>
+    let viewHeight = $(window).height();
+    let viewWidth = $(window).width();
+    document.getElementById('intro').style.minHeight = viewHeight+'px';
+    document.getElementById('intro').style.maxHeight = viewHeight+'px';
+    let viewport = document.querySelector('meta[name=viewport]');
+    viewport.setAttribute('content', 'height=' + viewHeight + 'px, width=' + viewWidth + 'px, initial-scale = 1.0');
+</script>
+</html>

@@ -1,0 +1,84 @@
+*{
+    list-style: none;
+}
+
+@media only screen and (max-width: 480px) {
+}
+
+@media only screen and (min-width: 1385px) {
+    .message {
+        position: absolute;
+        min-width: 700px;
+        width: 70vw;
+        max-width: 70vw;
+        min-height: 650px;
+        height: 65vh;
+        max-height: 65vh;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        background-color: #0a5a55;
+        border-radius: 2vw;
+        box-shadow:  10px 10px 5px #052c2928,
+                    10px 10px 5px #052c2928,
+                    10px -10px 5px #052c2928,
+                    -10px 10px 5px #052c2928,
+                    5px 5px 5px #182c182d inset,
+                    -5px -5px 5px #182c182d inset;
+    
+        z-index: 99999;
+        display: none;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        padding-left: 40px;
+    }
+    .message-close {
+        position: absolute;
+        min-width: 100px;
+        max-width: 100px;
+        min-height: 100px;
+        max-height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        right: 0;
+        top: 0;
+        cursor: pointer;
+    }
+    .message form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+    }
+    .message form > *  {
+        user-select: text;
+        resize: none;
+        min-width: 450px;
+        max-width: 450px;
+        font-size: 20px;
+        border-radius: 10px;
+        padding: 15px;
+        outline: none;
+        border: none;
+        background-color: transparent;
+        margin: 20px 0;
+        color: #FFE0C4;
+        box-shadow: -5px -5px 5px #04221f15,
+                    5px 5px 5px #04221f2d inset,
+                    -5px -5px 5px #18c7bb2f inset;
+        scrollbar-width: none; 
+        scroll-behavior: smooth; 
+    }
+    .message form button {
+        font-weight: 1000;
+        cursor: pointer;
+        box-shadow:  5px 5px 2.5px #04221f15,
+                    5px 5px 2.5px #04221f15,
+                    5px -5px 2.5px #04221f15,
+                    -5px 5px 2.5px #04221f15,
+                    5px 5px 5px #04221f2d inset,
+                    -5px -5px 5px #04221f2d inset;
+    }
+}

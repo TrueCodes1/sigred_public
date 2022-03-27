@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="/admin-message-to-user.css">
+<link rel="stylesheet" href="/admin-disable-form.css">
+
+<div class="disable-form" id="disable-form">
+    <div class="message-close" id="message-close" onclick="document.getElementById('disable-form').style.display = 'none'">
+        <img src="/close_light.svg" alt="">
+    </div>
+    <div class="disable-header">
+        <span id="disable-user-text">You are going to <%if (userInfo.status == 'enabled') {%> disable <% } else { %> enable <%}%> account of </span><span id="disable-user-name"> John Doe </span> 
+    </div>
+    <div class="disable-description">
+        <%if (userInfo.status == 'enabled') {%>
+            Disabling user's account simply means they will not able to sell or buy 
+            items as well as contact other users via Sigred Messages. Please,
+            write message to be recieved by the user to let them know the reason of their account
+            being disabled. To finish the action, you will have to enter
+            the admin password one more time.
+        <% } else { %> 
+            Enabling user's account simply means they will be able to sell or buy 
+            items as well as contact other users via Sigred Messages again. Please,
+            write message to be recieved by the user to let them know the reason of their account
+            being enabled. To finish the action, you will have to enter
+            the admin password one more time.
+        <%}%>
+    </div>
+    <div class="disable-message">
+        <textarea name="text" id="disable-message" class="disable-message" placeholder="Message..."></textarea>
+        <%if (userInfo.status == 'enabled') {%>
+            <div class="disable-finish" onclick="disableAskForPassword()">Finish & Disable Account</div>
+        <% } else { %>
+            <div class="disable-finish" onclick="enableAskForPassword()">Finish & Enable Account</div>
+        <%}%>
+    </div>
+    <div class="disable-pwd" id="disable-pwd">
+        <input type="password" class="disable-password-input" id="disable-password-input" placeholder="Admin password...">
+        <%if (userInfo.status == 'enabled') {%>
+            <div class="disable-password-submit" onclick="finalFinishDisable()">
+                Disable Account of John Doe
+            </div>
+            <div class="disable-pwd-back" onclick="goBackToDisable()">
+                back
+            </div>
+        <% } else { %>
+            <div class="disable-password-submit" onclick="finalFinishEnable()">
+                Enable Account of John Doe
+            </div>
+            <div class="disable-pwd-back" onclick="goBackToEnable()">
+                back
+            </div>
+        <%}%>
+    </div>
+</div>

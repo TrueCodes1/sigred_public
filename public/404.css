@@ -1,0 +1,35 @@
+.error-handler{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    min-width: 100vw;
+    max-width: 100vw;
+    position: absolute;
+    left: 0;
+    min-height: 30vh;
+    top: 28vh;
+    color: #FFE0C4;
+    padding: 5vw;
+    background: #0a5a55;
+    z-index: 1;
+}
+.main{
+    font-size: 6vw;
+    word-break: break-all;
+}
+.req-route{
+    border-bottom: 3px solid #FFE0C4;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 20px 0 0;
+}
+.side{
+    font-size: 3vw;
+    opacity: .5;
+    margin-top: 10px;
+}
+.sidebar{
+    z-index: 2;
+}

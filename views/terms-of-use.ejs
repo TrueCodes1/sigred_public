@@ -1,0 +1,197 @@
+<html lang="en">
+<head>
+    <%- include('./partials/cookie_consent.ejs') %> 
+    <%- include('./partials/head.ejs') %>
+    <%- include('./partials/sidebar.ejs')  %>   
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="help.css">
+    <link rel="stylesheet" href="privacy.css">
+    <link rel="stylesheet" href="terms.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="all.js" defer></script>
+</head>
+<body>
+    <div class="intro" id="intro">
+        <div class="diamonds">
+            <img src="diamond.svg" alt="" class="diamond1">
+            <img src="diamond_2.svg" alt="" class="diamond2">
+        </div>
+        <div class="mobile-top">
+            <div class="top-burger" id="top-burger">
+                <img src="burger.svg" alt="">
+            </div>
+            <div class="top-branding">
+                <div class="branding-name">
+                    Terms of Use
+                </div>
+                <div class="branding-logo">
+                    <img src="mobile_logo.png" alt="">
+                </div>
+            </div>
+        </div>
+        <% if (status == 'in') {%>
+            <%- include('./partials/nav_profile.ejs')  %> 
+        <% } else { %>
+            <%- include('./partials/nav.ejs')  %> 
+        <% } %>       
+        <%- include('./partials/sidebar.ejs')  %>   
+        <%- include('./partials/logo.ejs')  %>   
+        <h1>Terms of<br> Use</h1>
+        <div class="scroll desktop" style="left:40vw" onclick="window.scroll({
+            top: (window.innerHeight)+240,
+            behavior: 'smooth'
+        })">have a look</div>
+        <div class="mobile-intro">
+            <div class="scroll-mobile mobile-classic" onclick="
+            let height = document.getElementById('intro').clientHeight;
+            document.body.scrollTo({
+            top: (height+240),
+            behavior: 'smooth'
+        })">
+                have a look
+            </div>
+        </div>
+    </div>
+    <div class="content-all">
+        <div class="lock-key">
+            <img src="terms.svg" alt="">
+        </div>
+        <div class="part terms-basic">
+            <div class="part-header">
+                What rules do you have to accept so that you could use Sigred?
+            </div>
+            <div class="part-content">
+                Using Sigred sites requires being at least 16 years old. If you are under 16, you have to agree that your parents have already agreed and allowed you to use our sites. Within using Sigred you accept that you will not be selling stuff that is forbidden to be sold on our platform. This stuff includes: Drugs, Alcohol, Tobacco, Weapons, Animals or any other kind of living beings, Any kind of pornography, stolen things, anything else that you do not have a permission to sell in your country. By accepting Terms of use, you are obligated to sign up with your real email, name, age, country and city you are from, to provide the minutest information to verify the credibility of your profile. You also accept that you WILL NOT lie or type fake information about the item you want to sell. You also have an obligation to ship the item on time, in the condition described in your listing.
+                Sigred uses SIGECOINS as a payment method, this is not any kind of cryptocurrency, see more - “About us“ . If you buy an item from the seller for e.g. 4 SIGECOINS, your credit relating to the purchase you bought moves automatically to the sellers account. Due to this we would like you to be 100% sure when you want to buy the item. Here is a short list of steps that you should go through before buying a certain item.
+            </div>
+        </div>
+        <div class="part terms-uploads">
+            <div class="part-header">
+                How to make secure deal?
+            </div>
+            <div class="part-content" id="steps-content">
+                <div class="step">
+                    <p class="step-number">
+                        1
+                    </p>
+                    Watch the promo video of the item.
+                </div>
+                <div class="step">
+                    <p class="step-number">
+                        2
+                    </p>
+                    See more details of the items including condition, price which is fixed and also the account of the seller.
+                </div>
+                <div class="step">
+                    <p class="step-number">
+                        3
+                    </p>
+                    Contact the seller and ask whether the item is still available as well as you can ask for more videos or images.
+                </div>
+                <div class="step">
+                    <p class="step-number">
+                        4
+                    </p>
+                    If you decide that you want to purchase the item, conclude with the seller shipping, address where the item should be shipped, who will pay the shipping etc.
+                </div>
+                <div class="step">
+                    <p class="step-number">
+                        5
+                    </p>
+                    If you are 100% sure that you want to buy a certain item, Buy it and Money automatically comes to the Sigred account of the seller in the form of SIGECOINS.
+                </div>
+            </div>
+        </div>
+        <div class="part terms-termination">
+            <div class="part-header">
+                What types of content can I upload?
+            </div>
+            <div class="part-content">
+                The “content“ includes uploaded items. 
+                We implemented the usage of video as a 
+                way of uploading new items. When you 
+                want to upload a product, primarily 
+                you use the camera to take a video of 
+                your product. This uploadings (content) 
+                MUST NOT include stuff that is not 
+                allowed to be sold on Sigred, see above 
+                “What rules do you have to accept so 
+                that you could use Sigred ?“
+            </div>
+        </div>
+        <div class="part terms-disclaimer">
+            <div class="part-header">
+                Under what circumstances can we terminate your User account?
+            </div>
+            <div class="part-content">
+                We have an obligation to terminate your User acount if: <br>
+                You do not accept our Terms of Use and you violate them. 
+                In cases like these, we send you a warning before 
+                your account will be terminated. By violating our 
+                Terms of Use is considered e.g. selling items which 
+                are not allowed to sell on our platform, your incredibility 
+                within shipping of items, deceptive description of 
+                selling items or any other Term relating to our Terms of Use.
+                You can terminate your account any time you want, when you start 
+                feeling that you do not want to share our Terms of Use. 
+                If you want to terminate your user account click on 
+                “Settings of my data“ .
+            </div>
+        </div>
+        <div class="part terms-liability">
+            <div class="part-header">
+                Disclaimer
+            </div>
+            <div class="part-content">
+                1. Viruses and Malware
+    
+                – Sigred will not accept any liability for any virus or malware that will be contracted as a result of visiting our site or any other web site and will not be liable for any claim, loss, damage, costs or expenses suffered or incurred by any person as a result of the presence of any virus or malware on Sigred or another website.
+                <br><br>
+                2. Links from other sites
+    
+                - Our sites can link to other sites provided by third-parties, these links are only for your information. We have no control or responsibility over the content displayed on those sites. We accept no liability for any loss, damage that might arise within using those sites.
+                <br><br>
+                3. Items
+    
+                - The items that are being offered are “as is“, “as available“, and with “all the faults“, and we disclaim any warranties, including but not limited to the warranties of merchantability and fitness for a particular purpose. The items description HAVE TO fit due to its real condition in the time of uploading.
+    
+                You understand that Sigred is not responsible for the content that is uploaded by users. If you upload a product that violates our Terms of Use, is illegal or is related to someone else's intellectual property or other legal rights, you are responsible for all the content you share on our platform. This means that you assume all the risks and consequences that can appear. You agree that you will indemnify, defend, and hold harmless Sigred for all claims resulting from the content you list.
+            </div>
+        </div>
+        <div class="part terms-last">
+            <div class="part-header">
+                Limitation of Liability
+            </div>
+            <div class="part-content">
+                To the maximum extent permitted by applicable 
+                law, Sigred shall not be liable for any indirect, 
+                incidental, special, consequential or punitive 
+                damages or any loss of profits or revenues, 
+                whether directly or indirectly loss of data, 
+                or other intangible losses. Without limiting 
+                the generality of the foregoing, the company's 
+                aggregate liability to you (whether under 
+                contract, tort, statute or otherwise) shall 
+                not exceed the amount of thirty five dollars 
+                ($ 35.00). The foregoing limitations will apply 
+                even if the above stated remedy fails of its 
+                essential purpose.
+            </div>
+        </div>
+    </div>
+    </div>
+    <%- include('./partials/stripes.ejs')  %>
+    <%- include('./partials/footer.ejs')  %> 
+    <%- include('./partials/footer-mobile.ejs') %>
+    <script>
+    </script>
+</body>
+<script>
+    let viewHeight = $(window).height();
+    let viewWidth = $(window).width();
+    document.getElementById('intro').style.minHeight = viewHeight+'px';
+    document.getElementById('intro').style.maxHeight = viewHeight+'px';
+    let viewport = document.querySelector('meta[name=viewport]');
+    viewport.setAttribute('content', 'height=' + viewHeight + 'px, width=' + viewWidth + 'px, initial-scale = 1.0');
+</script>
+</html>

@@ -1,0 +1,170 @@
+*{
+    list-style: none;
+}
+
+@media only screen and (max-width: 480px) {
+}
+
+@media only screen and (min-width: 1385px) {
+    .disable-form{
+        position: absolute;
+        min-width: 700px;
+        width: 70vw;
+        max-width: 70vw;
+        min-height: 650px;
+        height: 65vh;
+        max-height: 65vh;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        background-color: #fff;
+        border-radius: 2vw;
+        box-shadow:  5px 5px 10px rgba(53, 53, 53, 0.25),
+                    -5px 5px 10px rgba(53, 53, 53, 0.25),
+                    5px -5px 10px rgba(53, 53, 53, 0.25),
+                    -5px -5px 10px rgba(53, 53, 53, 0.25),
+                    5px 5px 10px rgba(53, 53, 53, 0.30) inset,
+                    -5px -5px 10px rgba(53, 53, 53, 0.30) inset;
+    
+        z-index: 99999;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-left: 40px;
+        overflow: hidden;
+    }
+    .disable-header{
+        font-weight: 100;
+        font-size: 3rem;
+        line-height: 1.25em;
+        color: #0a5a55;
+    }
+    #disable-user-text {
+        font-weight: 100;
+        opacity: .5;
+    }
+    #disable-user-name {
+        font-weight: 900;
+    }
+    .disable-description {
+        padding: 40px 440px 40px 0;
+        color: #0a5a55;
+    }
+    .disable-message{
+        min-width: 100%;
+        max-width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+        padding-right: 60px;
+    }
+    .disable-message textarea {
+        min-width: 500px;
+        max-width: 500px;
+        min-height: 200px;
+        max-height: 200px;
+        border-radius: 10px;
+        resize: none;
+        outline: none;
+        border: none;
+        background: #fff;
+        color: #0a5a55;
+        padding: 20px;
+        box-shadow: 5px 5px 10px rgba(155, 155, 155, 0.295),
+                    -5px -5px 10px rgba(155, 155, 155, 0.096),
+                    -2.5px -2.5px 3px rgba(155, 155, 155, 0.200),
+                    inset 5px 5px 10px rgba(155, 155, 155, 0.295),
+                    inset -5px -5px 10px rgba(155, 155, 155, 0.096),
+                    inset -2.5px -2.5px 3px rgba(155, 155, 155, 0.110);
+    }
+    .disable-finish {
+        font-weight: 1000;
+        cursor: pointer;
+        background: #fff;
+        color: #0a5a55;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 5px 5px 10px rgba(155, 155, 155, 0.295),
+                    -5px -5px 10px rgba(155, 155, 155, 0.295),
+                    -2.5px -2.5px 3px rgba(155, 155, 155, 0.180),
+                    inset 5px 5px 10px rgba(155, 155, 155, 0.096),
+                    inset 2.5px 2.5px 3px rgba(155, 155, 155, 0.160),
+                    inset -5px -5px 10px rgba(155, 155, 155, 0.096),
+                    inset -2.5px -2.5px 3px rgba(155, 155, 155, 0.120);
+    }
+    .disable-pwd {
+        position: absolute;
+        min-width: 100%;
+        max-width: 100%;
+        min-height: 100%;
+        max-height: 100%;
+        top: 0;
+        left: 0;
+        background-color: #fff;
+        box-shadow:  5px 5px 10px rgba(53, 53, 53, 0.25),
+                    -5px 5px 10px rgba(53, 53, 53, 0.25),
+                    5px -5px 10px rgba(53, 53, 53, 0.25),
+                    -5px -5px 10px rgba(53, 53, 53, 0.25),
+                    5px 5px 10px rgba(53, 53, 53, 0.30) inset,
+                    -5px -5px 10px rgba(53, 53, 53, 0.30) inset;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: .5s ease;
+    }
+    .disable-pwd > *, .disable-pwd > *:hover, .disable-pwd > *:focus {
+        margin: 10px 0;
+        font-size: 20px;
+        min-width: 400px;
+        max-width: 400px;
+        color: #0a5a55;
+        padding: 25px;
+        border-radius: 10px;
+        background: #fff;
+        box-shadow: 5px 5px 10px rgba(155, 155, 155, 0.295),
+                    -5px -5px 10px rgba(155, 155, 155, 0.096),
+                    -2.5px -2.5px 3px rgba(155, 155, 155, 0.200),
+                    inset 5px 5px 10px rgba(155, 155, 155, 0.295),
+                    inset -5px -5px 10px rgba(155, 155, 155, 0.096),
+                    inset -2.5px -2.5px 3px rgba(155, 155, 155, 0.110);
+    }
+    .disable-pwd input{
+        box-shadow: 5px 5px 10px rgba(155, 155, 155, 0.295),
+                    -5px -5px 10px rgba(155, 155, 155, 0.096),
+                    -2.5px -2.5px 3px rgba(155, 155, 155, 0.200),
+                    inset 5px 5px 10px rgba(155, 155, 155, 0.295),
+                    inset -5px -5px 10px rgba(155, 155, 155, 0.096),
+                    inset -2.5px -2.5px 3px rgba(155, 155, 155, 0.110);
+    }
+    .disable-pwd .disable-password-submit, .disable-pwd .disable-pwd-back {
+        box-shadow: 5px 5px 10px rgba(155, 155, 155, 0.295),
+                    -5px -5px 10px rgba(155, 155, 155, 0.295),
+                    -2.5px -2.5px 3px rgba(155, 155, 155, 0.180),
+                    inset 5px 5px 10px rgba(155, 155, 155, 0.096),
+                    inset 2.5px 2.5px 3px rgba(155, 155, 155, 0.160),
+                    inset -5px -5px 10px rgba(155, 155, 155, 0.096),
+                    inset -2.5px -2.5px 3px rgba(155, 155, 155, 0.120);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        text-align: center;
+    }
+    .disable-pwd .disable-pwd-back {
+        min-width: fit-content;
+        max-width: fit-content;
+        min-height: fit-content;
+        max-height: fit-content;
+        padding: 10px;
+        position: absolute;
+        top: 10px;
+        left: 20px;
+    }
+}

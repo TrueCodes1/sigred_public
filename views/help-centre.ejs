@@ -1,0 +1,186 @@
+<html lang="en">
+<head>
+    <%- include('./partials/cookie_consent.ejs') %> 
+    <%- include('./partials/head.ejs') %>
+    <%- include('./partials/sidebar.ejs')  %>   
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="help.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="all.js" defer></script>
+</head>
+<body>
+    <div class="intro" id="intro">
+        <div class="diamonds">
+            <img src="diamond.svg" alt="" class="diamond1">
+            <img src="diamond_2.svg" alt="" class="diamond2">
+        </div>
+        <div class="mobile-top">
+            <div class="top-burger" id="top-burger">
+                <img src="burger.svg" alt="">
+            </div>
+            <div class="top-branding">
+                <div class="branding-name">
+                    Help
+                </div>
+                <div class="branding-logo">
+                    <img src="mobile_logo.png" alt="">
+                </div>
+            </div>
+        </div>
+        <% if (status == 'in'){ %>
+            <%- include('./partials/nav_profile.ejs')  %>     
+        <% } else { %>
+            <%- include('./partials/nav.ejs')  %>     
+        <% } %>   
+        <%- include('./partials/sidebar.ejs')  %>   
+        <%- include('./partials/logo.ejs')  %>   
+        <h1>Help centre</h1>
+        <div class="scroll desktop" style="left:40vw" onclick="window.scroll({
+            top: (window.innerHeight)+240,
+            behavior: 'smooth'
+        })">find the problem</div>
+        <div class="mobile-intro">
+            <div class="scroll-mobile mobile-classic" onclick="
+            let height = document.getElementById('intro').clientHeight;
+            document.body.scrollTo({
+            top: (height+240),
+            behavior: 'smooth'
+        })">
+                find the problem
+            </div>
+        </div>
+    </div>
+    </div>
+    <%- include('./partials/stripes.ejs')  %>
+    <div class="qs-whole">
+        <div class="qs-header">
+            Find the solution
+        </div>
+        <div class="qs-qs">
+            <p class="qs-q" onclick="window.scroll({
+                top: 2*(window.innerHeight)+240,
+                behavior: 'smooth'
+            })">
+                How to <span class="q-main">top my credit up?</span>
+            </p>
+            <p class="qs-q" onclick="window.scroll({
+                top: 3*(window.innerHeight)+240,
+                behavior: 'smooth'
+            })">
+                How to <span class="q-main">withdraw from my account?</span>
+            </p>
+            <p class="qs-q" onclick="window.scroll({
+                top: 4*(window.innerHeight)+240,
+                behavior: 'smooth'
+            })">
+                How to <span class="q-main">change my password?</span>
+            </p>
+            <p class="qs-q" onclick="window.scroll({
+                top: 5*(window.innerHeight)+240,
+                behavior: 'smooth'
+            })">
+                How to <span class="q-main">delete or change my offers?</span>
+            </p>
+        </div>
+        <div class="qs-other">
+            Still not your case? <a href="/contact" style="border-bottom: .5px solid #0a5a55; text-decoration: none; color: #0a5a55;">Hit us up!</a>
+        </div>
+    </div>
+    <div class="qs qs-1" id="q">
+        <div class="qs-question">
+            How to <span class="q-q-main"> top my credit up?</span>
+        </div>
+        <div class="qs-answers">
+            <p class="answer-step"><span class="answer-num">1 </span> Follow to <a href="/wallet" class="q-main">My Wallet</a></p>
+            <p class="answer-step"><span class="answer-num">2 </span> Hover over 'Top Up' and head to 'go for it'</p>
+            <p class="answer-step"><span class="answer-num">3 </span> Type amount of SIGECOINS to top up</p>
+            <p class="answer-step"><span class="answer-num">4 </span> Choose the payment option and fill in the form</p>
+            <p class="answer-step"><span class="answer-num">5 </span> Submit</p>
+        </div>
+        <div class="scroll" onclick="
+        let height = document.getElementById('intro').clientHeight;
+        let q = document.getElementById('q').clientHeight;
+        document.body.scrollTo({
+        top: (height*0.9865 + 240),
+        behavior: 'smooth'
+    })">to top</div>
+    </div>
+    <div class="qs qs-2">
+        <div class="qs-question">
+            How to <span class="q-q-main"> withdraw from my account?</span>
+        </div>
+        <div class="qs-answers">
+            <p class="answer-step">1. Follow to <a href="/wallet" class="q-main">My Wallet</a></p>
+            <p class="answer-step">2. Hover over 'Top Up' and head to 'go for it'</p>
+            <p class="answer-step">3. Type amount of SIGECOINS to top up</p>
+            <p class="answer-step">4. Choose the payment option and fill in the form</p>
+            <p class="answer-step">5. Submit</p>
+        </div>
+        <div class="scroll" onclick="
+        let height = document.getElementById('intro').clientHeight;
+        let q = document.getElementById('q').clientHeight;
+        document.body.scrollTo({
+        top: (height*0.9865 + 240),
+        behavior: 'smooth'
+    })">to top</div>
+    </div>
+    <div class="qs qs-3">
+        <div class="qs-question">
+            How to <span class="q-q-main"> change my password?</span>
+        </div>
+        <div class="qs-answers">
+            <p class="answer-step">1. Follow to <a href="/wallet" class="q-main">My Wallet</a></p>
+            <p class="answer-step">2. Hover over 'Top Up' and head to 'go for it'</p>
+            <p class="answer-step">3. Type amount of SIGECOINS to top up</p>
+            <p class="answer-step">4. Choose the payment option and fill in the form</p>
+            <p class="answer-step">1. Follow to <a href="/wallet" class="q-main">My Wallet</a></p>
+            <p class="answer-step">2. Hover over 'Top Up' and head to 'go for it'</p>
+            <p class="answer-step">3. Type amount of SIGECOINS to top up</p>
+           
+            <p class="answer-step">5. Submit</p>
+        </div>
+        <div class="scroll" onclick="
+        let height = document.getElementById('intro').clientHeight;
+        let q = document.getElementById('q').clientHeight;
+        document.body.scrollTo({
+        top: (height*0.9865 + 240),
+        behavior: 'smooth'
+    })">to top</div>
+    </div>
+    <div class="qs qs-4">
+        <div class="qs-question">
+            How to <span class="q-q-main"> change or delete my offers?</span>
+        </div>
+        <div class="qs-answers">
+            <p class="answer-step">1. Follow to <a href="/wallet" class="q-main">My Wallet</a></p>
+            <p class="answer-step">2. Hover over 'Top Up' and head to 'go for it'</p>
+            <p class="answer-step">3. Type amount of SIGECOINS to top up</p>
+            <p class="answer-step">4. Choose the payment option and fill in the form</p>
+            <p class="answer-step">5. Submit</p>
+        </div>
+        <div class="scroll" onclick="
+        let height = document.getElementById('intro').clientHeight;
+        let q = document.getElementById('q').clientHeight;
+        document.body.scrollTo({
+        top: (height*0.9865 + 240),
+        behavior: 'smooth'
+    })">to top</div>
+    </div>
+    <%- include('./partials/footer.ejs')  %> 
+    <script>
+    </script>
+</body>
+<script>
+    let viewHeight = $(window).height();
+    let viewWidth = $(window).width();
+    document.getElementById('intro').style.minHeight = viewHeight+'px';
+    document.getElementById('intro').style.maxHeight = viewHeight+'px';
+    let viewport = document.querySelector('meta[name=viewport]');
+    let qs = document.getElementsByClassName('qs');
+    for (q of qs){
+        q.style.minHeight = viewHeight+'px';
+        q.style.maxHeight = viewHeight+'px';
+    }
+    viewport.setAttribute('content', 'height=' + viewHeight + 'px, width=' + viewWidth + 'px, initial-scale = 1.0');
+</script>
+</html>

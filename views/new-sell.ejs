@@ -1,0 +1,368 @@
+<html lang="en">
+<head>
+    <%- include('./partials/cookie_consent.ejs') %> 
+    <%- include('./partials/head.ejs') %>
+    <%- include('./partials/sidebar.ejs')  %>   
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="new-sell.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="all.js" defer></script><!--
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUjLixjHG2oFnJJ8c7LVyx9GNaoNTDw8w&libraries=places" defer></script>-->
+</head>
+<body>  
+    <div class="intro" id="intro">
+        <div class="diamonds">
+            <img src="diamond.svg" alt="" class="diamond1">
+            <img src="diamond_2.svg" alt="" class="diamond2">
+        </div>
+        <div class="mobile-top" id="mobile-top">
+            <div class="top-burger" id="top-burger">
+                <img src="burger.svg" alt="">
+            </div>
+            <div class="top-branding">
+                <div class="branding-name">
+                    New Sell
+                </div>
+                <div class="branding-logo">
+                    <img src="mobile_logo.png" alt="">
+                </div>
+            </div>
+        </div>
+        <%- include('./partials/nav_profile.ejs')  %>     
+        <%- include('./partials/sidebar.ejs')  %>   
+        <%- include('./partials/logo.ejs')  %>   
+        <h1>New Sell</h1>
+        <div class="scroll desktop" onclick="window.scroll({
+            top: window.innerHeight+240,
+            behavior: 'smooth'
+        })">let's do it</div>
+        <div class="mobile-intro">
+            <div class="scroll-mobile mobile-classic" onclick="/*
+            let height = document.getElementById('intro').clientHeight;
+            document.body.scrollTo({
+            top: (height*0.87+240),
+            behavior: 'smooth'
+        })*/
+        
+            let vh = window.innerHeight;
+            document.body.scrollTo({
+                top: (1 * vh + 240),
+                behavior: 'smooth'
+            })">
+                let's do it
+            </div>
+        </div>
+    </div>
+    </div>
+    <% if (adding_status == 'done') { %>
+        <div class="adding-success" id="adding-success">
+            awesome, mate 
+        </div>
+        <script>
+            document.getElementById('adding-success').addEventListener('animationend', () => {
+                document.getElementById('adding-success').remove();
+            })
+        </script>
+    <% } else if (adding_status == 'problem') { %>
+        <div class="adding-success" id="adding-success">
+            some mistake occured, we're sorry 
+        </div>
+        <script>
+            document.getElementById('adding-success').addEventListener('animationend', () => {
+                document.getElementById('adding-success').remove();
+            })
+        </script>
+    <% } %> 
+    <% if (upload_status == 'bad_suffix') { %>
+        <script>alert('The file is incorrect or damaged. Please, choose correct file.')</script>
+    <% } %>
+    <div class="processing" id="processing">
+
+    </div>  
+    
+    <% if (upload_status == 'pending'){  %>
+        <script>alert('Your item is being uploaded. We will email you once it is ready. If you cannot see it, please, check "spam".')</script>
+        <% } else if (upload_status == 'too_large_video'){%>
+            <script>alert('Sorry mate, but your video was too large to upload. Please, try it again with video smaller than 25MB.')</script>
+            <% } %>   
+
+    <%- include('./partials/stripes.ejs')  %>
+    <div class="sell-video sell-part" id="sell-video">
+        <div class="video-header part-header" id="video-header">video,</div>
+        <div class="video-desc part-desc" id="video-desc">the way to imagine what you gonna buy in the most realistic way.<i><b>We even dream in video format.</b></i></div>
+        <div class="video-content part-content" id="video-content">
+            <div class="content-phone desktop">
+                <img src="phone.png" alt="">
+                <div class="phone-content">
+                    <div class="phone-mid" id="phone-mid">
+                        <% if (video_status == 'ok') { %>
+                            <div class="video">
+                                <video loop autoplay muted src="<%= url %> " frameborder="0" class="" id='video'></video>
+                            </div>
+                        <% } %>  
+                    </div>
+                    <div class="phone-top">
+                        <div class="time">
+                            15:28
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-video mobile" id="content-video-mobile">
+                <% if (video_status == 'ok') { %>
+                    <div class="video mobile" id="video-mobile-div">
+                        <video loop autoplay muted src="<%=url%> " frameborder="0" class="" id="video"></video>
+                    </div>
+                    <script>
+                        if (screen.width<500){
+                            let vh = window.innerHeight;
+                            document.getElementById('video-mobile-div').style.minHeight = (vh).toString()+'px';
+                            document.getElementById('video-mobile-div').style.maxHeight = (vh).toString()+'px';
+                            document.getElementById('video').style.minHeight = (vh).toString()+'px';
+                            document.getElementById('video').style.maxHeight = (vh).toString()+'px';
+                        }
+                    </script>
+                <% } %> 
+            </div>
+            <div class="content-input">
+                <form action="/upload_video" method="POST" class="video-form" id="video-form">
+                    <input type="text" name="unique_date" style="min-width: 0px; max-width: 0px; min-height: 0px; max-height: 0px; background: #C2D6D5;" id="unique_date">
+                    <input type="file" style="max-width: 0px; max-height: 0px; display: none; background: #C2D6D5;" id="file-input" name="file">
+                    <label for="file" onclick="document.getElementById('file-input').click()" id="file-label">
+                        <% if (video_status == 'ok') { %> 
+                            Change
+                        <% } else { %>
+                            Find
+                        <% } %> 
+                    </label>
+                    <!--<input type="submit" value="Continue" class="file-submit" id="files-continue" <% if (video_status == 'ok') {%> style="opacity: .5;" <%} %> >-->
+                    <label id="chosen-files">
+                        <% if (video_status == 'ok') {  %>
+                            <%= temp_video %> 
+                        <% } %>  
+                    </label>
+                </form>
+            </div>
+        </div>
+        <div class="scroll move" onclick="
+        if (screen.width<500){/*
+            let height = document.getElementById('intro').clientHeight;
+            let part_height = document.getElementById('part').clientHeight;
+            document.body.scrollTo({
+            top: (height*0.87+240+part_height),
+            behavior: 'smooth'
+        })*/
+            
+            let vh = window.innerHeight;
+            document.body.scrollTo({
+                top: (2 * vh + 240),
+                behavior: 'smooth'
+            })
+        }else{
+            window.scroll({
+            top: window.innerHeight*2+240,
+            behavior: 'smooth'
+        })}">
+            to name
+        </div>
+    </div>
+    <div class="sell-name sell-part" id="sell-name">
+        <div class="name-header part-header">name,</div>
+        <div class="name-desc part-desc">which is considered the most when providing other Sigredians with best results of their search.<i><b>Try to be certain.</b></i></div>
+        <div class="name-content part-content">
+            <input type="text" id="name-input" class="name-input" placeholder="Ready For Advanced - C1 Level">
+            <div class="name-counter" id="name-counter"><span class="counter-span" id="name-counter-span">0</span> of 40 characters</div>
+        </div>
+        <div class="scroll move"  onclick="check_go()">
+            to description
+        </div>
+    </div>
+    <div class="sell-desc sell-part" id="sell-desc">
+        <div class="desc-header part-header">description,</div>
+        <div class="desc-desc part-desc">to provide your mates with condition of the stuff they're gonna purchase.<i><b>Keep it real, they'll appreciate it.</b></i></div>
+        <div class="desc-content part-content">
+            <textarea name="item-desc" id="item-desc" class="item-desc" placeholder="A comprehensive course for learners of English at CEF level 7. The Student's Book Pack contains the complete self-study package for the Cambridge English: Advanced (CAE) exam, with a focus on thorough preparation. All of the language and skill..."></textarea>
+            <div class="desc-counter" id="desc-counter"><span class="counter-span" id="item-counter-span">0</span> of 150 characters</div>
+        </div>
+        <div class="scroll move recap" onclick="check_go_desc()">
+            to location
+        </div>
+    </div>
+    <div class="sell-location sell-part" id="sell-location">
+        <div class="location-header part-header">location,</div>
+        <div class="location-desc part-desc">which is considered the most when providing other Sigredians with best results of their search.<i><b>Try to be certain.</b></i></div>
+        <div class="location-content part-content">
+            <input type="text" id="position-input" class="position-input" placeholder="Your Position" value="<%= info.city %>, <%= info.country %>" disabled>
+            or
+            <!---<select id="position-input" class="position-input" placeholder="Your position">
+                <option disabled selected>Your Position</option>
+            </select>--->
+            <div class="find-position" id="find-position">
+                find me &#128269
+                <div class="coming-soon">coming soon</div>
+            </div>
+        </div>
+        <div class="scroll move" onclick="
+        if (screen.width<500){/*
+            let height = document.getElementById('intro').clientHeight;
+            let part_height = document.getElementById('part').clientHeight;
+            document.body.scrollTo({
+            top: (height*0.87+240+part_height*4),
+            behavior: 'smooth'
+        })*/
+        
+            let vh = window.innerHeight;
+            document.body.scrollTo({
+                top: (5 * vh + 240),
+                behavior: 'smooth'
+            })
+        }else{
+            window.scroll({
+            top: window.innerHeight*5+240,
+            behavior: 'smooth'
+        })}">
+            to price
+        </div>
+    </div>
+    <div class="sell-price sell-part" id="sell-price">
+        <div class="price-header part-header">price,</div>
+        <div class="price-desc part-desc">bear in mind the shape, age and maybe some signs of usage.<i><b>Hit it just fine! Not too much, not too less.</b></i></div>
+        <div class="price-content part-content">
+            <input type="tel" id="price-input" class="price-input">
+            <img src="sigecoin_icon_currency.svg" alt="">
+        </div>
+        <div class="scroll move recap" onclick="recap()">
+            move on & recap
+        </div>
+    </div>
+    <div class="sell-recap sell-part" id="sell-recap">
+        <div class="recap-video">
+            <img src="phone.png" alt="" class="desktop">
+            <div class="phone-content desktop">
+                <div class="phone-mid" id="phone-mid-recap">
+                    <% if (video_status == 'ok') { %>
+                        <div class="video">
+                            <video loop autoplay muted src="<%= url %> " frameborder="0" class=""></video>
+                        </div>
+                    <% } %>  
+                </div>
+                <div class="phone-top">
+                    <div class="time">
+                        15:28
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-video mobile" id="recap-video">
+            <% if (video_status == 'ok') { %>
+                <div class="video mobile">
+                    <video loop autoplay muted src="<%= url %> " frameborder="0" class=""></video>
+                </div>
+            <% } %> 
+        </div>
+        <div class="recap-other">
+            <div class="recap-name">
+                <p class="recap-name-name recap-text" id="recap-name">
+                </p>
+                <p class="recap-name-label recap-label">
+                    name
+                </p>
+            </div>
+            <div class="recap-desc">
+                <p class="recap-desc-desc recap-text" id="recap-desc">
+                </p>
+                <p class="recap-desc-label recap-label">
+                    description
+                </p>
+            </div>
+            <div class="recap-price">
+                <p class="recap-price-price recap-text" id="recap-price">
+                </p>
+                <p class="recap-price-label recap-label">
+                    price
+                </p>
+            </div>
+        </div>
+        <div class="scroll move" onclick="finish()">
+            let's just finish
+        </div>
+        <div class="recap-makesure" id="makesure">
+            <div class="makesure-makesure">
+                Good job, bruh.
+            </div>
+            <div class="makesure-submit">
+                <div class="submit" id="makesure-submit">
+                    pass it
+                </div>
+                <div class="close">
+                    <img src="/makesure_close.svg" alt="" class="makesure-close" id="makesure-close">
+                </div>
+            </div>
+        </div>
+    </div>
+    <% if (video_status == 'ok'){ %>
+        <script defer>
+            document.getElementById('processing').innerHTML = 'just a sec...'
+            document.getElementById('processing').style.display = 'flex';
+            
+            if (screen.width < 500){
+                
+                let height = document.getElementById('intro').clientHeight;
+                document.body.scrollTo({
+                    top: (height*0.98863+240),
+                    behavior: 'smooth'
+                })
+                document.getElementById('video-header').style.display = 'none';
+                document.getElementById('video-desc').style.display = 'none';
+            
+            } else {
+
+                window.scroll({
+                    top: window.innerHeight+240,
+                    behavior: 'smooth'
+                })
+            }
+            setTimeout(() =>{
+                document.getElementById('processing').classList.add('disappear');
+                setTimeout(() => {
+                    processing.style.display = 'none';
+                    processing.classList.remove('disappear');
+                }, 200)
+            }, 950)
+        </script>
+  <% } %> 
+  <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-storage.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js" defer></script>
+    <script src="new_sell.js" defer></script>
+</body>
+<script>
+    if (screen.width<500){
+        let vh = window.innerHeight;
+        document.getElementById('mobile-top').style.minHeight = 0.13*vh+'px';
+        document.getElementById('mobile-top').style.maxHeight = 0.13*vh+'px';
+        document.getElementById('mobile-top').style.top = '0';
+        document.getElementById('intro').style.minHeight = vh+'px';
+        document.getElementById('intro').style.maxHeight = vh+'px';
+        document.getElementById('intro').style.top = 0.13*vh+'px';
+        document.getElementById('stripes').style.top = vh+'px';
+        document.getElementById('sell-video').style.top = (vh+240).toString()+'px';
+        document.getElementById('content-video-mobile').style.minHeight = (vh).toString()+'px';
+        document.getElementById('content-video-mobile').style.maxHeight = (vh).toString()+'px';
+        document.getElementById('recap-video').style.minHeight = (vh).toString()+'px';
+        document.getElementById('recap-video').style.maxHeight = (vh).toString()+'px';/*
+        document.getElementById('video-content').style.top = '0';*/
+        document.getElementById('sell-name').style.top = (2*vh+240).toString()+'px';
+        document.getElementById('sell-desc').style.top = (3*vh+240).toString()+'px';
+        document.getElementById('sell-location').style.top = (4*vh+240).toString()+'px';
+        document.getElementById('sell-price').style.top = (5*vh+240).toString()+'px';
+        document.getElementById('sell-recap').style.top = (6*vh+240).toString()+'px';
+        let parts = document.getElementsByClassName('sell-part');
+        for (part of parts){
+            part.style.minHeight = vh+'px';
+            part.style.maxHeight = vh+'px';
+        }
+    }
+</script>
+</html>

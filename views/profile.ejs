@@ -1,0 +1,219 @@
+<html lang="en">
+<head>
+    <%- include('./partials/cookie_consent.ejs') %> 
+    <%- include('./partials/head.ejs') %>
+    <%- include('./partials/sidebar.ejs')  %>   
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="profile.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="all.js" defer></script>
+</head>
+<body>
+    <div class="intro" id="intro">
+        <div class="diamonds">
+            <img src="diamond.svg" alt="" class="diamond1">
+            <img src="diamond_2.svg" alt="" class="diamond2">
+        </div>
+        <div class="mobile-top">
+            <div class="top-burger" id="top-burger">
+                <img src="burger.svg" alt="">
+            </div>
+            <div class="top-branding">
+                <div class="branding-name">
+                    Profile
+                </div>
+                <div class="branding-logo">
+                    <img src="mobile_logo.png" alt="">
+                </div>
+            </div>
+        </div>
+        <%- include('./partials/nav_profile.ejs')  %>     
+        <%- include('./partials/sidebar.ejs')  %>   
+        <%- include('./partials/logo.ejs')  %>   
+        <h1>My Profile</h1>
+        <div class="scroll desktop" onclick="window.scroll({
+            top: window.innerHeight+240,
+            behavior: 'smooth'
+        })">about me</div>
+        <div class="mobile-intro">
+            <div class="scroll-mobile mobile-classic" onclick="
+                let height = document.getElementById('intro').clientHeight;
+                document.body.scrollTo({
+                top: (height+240),
+                behavior: 'smooth'
+            })">
+                about me
+            </div>
+        </div>
+    </div>
+    </div>
+    <%- include('./partials/stripes.ejs')  %>
+    <div class="me-whole">
+        <div class="me-wallet">
+            <div class="wallet-img">
+                <a href='/wallet'><img src="/wallet_icon.svg" alt="" class="wallet-img-img" onmouseover="rollDownWallet()" onmouseout="rollUpWallet()"></a>
+            </div>
+            <div class="wallet-content" id="wallet-content">
+                <div class="content-balance-sig">
+                    <div class="balance-balance"><%= balance.current  %><img src="/sigecoin_icon_currency.svg" alt="" class="balance-icon"></div>
+                    <div class="balance-label">current balance</div>
+                </div>
+                <div class="content-balance-eur">
+                    <div class="balance-balance"><%= balance.eur %> €</div>
+                    <div class="balance-label">current balance in EUR</div>
+                </div>
+            </div>    
+        </div>
+        <div class="me-details" id="me-details">
+            <div class="me-basics">
+                <div class="me-photo">
+                    <img src="nopic.svg" alt="" class="photo-photo">
+                    <div class="img-overflow"></div>
+                </div>
+                <div class="me-name">
+                    <p class="name-name"><%= info.name %> <%= info.lastName %>  </p>
+                    <p class="name-label">name</p>
+                </div>
+                </div>
+            <div class="me-other">
+                <div class="other-mail">
+                    <div class="mail-mail"><%= info.email %> </div>
+                    <div class="mail-label">e-mail address</div>
+                </div>
+                <div class="other-country">
+                    <div class="country-country"><%= info.country  %> </div>
+                    <div class="country-label">country</div>
+                </div>
+                <div class="other-city">
+                    <div class="city-city"><%= info.city %> </div>
+                    <div class="city-label">city</div>
+                </div>
+                <div class="other-age">
+                    <div class="age-age"><%= info.age %></div>
+                    <div class="age-label">age</div>
+                </div>
+            </div>    
+        </div>
+        <div class="me-items">
+            <div class="items-img">
+                <a href="/items"><img src="/items_icon.svg" alt="" class="wallet-img-img" onmouseover="rollDownItems()" onmouseout="rollUpItems()"></a>
+            </div>
+            <div class="items-content" id="items-content">
+                <div class="content-items-list">
+                    <ul class="items-list-list">
+                        <li>Headphones SONY XR45000</li>
+                        <li>Laptop Asus Aspire 500</li>
+                        <li>Cell phone Redmi Note 9 Pro</li>
+                    </ul>
+                </div>
+            </div>    
+        </div>
+        <button class="change-info-btn scroll" style="z-index: 99999;" onclick="change_pers()">
+            change personal info
+        </button>
+        <%- include('./partials/footer-mobile.ejs') %>
+        <div class="change-personal-whole" id="change-personal-whole">
+            <div class="personal-bg" id="personal-bg"></div>
+            <div class="personal-content">
+                <div class="personal-close" onclick='close_change()'>
+                    <img src="/close_light.svg" alt="">
+                </div>
+                <script>
+                    var whole = document.getElementById('change-personal-whole');
+                    var bg = document.getElementById('personal-bg');
+
+                    function close_change() {
+                        whole.classList.add('disappear');
+                        bg.classList.add('bg-disappear');/*
+                        whole.addEventListener('animationend', () => {
+                        })*/
+                        setTimeout(()=>{
+                            whole.classList.remove('disappear');
+                            whole.style.display = 'none';
+                            bg.classList.remove('bg-disappear')
+                            bg.style.display = 'none';
+                        }, 500)/*
+                        bg.addEventListener('animationend', () => {
+                        })*/
+                    }
+
+                    function change_pers(){
+                        whole.style.display = 'flex';
+                        bg.style.display = 'flex';
+                        whole.classList.add('appear');
+                        bg.classList.add('bg-appear');/*
+                        whole.addEventListener('animationend', () => {
+                        })*/
+                        setTimeout(() => {
+                            whole.classList.remove('appear');
+                        }, 1000)
+                        setTimeout(() => {
+                            bg.classList.remove('bg-appear');
+                        }, 2000)
+                        /*
+                        bg.addEventListener('animationend', () => {
+                        })*/
+                    }
+                </script>
+                <form action="/update_personal" class="personal-form" id="personal-form" method="POST"> 
+                    <input type="text" id="per-name" name="name" required value="<%= info.name %>" style="user-select: text;">
+                    <input type="text" id="per-lastNanme" name="lastName" required value="<%= info.lastName %>" style="user-select: text;">
+                    <input type="text" id="per-email" name="email" class="disabled" required value="<%= info.email %>"  style="user-select: none;" disabled>
+                    <input type="text" id="per-country" name="country" class="disabled" required value="<%= info.country %>" style="user-select: none;" disabled>
+                    <input type="text" id="per-city" name="city" required value="<%= info.city %>" style="user-select: text;">
+                    <input type="text" id="per-age" name="age" required value="<%= info.age %>" style="user-select: text;">
+                    <input type="submit" value="Update" class="per-submit">
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        function rollDownWallet() {
+            let div = document.getElementById('wallet-content');
+            div.classList.add('rollDown');
+            div.addEventListener('animationend', ()=>{
+                div.classList.remove('rollDown');
+                div.style.marginTop = '0';
+                div.style.opacity = '1';
+            })
+        }
+        function rollUpWallet() {
+            let div = document.getElementById('wallet-content');
+            div.classList.add('rollUp');
+            div.addEventListener('animationend', ()=>{
+                div.classList.remove('rollUp');
+                div.style.marginTop = '-20px';
+                div.style.opacity = '0';
+            })
+        }
+        function rollDownItems() {
+            let div = document.getElementById('items-content');
+            div.classList.add('rollDown');
+            div.addEventListener('animationend', ()=>{
+                div.classList.remove('rollDown');
+                div.style.marginTop = '0';
+                div.style.opacity = '1';
+            })
+        }
+        function rollUpItems() {
+            let div = document.getElementById('items-content');
+            div.classList.add('rollUp');
+            div.addEventListener('animationend', ()=>{
+                div.classList.remove('rollUp');
+                div.style.marginTop = '-20px';
+                div.style.opacity = '0';
+            })
+        }
+
+    </script>
+</body>
+<script>
+    let viewHeight = $(window).height();
+    let viewWidth = $(window).width();
+    document.getElementById('intro').style.minHeight = viewHeight+'px';
+    document.getElementById('intro').style.maxHeight = viewHeight+'px';
+    let viewport = document.querySelector('meta[name=viewport]');
+    viewport.setAttribute('content', 'height=' + viewHeight + 'px, width=' + viewWidth + 'px, initial-scale = 1.0');
+</script>
+</html>

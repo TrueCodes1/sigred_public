@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+    <%- include('./partials/cookie_consent.ejs') %> 
+    <%- include('./partials/head.ejs') %>
+    <%- include('./partials/sidebar.ejs')  %>   
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="help.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="all.js" defer></script>
+</head>
+<body>
+    <div class="intro" id="intro">
+        <div class="diamonds">
+            <img src="diamond.svg" alt="" class="diamond1">
+            <img src="diamond_2.svg" alt="" class="diamond2">
+        </div>
+        <div class="mobile-top">
+            <div class="top-burger" id="top-burger">
+                <img src="burger.svg" alt="">
+            </div>
+            <div class="top-branding">
+                <div class="branding-name">
+                    Messages
+                </div>
+                <div class="branding-logo">
+                    <img src="mobile_logo.png" alt="">
+                </div>
+            </div>
+        </div>
+        <%- include('./partials/nav_profile.ejs')  %>     
+        <%- include('./partials/sidebar.ejs')  %>   
+        <%- include('./partials/logo.ejs')  %>   
+        <h1>Messages</h1>
+        <div class="scroll desktop" style="left:40vw" onclick="window.scroll({
+            top: (window.innerHeight)+240,
+            behavior: 'smooth'
+        })">see my conversations</div>
+        <div class="mobile-intro">
+            <div class="scroll-mobile mobile-classic" onclick="
+            let height = document.getElementById('intro').clientHeight;
+            document.body.scrollTo({
+            top: (height+240),
+            behavior: 'smooth'
+        })">
+                see my conversations
+            </div>
+        </div>
+    </div>
+    </div>
+    <%- include('./partials/stripes.ejs')  %>
+    <%- include('./partials/footer.ejs')  %> 
+    <script>
+    </script>
+</body>
+<script>
+    let viewHeight = $(window).height();
+    let viewWidth = $(window).width();
+    document.getElementById('intro').style.minHeight = viewHeight+'px';
+    document.getElementById('intro').style.maxHeight = viewHeight+'px';
+    let viewport = document.querySelector('meta[name=viewport]');
+    viewport.setAttribute('content', 'height=' + viewHeight + 'px, width=' + viewWidth + 'px, initial-scale = 1.0');
+</script>
+</html>

@@ -1,0 +1,395 @@
+@media only screen and (max-width: 480px) {
+    .about-whole{
+        position: absolute;
+        top: calc(100vh + 240px);
+        left: 0;
+        box-sizing: border-box;
+        min-width: 100vw;
+        max-width: 100vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .about-header{
+        min-width: 100vw;
+        max-width: 100vw;
+        font-size: 12.75vw;
+        padding: 5px;
+        padding-top: 350px;
+        padding-bottom: 350px;
+        color: #0A5A55;
+    }
+    .header-text{
+        padding-top: 200px;
+    }
+    .about-text.mobile{
+        box-sizing: border-box;
+        min-width: 100vw;
+        max-width: 100vw;
+        font-size: 5vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: left;
+        justify-content: center;
+        padding: 5px;
+        color:#0A5A55;
+        padding: 10px;
+    }
+    .text-sub{
+        opacity: .5;
+        font-size: 7vw;
+    }
+    .text-main{
+        font-size: 8vw;
+        font-weight: 800;
+        opacity: 1;
+    }
+    .sigred-meaning-mobile {
+        display: flex;
+        min-width: 100vw;
+        max-width: 100vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        padding-top: 350px;
+        padding-bottom: 100px;
+    }
+    .sigred-meaning-mobile img{
+        min-width: 98vw;
+        max-width: 98vw;
+    }
+    .scroll-2{
+        font-family: 'Montserrat';
+        background-color: #0A5A55;
+        color: #FFE0C4;
+        border: 1px solid #0a5a55;
+        border-radius: 0.75em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9;
+        user-select: none;
+        cursor: pointer;
+        padding: 1.5em;
+        margin-bottom: 250px;
+    }
+    .sigecoin-whole{
+        position: absolute;
+        top: calc( 100vh + 240px + 1520px + 3.5em + 37.5vw + 43vw + 75vw);
+        display: flex;
+        min-width: 100vw;
+        max-width: 100vw;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+    }
+    .sigc-word, .sigc-word img{
+        min-width: 50vw;
+        max-width: 50vw;
+    }
+    .sigc-intro{
+        margin-top: 350px;
+    }
+    .sigc-intro, .sigc-intro img{
+        min-width: 100vw;
+        max-width: 100vw;
+    }
+    .sigc-get-div{
+        min-height: 20vh;
+        max-height: 20vh;
+        min-width: 100vw;
+        max-width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: translateY(-10vh);
+    }
+    .sigc-get{
+        min-width: 80vw;
+        max-width: 80vw;
+        background: #FFE0C4;
+        color: #0A5A55;
+        border-radius: .75em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1em 0;
+        animation: squeeze infinite 3s;
+        -webkit-animation: squeeze infinite 3s;
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.274);
+        font-weight: 500;
+    }
+    @keyframes squeeze {
+        0% {
+            padding: 1em 0;
+        }
+        33.3%{
+            transform: translateY(-55px);
+            padding: 1.5em 0;
+            min-width: 65vw;
+            max-width: 65vw;
+        }
+        40% {
+            transform: translateY(0);
+            padding: 1em 0;
+            min-width: 80vw;
+            max-width: 80vw;
+        }
+        46% {
+            transform: translateY(-15px);
+            padding: 1.2em 0;
+            min-width: 70vw;
+            max-width: 70vw;
+        }
+        52% {
+            transform: translateY(0);
+            padding: 1em 0;
+            min-width: 80vw;
+            max-width: 80vw;
+        }
+        55% {
+            transform: translateY(-7.5px);
+            padding: 1.15em 0;
+            min-width: 72.5vw;
+            max-width: 72.5vw;
+        }
+        61% {
+            transform: translateY(0);
+            padding: 1em 0;
+            min-width: 80vw;
+            max-width: 80vw;
+        }
+        63% {
+            transform: translateY(-3px);
+            padding: 1.05em 0;
+            min-width: 79vw;
+            max-width: 79vw;
+        }
+        65% {
+            transform: translateY(0);
+            padding: 1em 0;
+            min-width: 80vw;
+            max-width: 80vw;
+        }
+        100% {
+            transform: translateY(0);
+            padding: 1em 0;
+            min-width: 80vw;
+            max-width: 80vw;
+        }
+    }
+    .desktop{
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 1385px) {
+    body *{
+        user-select: none;
+    }
+    .about-whole{
+        position: absolute;
+        top: calc(100vh + 240px);
+        left: 0;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        align-items: top;
+        justify-content: flex-start;
+        min-width: 100vw;
+        max-width: 100vw;
+    }
+    .big-logo{
+        position: absolute;
+        z-index: 1;
+        top: 25vh;
+        left: 10vw;
+        opacity: .05;
+    }
+    .about-header{
+        font-family: 'Montserrat';
+        font-size: 4rem;
+        font-weight: 100;
+        color: #0A5A55;
+        min-width: 100vw;
+        max-width: 100vw;
+        margin-top: 1vw;
+        margin-left: 1vw;
+        z-index: 2;
+    }
+    .about-photo{
+        position: absolute;
+        min-width: 40vw;
+        max-width: 40vw;
+        top: 0;
+        right: 0;
+        padding: 2vw;
+        z-index: 2;
+    }
+    .about-photo>*{
+        min-width: 40vw;
+        max-width: 40vw;
+        z-index: 2;
+    }
+    .about-text{
+        position: absolute;
+        top: calc(8rem + 4vw);
+        left: 1.2vw;
+        font-family: 'Montserrat';
+        color: #0A5A55;
+        font-size: 1.5rem;
+        min-width: 50vw;
+        max-width: 50vw;
+        text-align: justify;
+        user-select: none;
+        z-index: 2;
+    }
+    .sigred-meaning img{
+        position: absolute;
+        left: 1vw;
+        top: 45vh;
+    }
+    .scroll-2{
+        position: absolute;
+        top:88vh;
+        left: 40vw;
+        min-width: 20vw;
+        max-width: 20vw;
+        min-height: 10vh;
+        max-height: 10vh;
+        font-family: 'Montserrat';
+        background-color: #0A5A55;
+        color: #FFE0C4;
+        border: 1px solid #0a5a55;
+        border-radius: .75em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 99999;
+        user-select: none;
+        cursor: pointer;
+        animation: infinite anim 3s;
+        -webkit-animation: infinite anim 3s;
+    }
+    @keyframes anim {
+        0% {
+            transform: translateY(0);
+            padding-bottom: 0;
+        }
+        25%{
+            padding-bottom: 15px;
+        }
+        50% {
+            transform: translateY(-25px);
+            padding-bottom: 0;
+            padding-top: 0;
+        }
+        75%{
+            padding-top: 15px;
+        }
+        100% {
+            transform: translateY(0);
+            padding-bottom: 0;
+            padding-top: 0;
+        }
+    }
+    @-webkit-keyframes anim {
+        0% {
+            transform: translateY(0);
+            padding-bottom: 0;
+        }
+        25%{
+            padding-bottom: 15px;
+        }
+        50% {
+            transform: translateY(-25px);
+            padding-bottom: 0;
+            padding-top: 0;
+        }
+        75%{
+            padding-top: 15px;
+        }
+        100% {
+            transform: translateY(0);
+            padding-bottom: 0;
+            padding-top: 0;
+        }
+    }
+    .sigecoin-whole{
+        position: absolute;
+        box-sizing: border-box;
+        min-width: 100vw;
+        max-width: 100vw;
+        min-height: 100vh;
+        max-height: 100vh;
+        top: calc(200vh + 240px);
+        left: 0;
+        background-image: linear-gradient(180deg, transparent, #FFE0C4 );
+    } 
+    .sigc-intro{
+        position: absolute;
+        bottom: 1vw;
+        left: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+        user-select: none;
+        min-width: 100vw;
+        max-width: 100vw;
+    }
+    .sigc-intro *{
+        min-width: 75vw;
+        max-width: 75vw;
+        z-index: 9999999999999999;
+        cursor: pointer;
+    }
+    .sigc-word{
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-width: 100vw;
+        max-width: 100vw;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .sigc-word *{
+        min-width: 100vw;
+        max-width: 100vw;
+    }
+    .footer-whole{
+        z-index: 9999;
+        position: absolute;
+        top: 330vh;
+        left: 0;
+        padding-top: 60px;
+        display: flex;
+        flex-direction: row;
+        font-family: 'Montserrat';
+        min-width: 100vw;
+        max-width: 100vw;
+        min-height: 35vh;
+        max-height: 35vh;
+        box-sizing: border-box;
+        justify-content: space-evenly;
+        align-items: center;
+        background-image: linear-gradient(180deg, #FFE0C4 5%, #FFE0C4 100%);
+        color: #0a5a55;
+        user-select: none;
+    }
+    .footer-navbar li{
+        list-style: none;
+        margin-bottom: 5px;
+    }
+    .footer-navbar a{
+        text-decoration: none;
+        color: #0a5a55;
+    }
+    .mobile{
+        display: none;
+    }
+}

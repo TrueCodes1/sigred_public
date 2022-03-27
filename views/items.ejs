@@ -1,0 +1,323 @@
+<html lang="en">
+<head>
+    <%- include('./partials/cookie_consent.ejs') %> 
+    <%- include('./partials/head.ejs') %>
+    <%- include('./partials/sidebar.ejs')  %>   
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="items.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="all.js" defer></script>
+</head>
+<body>
+    <div class="intro" id="intro">
+        <div class="diamonds">
+            <img src="diamond.svg" alt="" class="diamond1">
+            <img src="diamond_2.svg" alt="" class="diamond2">
+        </div>
+        <div class="mobile-top">
+            <div class="top-burger" id="top-burger">
+                <img src="burger.svg" alt="">
+            </div>
+            <div class="top-branding">
+                <div class="branding-name">
+                    My Items
+                </div>
+                <div class="branding-logo">
+                    <img src="mobile_logo.png" alt="">
+                </div>
+            </div>
+        </div>
+        <%- include('./partials/nav_profile.ejs')  %>     
+        <%- include('./partials/sidebar.ejs')  %>   
+        <%- include('./partials/logo.ejs')  %>   
+        <h1>My Items</h1>
+        <div class="scroll desktop" style="left: 19vw" onclick="window.scroll({
+            top: 2*(window.innerHeight)+240,
+            behavior: 'smooth'
+        })">sold</div>
+        <div class="scroll desktop" onclick="window.scroll({
+            top: window.innerHeight+240,
+            behavior: 'smooth'
+        })">my offers</div>
+        <div class="scroll desktop" style="left: 61vw" onclick="window.scroll({
+            top: 3*(window.innerHeight)+240,
+            behavior: 'smooth'
+        })">bought</div>
+        <div class="mobile-intro">
+            <div class="scroll-mobile mobile-special" onclick="
+            let height = document.getElementById('intro').clientHeight;
+            let sold = document.getElementById('sold').clientHeight;
+            document.body.scrollTo({
+            top: (height+240+sold),
+            behavior: 'smooth'
+        })">
+                sold
+            </div>
+            <div class="scroll-mobile mobile-special" onclick="
+            let height = document.getElementById('intro').clientHeight;
+            let sold = document.getElementById('sold').clientHeight;
+            document.body.scrollTo({
+            top: (height+240+sold+sold),
+            behavior: 'smooth'
+        })">
+                bought
+            </div>
+            <div class="scroll-mobile mobile-classic" onclick="
+            let height = document.getElementById('intro').clientHeight;
+            document.body.scrollTo({
+            top: (height+240),
+            behavior: 'smooth'
+        })">
+                my offers
+            </div>
+        </div>
+    </div>
+    </div>
+    <%- include('./partials/stripes.ejs')  %>
+    <div class="items-offer" id="offer">
+        <div class="scroll not-top" onclick="
+        if (screen.width<500){
+            let height = document.getElementById('intro').clientHeight;
+            let part_height = document.getElementById('offer').clientHeight;
+            document.body.scroll({
+                top: (height + 240 + part_height),
+                behavior: 'smooth'
+        })
+        } else {
+            document.body.scroll({
+            top: 2*(window.innerHeight)+240,
+            behavior: 'smooth'
+        })
+        }">sold</div>
+        <div class="items-subheader">offered by me</div>
+        <div class="items-list offer">
+        <% if (Object.keys(selling).length > 0) { %>
+            <% if (Object.keys(selling).length == 1){  %>
+            
+                <div class="list-item item-1">
+                    <div class="item-video-whole">
+                        <video loop autoplay muted src="" frameborder="0" class="bg-video"></video>
+                    </div>
+                    <div class="item-info">
+                        <p class="info-name">
+                            <%= selling[Object.keys(selling)[0]].item_name %> 
+                        </p>
+                    </div>
+                    <div class="item-footer">
+                        <p class="footer-more">more</p>
+                    </div>
+                </div>
+
+                <% for (let i = 2; i<10; i++) { %>
+
+                    <div class="list-item item-<%=i%>  empty">
+                    </div>
+
+                <% } %>  
+            <% } else if (Object.keys(selling).length == 9) {%>
+            
+                <div class="list-item item-1">
+                    <div class="item-video-whole">
+                        <video loop autoplay muted src="" frameborder="0" class="bg-video"></video>
+                    </div>
+                    <div class="item-info">
+                        <p class="info-name">
+                            <%= selling[Object.keys(selling)[0]].item_name %> 
+                        </p>
+                    </div>
+                    <div class="item-footer">
+                        <p class="footer-more">more</p>
+                    </div>
+                </div>
+
+                <% for (i=2; i<10; i++) { %>
+
+                    <div class="list-item item-<%=i%> ">
+                        <div class="item-info">
+                            <p class="info-name">
+                                <%= selling[Object.keys(selling)[i-1]].item_name %>
+                            </p>
+                        </div>
+                        <div class="item-footer">
+                            <p class="footer-more">more</p>
+                        </div>
+                    </div>
+
+                <% } %>  
+
+            <% } else { %>
+            
+                <div class="list-item item-1">
+                    <div class="item-video-whole">
+                        <video loop autoplay muted src="" frameborder="0" class="bg-video"></video>
+                    </div>
+                    <div class="item-info">
+                        <p class="info-name">
+                            <%= selling[Object.keys(selling)[0]].item_name %> 
+                        </p>
+                    </div>
+                    <div class="item-footer">
+                        <p class="footer-more">more</p>
+                    </div>
+                </div>
+
+                <% 
+                    let rest = Object.keys(selling).length - 1;
+                    let difference = 8 - rest;
+                    for (i=2; i<rest+2; i++) { 
+                %>
+
+                    <div class="list-item item-<%=i%> ">
+                        <div class="item-info">
+                            <p class="info-name">
+                                <%= selling[Object.keys(selling)[i-1]].item_name %>
+                            </p>
+                        </div>
+                        <div class="item-footer">
+                            <p class="footer-more">more</p>
+                        </div>
+                    </div>
+
+                <% } 
+                    rest+=2;
+                    for (x=0; x<difference; x++) { %> 
+                        <div class="list-item item-<%= rest %> empty">
+                        </div>
+                <% 
+                    rest+=1;
+                    } %>
+
+            <% } %>    
+        <% } %>  
+            <!--
+            <div class="list-item item-1">
+                <div class="item-video-whole">
+                    <video loop autoplay muted src="/video.mp4" frameborder="0" class="bg-video"></video>
+                </div>
+                <div class="item-info">
+                    <p class="info-name">Samsung Remote Control (SmartTV)</p>
+                </div>
+                <div class="item-footer">
+                    <p class="footer-more">more</p>
+                </div>
+            </div>
+            <div class="list-item item-2">
+                <div class="item-info">
+                    <p class="info-name">Samsung Remote Control (SmartTV)</p>
+                </div>
+                <div class="item-footer">
+                    <p class="footer-more">more</p>
+                </div>
+            </div>
+            <div class="list-item item-3">
+                <div class="item-info">
+                    <p class="info-name">Redmi Note 9 Pro</p>
+                </div>
+                <div class="item-footer">
+                    <p class="footer-more">more</p>
+                </div>
+            </div>
+            <div class="list-item item-4">
+                <div class="item-info">
+                    <p class="info-name">Christmas Sweather</p>
+                </div>
+                <div class="item-footer">
+                    <p class="footer-more">more</p>
+                </div>
+            </div>
+            <div class="list-item item-5">
+                <div class="item-info">
+                    <p class="info-name">Mafia II, Mafia III - Xbox, full version</p>
+                </div>
+                <div class="item-footer">
+                    <p class="footer-more">more</p>
+                </div>
+            </div>
+            <div class="list-item item-6">
+                <div class="item-info">
+                    <p class="info-name">Chenxi zlaté hodinky</p>
+                </div>
+                <div class="item-footer">
+                    <p class="footer-more">more</p>
+                </div>
+            </div>
+            <div class="list-item item-7 empty">
+            </div>
+            <div class="list-item item-8 empty">
+            </div>
+            <div class="list-item item-9 empty">
+            </div>-->
+        </div>
+    </div>
+    <div class="items-sold" id="sold">
+        <div class="scroll not-top" onclick="
+        if (screen.width<500){
+            let height = document.getElementById('intro').clientHeight;
+            let part_height = document.getElementById('offer').clientHeight;
+            document.body.scroll({
+                top: (height + 240 + 2*part_height),
+                behavior: 'smooth'
+        })
+        } else {
+            document.body.scroll({
+            top: 3*(window.innerHeight)+240,
+            behavior: 'smooth'
+        })
+        }">bought</div>
+        <div class="items-subheader">sold</div>
+        <div class="item-list sold">
+            <div class="list-item item-1">
+                <div class="item-name">Sony Headphones 3500X with ultra water-proof membrane which allows you to listen to your fav music when swimming in the pool</div>
+                <div class="item-buyer">Samuel Frišman</div>
+                <div class="item-date">8. Oct 2021</div>
+                <div class="item-status">delivered</div>
+            </div>
+            <div class="list-item item-2"></div>
+            <div class="list-item item-3"></div>
+            <div class="list-item item-4"></div>
+            <div class="list-item item-5"></div>
+            <div class="list-item item-6"></div>
+            <div class="list-item item-7"></div>
+            <div class="list-item item-8"></div>
+            <div class="list-item item-9"></div>
+            <div class="list-item item-10"></div>
+        </div>
+    </div>
+    <div class="items-bought" id="bought">
+        <div class="scroll not-top" onclick="document.body.scroll({
+            top: 0,
+            behavior: 'smooth'
+        })">to top</div>
+        <div class="items-subheader">bought</div>
+        <div class="item-list bought">
+            <div class="list-item item-1">
+                <div class="item-name">Sony Headphones 3500X with ultra water-proof membrane which allows you to listen to your fav music when swimming in the pool</div>
+                <div class="item-buyer">Samuel Frišman</div>
+                <div class="item-date">8. Oct 2021</div>
+                <div class="item-status">delivered</div>
+            </div>
+            <div class="list-item item-2"></div>
+            <div class="list-item item-3"></div>
+            <div class="list-item item-4"></div>
+            <div class="list-item item-5"></div>
+            <div class="list-item item-6"></div>
+            <div class="list-item item-7"></div>
+            <div class="list-item item-8"></div>
+            <div class="list-item item-9"></div>
+            <div class="list-item item-10"></div>
+        </div>
+    </div>
+    <%- include('./partials/footer-mobile.ejs') %>
+    <%- include('./partials/footer.ejs')  %> 
+    <script>
+    </script>
+</body>
+<script>
+    let viewHeight = $(window).height();
+    let viewWidth = $(window).width();
+    document.getElementById('intro').style.minHeight = viewHeight+'px';
+    document.getElementById('intro').style.maxHeight = viewHeight+'px';
+    let viewport = document.querySelector('meta[name=viewport]');
+    viewport.setAttribute('content', 'height=' + viewHeight + 'px, width=' + viewWidth + 'px, initial-scale = 1.0');
+</script>
+</html>

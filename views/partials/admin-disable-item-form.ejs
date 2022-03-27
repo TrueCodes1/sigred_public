@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="/admin-message-to-seller.css">
+<link rel="stylesheet" href="/admin-disable-item-form.css">
+
+<div class="disable-form" id="disable-form">
+    <div class="message-close" id="message-close" onclick="document.getElementById('disable-form').style.display = 'none'">
+        <img src="/close.svg" alt="">
+    </div>
+    <div class="disable-header">
+        <span id="disable-user-text">You are going to <%if (itemInfo.status == 'available') {%> disable <% } else { %> enable <%}%> item </span><span id="disable-user-name"><%=itemInfo.item_name%></span> 
+    </div>
+    <div class="disable-description">
+        <%if (itemInfo.status == 'available') {%>
+            Disabling item means it will not be visible for all the users of Sigred,
+            except for the one who's selling the item. You can enable the item again
+            anytime. Please, write message to be recieved by the seller to let them 
+            know the reason of this item being disabled. To finish the action, you 
+            will have to enter the admin password one more time.
+        <% } else { %> 
+            Enabling item means it will be visible for all the users of Sigred again.
+            You can disable the item again anytime. Please, write message to be recieved 
+            by the seller to let them know their item is being enabled again. To 
+            finish the action, you will have to enter the admin password one more time.
+        <%}%>
+    </div>
+    <div class="disable-message">
+        <textarea name="text" id="disable-message" class="disable-message" placeholder="Message..."></textarea>
+        <%if (itemInfo.status == 'available') {%>
+            <div class="disable-finish" onclick="disableAskForPassword()">Finish & Disable Item</div>
+        <% } else { %>
+            <div class="disable-finish" onclick="enableAskForPassword()">Finish & Enable Item</div>
+        <%}%>
+    </div>
+    <div class="disable-pwd" id="disable-pwd">
+        <input type="password" class="disable-password-input" id="disable-password-input" placeholder="Admin password...">
+        <input type="hidden" value="<%=itemInfo.item_name%>" id="item-name-hidden-input">
+        <input type="hidden" value="<%=itemInfo.item_seller_id%>" id="seller-id-hidden-input">
+        <%if (itemInfo.status == 'available') {%>
+            <div class="disable-password-submit" onclick="finalFinishDisable()">
+                Disable Item <%=itemInfo.item_name%>
+            </div>
+            <div class="disable-pwd-back" onclick="goBackToDisable()">
+                back
+            </div>
+        <% } else { %>
+            <div class="disable-password-submit" onclick="finalFinishEnable()">
+                Enable Item <%=itemInfo.item_name%>
+            </div>
+            <div class="disable-pwd-back" onclick="goBackToEnable()">
+                back
+            </div>
+        <%}%>
+    </div>
+</div>

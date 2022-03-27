@@ -1,0 +1,48 @@
+
+    <div class="cookie-consent-whole" id="cookie-consent-whole">
+        <div class="cookie-header">
+            On Sigred, we use few cookies in here.
+        </div>
+        <div class="cookie-expl">
+            We don't track you.<span class="cookie-noworries"> No worries. </span>These cookies are here so that the web works just fine.
+            For more, check out <a href="/cookies-policy" target="blank">cookies policy</a>.
+        </div>
+        <div class="cookie-consent">
+            <div class="cookie-agree" onclick="accept_cookies()">
+                I'm fine with this!
+            </div>
+            <div class="cookie-close" onclick="close_cookies()">
+                close
+            </div>
+        </div>
+    </div>
+    <script>
+        var cookies_list = document.cookie.split(';');
+        var cookies = {};
+        for (cookie of cookies_list){
+            let singles = cookie.split('=');
+            let cookie_name = singles[0];
+            let cookie_value = singles[1];
+            cookies[cookie_name] = cookie_value;
+        }
+        let keys = Object.keys(cookies);
+        if (keys.includes(' user_consent')){
+            if (cookies[' user_consent'] == 'true' || cookies[' user_consent'] == 'close'){
+                document.getElementById('cookie-consent-whole').style.display = 'none';
+            } else {
+                document.getElementById('cookie-consent-whole').style.display = 'flex';
+            }
+        } else { 
+            document.getElementById('cookie-consent-whole').style.display = 'flex';
+        }
+
+        function accept_cookies(){
+            document.cookie = 'user_consent=true; max-age='+(3600*24*90);
+            document.getElementById('cookie-consent-whole').style.display = 'none';
+        }
+
+        function close_cookies(){
+            document.cookie = 'user_consent=close; max-age='+(3600*24*90)
+            document.getElementById('cookie-consent-whole').style.display = 'none'
+        }
+    </script>

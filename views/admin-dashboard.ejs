@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/cookie_consent.ejs') %> 
+    <%- include('./partials/head.ejs') %>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="admin-dashboard.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins" />
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.5.3"></script>
+    <script src="all.js" defer></script>
+</head>
+<body>
+    <div class="intro" id="intro">
+        <div class="diamonds">
+            <img src="diamond.svg" alt="" class="diamond1">
+            <img src="diamond_2.svg" alt="" class="diamond2">
+        </div>
+        <div class="mobile-top">
+            <div class="top-burger" id="top-burger">
+                <img src="burger.svg" alt="">
+            </div>
+            <div class="top-branding">
+                <div class="branding-name">
+                    Dashboard
+                </div>
+                <div class="branding-logo">
+                    <img src="mobile_logo.png" alt="">
+                </div>
+            </div>
+        </div>
+        <% if (status == 'in') {%> 
+            <%- include('./partials/nav_profile.ejs')  %>
+        <% } else { %>    
+            <%- include('./partials/nav.ejs')  %>
+        <% } %> 
+        <%- include('./partials/sidebar.ejs')  %>   
+        <%- include('./partials/logo.ejs')  %>   
+        <h1>Dashboard</h1>
+
+        <div class="scroll desktop" style="left:40vw" onclick="window.scroll({
+            top: (window.innerHeight)+240,
+            behavior: 'smooth'
+        })">enter dashboard</div>
+        <div class="mobile-intro">
+            <div class="scroll-mobile mobile-classic" onclick="
+            let height = document.getElementById('intro').clientHeight;
+            document.body.scrollTo({
+            top: (height+240),
+            behavior: 'smooth'
+        })">
+                enter dashboard
+            </div>
+        </div>
+
+        <%- include('./partials/stripes.ejs')  %>
+        <div class="content">
+            <div class="top-part">
+                <div class="small-nav">
+                    <ul>
+                        <li class="used" id="admin-option-1">
+                            users
+                        </li>
+                        <li class="unused" id="admin-option-2">
+                            items
+                        </li>
+                        <li class="unused" id="admin-option-3">
+                            admins
+                        </li>
+                    </ul>
+                    <div class="small-scrollbar" id="small-scrollbar"></div>
+                </div>
+
+                <div class="small-searchbar" id="searchbar-users">
+                    <div class="searchbar-whole">
+                        <input type="text" class="searchbar" id="searchbar" placeholder="Search user..." style="user-select: text">
+                        <div class="search-results" id="search-results">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-part">
+
+                <div class="main-top" id="main-top">
+                    <div class="top-review" id="top-review">
+                        users in total &nbsp;<span id="users-number"> </span>
+                    </div>                    
+                </div>
+                <div class="main-main" id="main-main">
+                    <ul class="users-list" id="users-list">
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div id="space-for-link">
+            
+        </div>
+        <script src="admin-dashboard.js" defer></script>
+</body>
+<script>
+    let viewHeight = $(window).height();
+    let viewWidth = $(window).width();
+    document.getElementById('intro').style.minHeight = viewHeight+'px';
+    document.getElementById('intro').style.maxHeight = viewHeight+'px';
+    let viewport = document.querySelector('meta[name=viewport]');
+    viewport.setAttribute('content', 'height=' + viewHeight + 'px, width=' + viewWidth + 'px, initial-scale = 1.0');
+</script>
+</html>

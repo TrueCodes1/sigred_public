@@ -1,0 +1,159 @@
+<html lang="en">
+<head>
+    <%- include('./partials/cookie_consent.ejs') %> 
+    <%- include('./partials/head.ejs') %>
+    <%- include('./partials/sidebar.ejs')  %>   
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="help.css">
+    <link rel="stylesheet" href="privacy.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="all.js" defer></script>
+</head>
+<body>
+    <div class="intro" id="intro">
+        <div class="diamonds">
+            <img src="diamond.svg" alt="" class="diamond1">
+            <img src="diamond_2.svg" alt="" class="diamond2">
+        </div>
+        <div class="mobile-top">
+            <div class="top-burger" id="top-burger">
+                <img src="burger.svg" alt="">
+            </div>
+            <div class="top-branding">
+                <div class="branding-name">
+                    Privacy Policy
+                </div>
+                <div class="branding-logo">
+                    <img src="mobile_logo.png" alt="">
+                </div>
+            </div>
+        </div>
+        <% if (status == 'in') {%>
+            <%- include('./partials/nav_profile.ejs')  %> 
+        <% } else { %>
+            <%- include('./partials/nav.ejs')  %> 
+        <% } %>       
+        <%- include('./partials/sidebar.ejs')  %>   
+        <%- include('./partials/logo.ejs')  %>   
+        <h1>Privacy<br>Policy</h1>
+        <div class="scroll desktop" style="left:40vw" onclick="window.scroll({
+            top: (window.innerHeight)+240,
+            behavior: 'smooth'
+        })">have a look</div>
+        <div class="mobile-intro">
+            <div class="scroll-mobile mobile-classic" onclick="
+            let height = document.getElementById('intro').clientHeight;
+            document.body.scrollTo({
+            top: (height+240),
+            behavior: 'smooth'
+        })">
+                have a look
+            </div>
+        </div>
+    </div>
+    <div class="content-all">
+        <div class="lock-key">
+            <img src="key+lock.svg" alt="">
+        </div>
+        <div class="part privacy-basic">
+            <div class="part-header">
+                What type of data do we collect from you?
+            </div>
+            <div class="part-content">
+                We collect your registration data e.g. names,
+                 your age, country and city you are from or 
+                 your email address as well. We also collect 
+                 your user´s information such as usernames and 
+                 passwords. In order to avoid unwanted spams 
+                 or in case of any problems through our tool 
+                 “Messages“, we have access to this tool too 
+                 meaning we store your messages. Another type 
+                 of data we collect is uploading data, used during
+                  your uploading of products on Sigred. We collect
+                   e.g. videos of your products. We collect data of
+                   your searched items too. If you choose to have 
+                   the profile photo on your account, these photos 
+                   can be stored as well. If you want to Top up
+                    credit, you have to connect your Sigred 
+                account with your either debit or credit card 
+                or Paypal. This enables us to provide you 
+                services including “Top up credit“, “Withdraw“ 
+                cash from your Sigred account. The information 
+                of credit and debit cards are being stored within 
+                the service of our partner Paypal.
+            </div>
+        </div>
+        <div class="part privacy-handle">
+            <div class="part-header">
+                What do we do with the data we collect?
+            </div>
+            <div class="part-content">
+                The data we collect enables us to provide 
+                you our best services, move us forward and 
+                improve our services, and show you tailored 
+                content. The important thing here is to notice 
+                that we DO NOT share your personal data with 
+                the third-parties. We can do it only in 
+                extraordinary cases e.g. when you do not 
+                ship an item to the buyer and you do not 
+                respond to buyer´s messages. In this case 
+                we have an obligation to provide closer 
+                information about you including - e-mail, 
+                full name. We collect your email addresses 
+                for verifying your password, if you forget 
+                it, as well as sending notifications necessary 
+                for using Sigred, e.g. Topping up the credit, 
+                Withdrawing money from your account and sending 
+                upcoming updates. The additional information 
+                e.g. Full Name and age, country, city, where 
+                you live serve as a verification of your 
+                credibility for the buyers. The next reason 
+                for collecting your data is to make marketing 
+                analysis to improve our services.
+            </div>
+        </div>
+        <div class="part privacy-change">
+            <div class="part-header">
+                How can you change your personal data?
+            </div>
+            <div class="part-content">
+                You can change your personal information 
+                e.g. age, address, your profile photo any 
+                time you want in “Settings of personal 
+                data“ after clicking the Settings of personal 
+                data.
+                <br>
+               We are pleased to welcome you on Sigred! Now 
+                you can use our services, however before
+                 you do so, please read our Terms of Use 
+                 agreement. This agreement is about your 
+                 rights, as customers of our sites, as well 
+                 as relating provisions you have to accept 
+                 in order to use our sites. So please, read 
+                 this agreement carefully. We may change or 
+                 modify some Terms due to new changes in the 
+                 market, new laws, new payment methods etc. 
+                 Because of this we recommend you to check 
+                 the latest updates of Terms of Use in order 
+                 not to miss new Terms. Not every policy is 
+                 included here, for more information see also 
+                 “Privacy Policy“, “Cookies Policy“.
+            </div>
+        </div>
+    </div>
+    </div>
+    <%- include('./partials/stripes.ejs')  %>
+    <%- include('./partials/footer.ejs')  %> 
+    <%- include('./partials/footer-mobile.ejs') %>
+    <script>
+    </script>
+</body>
+<script>
+    let viewHeight = $(window).height();
+    let viewWidth = $(window).width();
+    document.getElementById('intro').style.minHeight = viewHeight+'px';
+    document.getElementById('intro').style.maxHeight = viewHeight+'px';
+    let viewport = document.querySelector('meta[name=viewport]');
+    viewport.setAttribute('content', 'height=' + viewHeight + 'px, width=' + viewWidth + 'px, initial-scale = 1.0');
+</script>
+</html>

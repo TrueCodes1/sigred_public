@@ -1,0 +1,96 @@
+<html lang="en">
+<head>
+    <%- include('./partials/cookie_consent.ejs') %> 
+    <%- include('./partials/head.ejs') %>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="contact.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="all.js" defer></script>
+</head>
+<body>
+    <div class="intro" id="intro">
+        <div class="diamonds">
+            <img src="diamond.svg" alt="" class="diamond1">
+            <img src="diamond_2.svg" alt="" class="diamond2">
+        </div>
+        <div class="mobile-top">
+            <div class="top-burger" id="top-burger">
+                <img src="burger.svg" alt="">
+            </div>
+            <div class="top-branding">
+                <div class="branding-name">
+                    Contact
+                </div>
+                <div class="branding-logo">
+                    <img src="mobile_logo.png" alt="">
+                </div>
+            </div>
+        </div>
+        <% if (status == 'in') {%> 
+            <%- include('./partials/nav_profile.ejs')  %>
+        <% } else { %>    
+            <%- include('./partials/nav.ejs')  %>
+        <% } %> 
+        <%- include('./partials/sidebar.ejs')  %>  
+        <%- include('./partials/logo.ejs')  %>
+        <div class="mobile-intro">
+            <div class="scroll-mobile mobile-classic" onclick="
+            let height = document.getElementById('intro').clientHeight;
+            document.body.scrollTo({
+            top: (height+240),
+            behavior: 'smooth'
+        })">
+                let's get in touch
+            </div>
+        </div>    
+        <img src="/contact_header.svg" alt="" class="contact-header desktop">
+        <div class="contact-whole">
+            <div class="contact-other">
+                <div class="other-unit">
+                    <img src="/geo_point_icon.svg" alt="" class="loc-icon desktop">
+                    <img src="/geo_point_icon_mobile.svg" alt="" class="loc-icon mobile">
+                    <p class="loc-text">Košice, Slovakia</p>
+                </div>
+                <div class="other-unit">
+                    <img src="/phone_icon.svg" alt="" class="loc-icon desktop">
+                    <img src="/phone_icon_mobile.svg" alt="" class="loc-icon mobile">
+                    <p class="loc-text">0905 123 456</p>
+                </div>
+    
+            </div>
+    
+            <form action="/contact" method="POST" class="contact-form">
+                <% if (message != ''){ %>
+                    <p class="message-sent">E-mail sent!</p>    
+                <% } %> 
+                <% if (status == 'in'){ %>
+                    <input type="hidden" name="status" value="in"> 
+                    <input type="text" id="name" name="name" placeholder="Name" required value='<%= info.name %> <%= info.lastName %> ' autocomplete="off" autofill='off' >
+                    <input type="text" id="email" name="email" placeholder="E-mail" required value='<%= info.email %> ' autocomplete="off" autofill='off' >
+                    <input type="text" id="subject" name="subject" placeholder="Subject" required autocomplete="off" autofill='off' >
+                    <textarea type="text" id="message" name="message" placeholder="Message" required autocomplete="off" autofill='off' ></textarea>
+                    <button type="submit" class="submit contact-submit" value="Send">Send &#129309;</button>
+                <% } else { %> 
+                    <input type="hidden" name="status" value="out"> 
+                    <input type="text" id="name" name="name" placeholder="Name" required autocomplete="off" autofill='off' >
+                    <input type="text" id="email" name="email" placeholder="E-mail" required autocomplete="off" autofill='off' >
+                    <input type="text" id="subject" name="subject" placeholder="Subject" required autocomplete="off" autofill='off' >
+                    <textarea type="text" id="message" name="message" placeholder="Message" required autocomplete="off" autofill='off' ></textarea>
+                    <button type="submit" class="submit contact-submit" value="Send">Send &#129309;</button>
+                <% } %> 
+            </form>
+    
+            <%- include('./partials/footer-mobile.ejs') %>
+        </div>
+    </div>
+    <%- include('./partials/stripes.ejs')  %>
+</body>
+<script>
+    let viewHeight = $(window).height();
+    let viewWidth = $(window).width();
+    document.getElementById('intro').style.minHeight = viewHeight+'px';
+    document.getElementById('intro').style.maxHeight = viewHeight+'px';
+    let viewport = document.querySelector('meta[name=viewport]');
+    viewport.setAttribute('content', 'height=' + viewHeight + 'px, width=' + viewWidth + 'px, initial-scale = 1.0');
+</script>
+</html>

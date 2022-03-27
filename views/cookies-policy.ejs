@@ -1,0 +1,129 @@
+<html lang="en">
+<head>
+    <%- include('./partials/cookie_consent.ejs') %> 
+    <%- include('./partials/head.ejs') %>
+    <%- include('./partials/sidebar.ejs')  %>   
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="help.css">
+    <link rel="stylesheet" href="privacy.css">
+    <link rel="stylesheet" href="terms.css">
+    <link rel="stylesheet" href="cookies.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="all.js" defer></script>
+</head>
+<body>
+    <div class="intro" id="intro">
+        <div class="diamonds">
+            <img src="diamond.svg" alt="" class="diamond1">
+            <img src="diamond_2.svg" alt="" class="diamond2">
+        </div>
+        <div class="mobile-top">
+            <div class="top-burger" id="top-burger">
+                <img src="burger.svg" alt="">
+            </div>
+            <div class="top-branding">
+                <div class="branding-name">
+                    Cookies Policy
+                </div>
+                <div class="branding-logo">
+                    <img src="mobile_logo.png" alt="">
+                </div>
+            </div>
+        </div>
+        <% if (status == 'in') {%>
+            <%- include('./partials/nav_profile.ejs')  %> 
+        <% } else { %>
+            <%- include('./partials/nav.ejs')  %> 
+        <% } %>       
+        <%- include('./partials/sidebar.ejs')  %>   
+        <%- include('./partials/logo.ejs')  %>   
+        <h1>Cookies Policy</h1>
+        <div class="scroll desktop" style="left:40vw" onclick="window.scroll({
+            top: (window.innerHeight)+240,
+            behavior: 'smooth'
+        })">have a look</div>
+        <div class="mobile-intro">
+            <div class="scroll-mobile mobile-classic" onclick="
+            let height = document.getElementById('intro').clientHeight;
+            document.body.scrollTo({
+            top: (height+240),
+            behavior: 'smooth'
+        })">
+                have a look
+            </div>
+        </div>
+    </div>
+    <div class="content-all">
+        
+        <div class="part first">
+            <div class="part-header">
+                What is cookie?
+            </div>
+            <div class="part-content">
+                A cookie is a small piece of text sent to your browser by a website you visit. It helps the site remember information about your visit, which can make it easier to visit the site again and make the site more useful to you. It may be used for remembering you after leaving Sigred, to remember your password or more practically to know your decision made about our “Cookie pop up”. 
+            </div>
+        </div>
+        <div class="part second">
+            <div class="part-header">
+                What do we use cookies for?
+            </div>
+            <div class="part-content">
+                The cookies that we use include session cookies, which are deleted when you close your browser, and persistent cookies, which stay in your browser until they expire or you delete them
+            </div>
+        </div>
+        <div class="part third">
+            <div class="part-header">
+                Cookies consent
+            </div>
+            <div class="part-content">
+                We use cookies to remember your preference for our “Cookie pop up”. In this very specific case we use “user_consent”.
+            </div>
+        </div>
+        <div class="part fourth">
+            <div class="part-header">
+                Authentication
+            </div>
+            <div class="part-content">
+                What we also do, is remembering whether you are logged in and store information about you logged in. “_csrf XSRF-TOKEN session” is a type of cookie we use for this activity. It has a lifespan of 24 hours.
+            </div>
+        </div>
+        <div class="part fifth">
+            <div class="part-header">
+                Measurement
+            </div>
+            <div class="part-content">
+                The fundamental thing for realizing this is that we do not track you on other websites. However, we have to use some cookies for tracking you across our Sigred platform, so that we could improve our services and make more suitable products for you. We use cookies by Alphabet, INC. called Google analytics, which helps us to see how people interact with our services. We cannot see the certain activities of certain people, but general metrics. The cookie we use for this is “_ga”. This cookie has a lifespan of 24 hours.
+            </div>
+        </div>
+        <div class="part sixth">
+            <div class="part-header">
+                Payment gateway
+            </div>
+            <div class="part-content">
+                Since we want you to serve the best experience we can, we have built-in a payment gateway, where you can safely, simply and fast get paid or to pay for products. We have a partnership with Stripe, INC. which enables us to use their software to make this amazing experience for you. This type of cookie is considered “third-party” since it is put on our web app by another service. The cookies we use for this are “__stripe_mid” and “__stripe_orig_props”. These cookies have lifespans of 24 hours.
+            </div>
+        </div>
+        <div class="part seventh">
+            <div class="part-header">
+                What happens if I do not accept these cookies?
+            </div>
+            <div class="part-content">
+                Don´t worry, you still will be able to use our services:). Cookies that you cannot block are the technical ones, which are necessary for the website to work. You may choose not to be tracked by the method we use, which may result in minor data about your activity, thus worse services for you. Possibly, you even can block cookies by Stripe, however the payment gateway would stop working for you, which would not fulfill our commitment to provide you the safe, simple and fast environment in any direction. 
+            </div>
+        </div>
+
+    </div>
+    </div>
+    <%- include('./partials/stripes.ejs')  %>
+    <%- include('./partials/footer.ejs')  %> 
+    <%- include('./partials/footer-mobile.ejs') %>
+</body>
+<script>
+    let viewHeight = $(window).height();
+    let viewWidth = $(window).width();
+    document.getElementById('intro').style.minHeight = viewHeight+'px';
+    document.getElementById('intro').style.maxHeight = viewHeight+'px';
+    let viewport = document.querySelector('meta[name=viewport]');
+    viewport.setAttribute('content', 'height=' + viewHeight + 'px, width=' + viewWidth + 'px, initial-scale = 1.0');
+</script>
+</html>

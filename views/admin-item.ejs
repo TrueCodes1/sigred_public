@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/cookie_consent.ejs') %> 
+    <%- include('./partials/head.ejs') %>
+    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="/login.css">
+    <link rel="stylesheet" href="/admin-user.css">
+    <link rel="stylesheet" href="/admin-item.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins" />
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.5.3"></script>
+    <script src="/all.js" defer></script>
+</head>
+<body>
+    <div class="intro" id="intro">
+        <div class="diamonds">
+            <img src="/diamond.svg" alt="" class="diamond1">
+            <img src="/diamond_2.svg" alt="" class="diamond2">
+        </div>
+        <div class="mobile-top">
+            <div class="top-burger" id="top-burger">
+                <img src="/burger.svg" alt="">
+            </div>
+            <div class="top-branding">
+                <div class="branding-name">
+                    User | Admin
+                </div>
+                <div class="branding-logo">
+                    <img src="/mobile_logo.png" alt="">
+                </div>
+            </div>
+        </div>
+        <% if (status == 'in') {%> 
+            <%- include('./partials/nav_profile.ejs')  %>
+        <% } else { %>    
+            <%- include('./partials/nav.ejs')  %>
+        <% } %> 
+        <%- include('./partials/sidebar.ejs')  %>   
+        <%- include('./partials/logo.ejs')  %>   
+        <h1>Item</h1>
+
+        <div class="scroll desktop" style="left:40vw" onclick="window.scroll({
+            top: (window.innerHeight)+240,
+            behavior: 'smooth'
+        })">view user</div>
+        <div class="mobile-intro">
+            <div class="scroll-mobile mobile-classic" onclick="
+            let height = document.getElementById('intro').clientHeight;
+            document.body.scrollTo({
+            top: (height+240),
+            behavior: 'smooth'
+        })">
+                view item
+            </div>
+        </div>
+
+        <%- include('./partials/stripes.ejs')  %>
+        <div class="content">
+            <div class="back" onclick="window.location.assign('/admin-dashboard')">
+                back to items
+            </div>
+            <div class="user">
+                <%if (itemInfo.status == 'available') {%>
+                    <div id="account-tag-enabled">
+                        item offered on <%=itemInfo.item_selling_time.split(',')[0]%>
+                    </div>
+                <% } else { %>
+                    <div id="account-tag-disabled">
+                        item offered on <%=itemInfo.item_selling_time.split(',')[0]%>,<b> disabled on <%=itemInfo.disabled.split(',')[0]%></b>
+                    </div>
+                <%}%>
+                <div class="history-status">
+                    <% if (Number(itemInfo.history) == 1) {%>
+                        this item has been disabled <%=itemInfo.history%> time
+                    <% } else if (Number(itemInfo.history) > 1) { %>
+                        this item has been disabled <%=itemInfo.history%> times
+                    <% } else { %>
+                        this item has never been disabled
+                    <% } %>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-video">
+                    <video src="<%=itemInfo.video_link%>" class="item-video-video" alt="video preview" autoplay loop muted preload></video>
+                </div>
+                <div class="item-info">
+                    <div class="info-item-name">
+                        <%=itemInfo.item_name%>
+                    </div>
+                    <div class="info-item-seller">
+                        <div class="seller-name" id="seller-name">
+                            <%=itemInfo.item_seller%>
+                        </div>
+                        <div class="seller-location">
+                            <%=itemInfo.item_location%>
+                        </div>
+                    </div>
+                    <div class="item-info-desc">
+                        <%=itemInfo.item_desc%>
+                    </div>
+                    <div class="item-info-price">
+                        <%=itemInfo.item_price%>
+                        <img src="/sigecoin_icon_currency.svg" alt="" class="item-info-price-currency">
+                    </div>
+
+                </div>
+                <div class="item-options">
+                    <div class="option-contact" onclick="openMessage()">
+                        contact seller
+                    </div>
+                    <%if (itemInfo.status == 'available') {%>
+                        <div class="option-disable" onclick="disableItem()">
+                            disable item
+                        </div>
+                    <% } else { %>
+                        <div class="option-enable" onclick="enableItem()">
+                            enable item
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+            <%- include('./partials/admin-message-to-seller.ejs')  %>   
+            <%- include('./partials/admin-disable-item-form.ejs')  %>  
+        </div> 
+        <script src="/admin-item.js" defer></script>
+</body>
+<script>
+    let viewHeight = $(window).height();
+    let viewWidth = $(window).width();
+    document.getElementById('intro').style.minHeight = viewHeight+'px';
+    document.getElementById('intro').style.maxHeight = viewHeight+'px';
+    let viewport = document.querySelector('meta[name=viewport]');
+    viewport.setAttribute('content', 'height=' + viewHeight + 'px, width=' + viewWidth + 'px, initial-scale = 1.0');
+</script>
+</html>

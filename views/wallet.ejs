@@ -1,0 +1,566 @@
+<html lang="en">
+<head>
+    <%- include('./partials/cookie_consent.ejs') %> 
+    <%- include('./partials/head.ejs') %>
+    <%- include('./partials/sidebar.ejs')  %>   
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="wallet.css">
+    <script src="all.js" defer></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="https://checkout.stripe.com/checkout.js" defer></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script>
+        var StripePublicKey = '<%= stripePublicKey %>';
+        var stripe = Stripe(StripePublicKey)
+     </script>
+    <script src="wallet.js" defer></script>
+    <script>
+        let viewHeight = $(window).height();
+        let viewWidth = $(window).width();
+        let viewport = document.querySelector('meta[name=viewport]');
+        viewport.setAttribute('content', 'height=' + viewHeight + ', width=' + viewWidth + 'px, initial-scale = 1.0');
+    </script>
+</head>
+<body onscroll="/*body_scroll()*/">
+    <div class="intro" id="intro">
+        <div class="diamonds">
+            <img src="diamond.svg" alt="" class="diamond1">
+            <img src="diamond_2.svg" alt="" class="diamond2">
+        </div>
+        <div class="mobile-top">
+            <div class="top-burger" id="top-burger">
+                <img src="burger.svg" alt="">
+            </div>
+            <div class="top-branding">
+                <div class="branding-name">
+                    My Wallet
+                </div>
+                <div class="branding-logo">
+                    <img src="mobile_logo.png" alt="">
+                </div>
+            </div>
+        </div>
+        <%- include('./partials/nav_profile.ejs')  %>     
+        <%- include('./partials/sidebar.ejs')  %>   
+        <%- include('./partials/logo.ejs')  %>   
+        <h1>My Wallet</h1>
+        <div class="scroll desktop" onclick="window.scroll({
+            top: window.innerHeight+240,
+            behavior: 'smooth'
+        })">manage my money</div>
+        <div class="mobile-intro">
+            <div class="scroll-mobile mobile-classic" onclick="
+            let height = document.getElementById('intro').clientHeight;
+            document.body.scrollTo({
+            top: (height+240),
+            behavior: 'smooth'
+        })">
+                manage my money
+            </div>
+        </div>
+        <% if (topup_status == 'done') { %>
+            <div class="topup-success" id="topup-success">
+                successful top-up, buddy!
+            </div>
+            <script>
+                document.getElementById('topup-success').addEventListener('animationend', () => {
+                    document.getElementById('topup-success').remove();
+                })
+            </script>
+        <% } %>
+        <div class="processing" id="processing">processing...</div>  
+    </div>
+    </div>
+    <%- include('./partials/stripes.ejs')  %>
+    <div class="wallet-whole">
+        <div class="wallet-left">
+            <div class="left-img" id="left-img" style="cursor: pointer;">
+                <div class="img-top" id="left-top" style="cursor: pointer;">
+                    <img src="/top_up_part.svg" alt="" class="desktop">
+                    <img src="/top_up_part.png" alt="" class="mobile">
+                </div>
+                <div class="left-content" id="left-content">
+                    <div class="left-balance">
+                        <div class="balance-balance">
+                            <%= balance.current %>  <img src="/sigecoin_icon_currency.svg" alt="" class="desktop"> <img src="/sigecoin_icon_currency.svg" alt="" class="mobile">
+                        </div>
+                        
+                        <div class="balance-label">
+                            current balance 
+                        </div>
+                    </div>
+                    <div class="left-calcul">
+                        <div class="calcul-eur" style="font-size: 1.8rem;">
+                            <input type="text" class="calcul-input" id="calcul-eur" value="2" style="user-select: text;"><span>€</span>
+                        </div>
+                        <div class="calcul-sig">
+                            <input type="text" class="calcul-input" id="calcul-sig" onkeypress="return false" disabled>
+                            <img src="/sigecoin_icon_currency_light.svg" alt="" style="margin: 0 20px 0 -10px;" class="desktop">
+                            <img src="/sigecoin_icon_currency_light.svg" alt="" class="mobile">
+                        </div>
+                    </div>
+                    <div class="left-btn" onclick='open_topup()'>
+                        go for it!
+                    </div>
+                </div>
+                <div class="img-bottom" id="left-bottom"  style="z-index: 2;">
+                    <img src="/top_up.svg" alt="" class="desktop">
+                    <img src="/top_up.png" alt="" class="mobile">
+                </div>
+            </div>
+        </div>
+        <div class="wallet-right">
+            <div class="right-img" id="right-img" style="cursor: pointer;">
+                <div class="img-top" id="right-top" style="z-index: 2;">
+                    <img src="/withdraw.svg" alt="" class="desktop">
+                    <img src="/withdraw.png" alt="" class="mobile">
+                </div>
+                <div class="right-content" id="right-content">
+                    <div class="left-balance">
+                        <div class="balance-balance">
+                            <%= balance.eur %>  €
+                        </div>
+                        
+                        <div class="balance-label">
+                            current balance
+                        </div>
+                    </div>
+                    <div class="right-calcul">
+                        <div class="calcul-sig">
+                            <input type="text" class="calcul-input" id="calcul-sig-right" value="1" style="user-select: text;" >
+                            <img src="/sigecoin_icon_currency_light.svg" alt="" style="margin: 0 20px 0 -10px;" class="desktop">
+                            <img src="/sigecoin_icon_currency.svg" alt="" class="mobile">
+                        </div>
+                        <div class="calcul-eur" style="font-size: 1.8rem;">
+                            <input type="text" class="calcul-input" id="calcul-eur-right" onkeypress="return false" disabled><span>€</span>
+                        </div>
+                    </div>
+                    <div class="right-btn" onclick='open_withdraw()'>
+                        go for it!
+                    </div>
+                </div>
+                <div class="img-bottom" id="right-bottom" style="z-index: 1;">
+                    <img src="/withdraw_part.svg" alt="" class="desktop">
+                    <img src="/withdraw_part.png" alt="" class="mobile">
+                </div>
+            </div>
+        </div>
+        <%- include('./partials/footer-mobile.ejs') %>
+    </div>
+    <div class="topup-whole" id="topup-whole">
+        <div class="topup-bg"></div>
+        <div class="topup-content">
+            <div class="topup-close">
+                <img src="/close.svg" alt="" style="cursor: pointer;" onclick='
+                    document.getElementById("topup-whole").style.transition = "all .25s ease";
+                    document.getElementById("topup-whole").style.opacity = "0";
+                    document.getElementById("topup-whole").style.display = "none";
+                    '>
+            </div>
+            <div class="topup-header">
+                Let's get it done!
+            </div>
+            <div class="topup-info">
+                Put in the amount of Sigecoins you want to top up. Then choose the way to pay.<br> All this just Safely, Simply and Fast! 
+            </div>
+            <div class="topup-form-div">
+                <div class="topup-form">
+                    <div class="form-right form-side">
+                        <span class='side-header'>Amount</span>
+                        <div id="sig-eur">
+                            <input type="text" name="eur" id="eur1" placeholder="€">
+                            <input type="text" name="sig" id="sig1" disabled onkeypress="return false" placeholder="sigecoins">
+                        </div>                   
+                    </div>
+                    <div class="form-submits">
+                        <input type="submit" value="Credit Card" id="topup-submit-creditcard" class="topup-submit" onclick="card_come()">
+                        <input type="submit" value="PayPal" id="topup-submit-paypal" class="topup-submit">    
+                    </div>
+                </div>
+                <div class="card-bg mobile" id="card-bg"></div>
+                <div class="card-payment" id="card-payment">
+                    <div class="topup-close" style="top: 0;">
+                        <img src="/close_light.svg" alt="" style="cursor: pointer;" onclick="card_leave()">
+                    </div>
+                    <div class="payment-amount">
+                        <div class="amount-amount" id="card-amount">25€</div>
+                        <div class="amount-label">to pay</div>
+                    </div>
+                    <div id="card" class="payment-card-details">
+                    </div>
+                    <div class="payment-submit" id="card-payment-submit">
+                        purchase
+                    </div>
+                    <script>console.log(document.getElementById('card-payment-submit'))</script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="withdraw-whole" id="withdraw-whole">
+        <div class="topup-bg"></div>
+        <div class="topup-content withdraw">
+            <div class="topup-close">
+                <img src="/close.svg" alt="" style="cursor: pointer;" onclick='
+                    document.getElementById("withdraw-whole").style.transition = "all .25s ease";
+                    document.getElementById("withdraw-whole").style.opacity = "0";
+                    document.getElementById("withdraw-whole").style.display = "none";
+                    '>
+            </div>
+            <div class="topup-header">
+                Let's get it done!
+            </div>
+            <div class="topup-info">
+                Fill in the information about your credit card or use PayPal to
+                get your Sigecoins.<br> All this just Safely, Simply and Fast! 
+            </div>
+            <% if (topup_status == 'error') { %>
+                <script>
+                    window.scroll({
+                        top: window.innerHeight+240,
+                        behavior: 'smooth'
+                    })
+                    open_topup()
+                </script>
+            <% } %>  
+            <div class="topup-form-div">
+                <form action="/withdraw" class="topup-form" method="POST">
+                    <div class="form-right form-side">
+                        <span class='side-header'>Amount</span>
+                        <div id="sig-eur">
+                            <input type="text" name="eur" id="eur2" placeholder="€">
+                            <input type="text" name="sig" id="sig2" disabled onkeypress="return false" placeholder="sigecoins">
+                        </div>                   
+                    </div>
+                    <div>
+                        <input type="submit" value="Withdraw" class="topup-submit" id="withdraw-submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        var eur1 = document.getElementById('eur1');
+        var eur2 = document.getElementById('eur2');
+        var sig1 = document.getElementById('sig1');
+        var sig2 = document.getElementById('sig2');
+
+        function exchange1() {
+            var correct;
+            var numbers = '0123456789.'
+            for (char of eur1.value.toString()){
+                if (correct != false){
+                    if (numbers.includes(char.toString()) == false){
+                        correct = false;
+                    }
+                }
+            }
+            if (correct != false){
+                if (Number(eur1.value) >= 0){
+                    sig1.value = (Number(eur1.value)/2).toString();
+                } else {
+                    eur1.value = '';
+                    sig1.value = 0;
+                } 
+            } else {
+                eur1.value = '';
+                sig1.value = 0
+            }
+        }
+        function exchange2() {
+            if (Number(eur2.value) >= 0){
+                sig2.value = (Number(eur2.value)/2).toString();
+            } else {
+                eur2.setAttribute('value', '0');
+                sig2.setAttribute('value', '0')
+            } 
+        }
+
+        exchange1();
+        exchange2();
+
+        eur1.addEventListener('input', exchange1);
+        eur2.addEventListener('input', exchange2);
+        
+        
+        var topup_whole = document.getElementById('topup-whole');
+        var withdraw_whole = document.getElementById('withdraw-whole');
+        
+        function body_scroll() {
+            if (topup_whole.style.display == 'flex'){
+                window.scroll({top: window.innerHeight+240})
+            } else if (withdraw_whole.style.display == 'flex'){
+                window.scroll({top: window.innerHeight+240})
+            } else {
+                return true
+            }
+        }
+
+        function open_topup() {
+            if (screen.width > 640){
+                topup_whole.style.opacity = '0';
+                topup_whole.style.display = 'flex';
+                topup_whole.style.transition = 'all .25s ease';
+                topup_whole.style.opacity = '1';
+                eur1.value = '';
+                sig1.value = '0';
+            } else {
+                topup_whole.style.display = 'flex';
+                topup_whole.classList.add('topup_appear')
+                topup_whole.addEventListener('animationend', () =>{
+                    topup_whole.classList.remove('topup_appear');
+                    topup_whole.style.visibility = 'visible';
+                    topup_whole.style.opacity = '1';
+                })
+            }
+        }
+        
+        function open_withdraw() {
+            if (screen.width > 640){
+                withdraw_whole.style.opacity = '0';
+                withdraw_whole.style.display = 'flex';
+                withdraw_whole.style.transition = 'all .25s ease';
+                withdraw_whole.style.opacity = '1';
+            } else {
+                withdraw_whole.style.display = 'flex';
+                withdraw_whole.classList.add('topup_appear')
+                withdraw_whole.addEventListener('animationend', () =>{
+                    withdraw_whole.classList.remove('topup_appear');
+                    withdraw_whole.style.visibility = 'visible';
+                    withdraw_whole.style.opacity = '1';
+                })
+            }
+        }
+
+        var eur = document.getElementById('calcul-eur');
+        var sig = document.getElementById('calcul-sig');
+
+        var eur_right = document.getElementById('calcul-eur-right');
+        var sig_right = document.getElementById('calcul-sig-right');
+
+        eur.addEventListener('input', exchange);
+        function exchange() {
+            if (Number(eur.value) >= 0){
+                sig.value = (Number(eur.value)/2).toString();
+            } else {
+                eur.setAttribute('value', '0');
+                sig.setAttribute('value', '0')
+            } 
+        }
+        eur.value = '2';
+        exchange();
+        
+        sig_right.addEventListener('input', exchange_right);
+        function exchange_right() {
+            if (Number(sig_right.value) >= 0){
+                eur_right.value = (Number(sig_right.value)*2).toString();
+            } else {
+                eur_right.value = '0';
+                sig_right.value = '0';
+            } 
+        }
+        sig_right.value = '1';
+        exchange_right();
+
+        var left_content = document.getElementById('left-content');
+        var right_content = document.getElementById('right-content');/*
+        left_content.addEventListener('mouseenter', ()=>{
+            left_top.style.transform = 'translateY(-220px)'
+            left_top.style.opacity = '.8';
+            left_bottom.style.transform = 'translateY(220px)';
+            left_bottom.style.opacity = '.8'
+        })*/
+        
+        var left_top = document.getElementById('left-top');
+        var left_bottom = document.getElementById('left-bottom')
+        var left_img = document.getElementById('left-img');
+        left_img.addEventListener('mouseenter', leftTopIn);
+        left_img.addEventListener('mouseleave', leftTopOut);
+
+        var right_top = document.getElementById('right-top');
+        var right_bottom = document.getElementById('right-bottom')
+        var right_img = document.getElementById('right-img');
+        right_img.addEventListener('mouseenter', rightTopIn);
+        right_img.addEventListener('mouseleave', rightTopOut);
+
+        function leftTopIn() {
+            if (screen.width > 640 ){
+                left_top.classList.add('left-top-there');
+                left_bottom.classList.add('left-bottom-there');
+                left_content.classList.add('left-content-there');
+                left_bottom.addEventListener('animationend', ()=> {
+                    left_top.classList.remove('left-top-there');
+                    left_bottom.classList.remove('left-bottom-there');
+                    left_content.classList.remove('left-content-there')
+                    left_top.style.transform = 'translateY(0px)'
+                    left_top.style.opacity = '.6';
+                    left_bottom.style.transform = 'translateY(0px)';
+                    left_bottom.style.opacity = '.6'
+                    left_content.style.opacity = '1';
+                })
+            } else {
+                left_top.classList.add('left-top-there');
+                left_bottom.classList.add('left-bottom-there');
+                left_content.classList.add('left-content-there');
+                left_bottom.addEventListener('animationend', ()=> {
+                    left_top.classList.remove('left-top-there');
+                    left_bottom.classList.remove('left-bottom-there');
+                    left_content.classList.remove('left-content-there');
+                    left_content.style.opacity = '1';
+                    left_content.style.visibility = '1';
+                    left_top.style.transform = 'translateY(-1vh)'
+                    left_top.style.opacity = '.45';
+                    left_bottom.style.transform = 'translateY(1vh)';
+                    left_bottom.style.opacity = '.45'
+            })
+            }
+            ;
+        }
+
+        function leftTopOut() {
+            if (screen.width > 640){
+                left_top.classList.add('left-top-back');
+                left_bottom.classList.add('left-bottom-back');
+                left_content.classList.add('left-content-back');
+                left_bottom.addEventListener('animationend', ()=> {
+                    left_top.classList.remove('left-top-back');
+                    left_bottom.classList.remove('left-bottom-back');
+                    left_content.classList.remove('left-content-back')
+                    left_top.style.transform = 'translateY(252px)';
+                    left_top.style.opacity = '1'
+                    left_bottom.style.transform = 'translateY(-252px)';
+                    left_bottom.style.opacity = '1'
+                    left_content.style.opacity = '0';
+                });
+            } else {
+                left_top.classList.add('left-top-back');
+                left_bottom.classList.add('left-bottom-back');
+                left_content.classList.add('left-content-back');
+                left_bottom.addEventListener('animationend', ()=> {
+                    left_top.classList.remove('left-top-back');
+                    left_bottom.classList.remove('left-bottom-back');
+                    left_content.classList.remove('left-content-back')
+                    left_content.style.opacity = '0';
+                    left_content.style.visibility = '0';
+                    left_top.style.transform = 'translateY(14.25vh)'
+                    left_top.style.opacity = '1';
+                    left_bottom.style.transform = 'translateY(-14.25vh)';
+                    left_bottom.style.opacity = '1'
+                });
+            }
+        }
+
+        function rightTopIn() {
+            if (screen.width > 640){
+                right_top.classList.add('right-top-there');
+                right_bottom.classList.add('right-bottom-there');
+                right_content.classList.add('left-content-there');
+                right_top.addEventListener('animationend', ()=> {
+                    right_top.classList.remove('right-top-there')
+                    right_bottom.classList.remove('right-bottom-there');
+                    right_content.classList.remove('left-content-there');
+                });
+                right_top.style.transform = 'translateY(0px)'
+                right_top.style.opacity = '.6';
+                right_bottom.style.transform = 'translateY(0px)';
+                right_bottom.style.opacity = '.6';
+                right_content.style.opacity = '1';
+            } else {
+                right_top.classList.add('right-top-there');
+                right_bottom.classList.add('right-bottom-there');
+                right_content.classList.add('left-content-there');
+                right_top.addEventListener('animationend', ()=> {
+                    right_top.classList.remove('right-top-there')
+                    right_bottom.classList.remove('right-bottom-there');
+                    right_content.classList.remove('left-content-there');
+                    right_top.style.transform = 'translateY(-1vh)'
+                    right_top.style.opacity = '.45';
+                    right_bottom.style.transform = 'translateY(1vh)';
+                    right_bottom.style.opacity = '.45';
+                    right_content.style.opacity = '1';
+                    right_content.style.visibility = '1';
+                });
+            }
+        }
+
+        function rightTopOut() {
+            if (screen.width > 640){
+                right_top.classList.add('right-top-back');
+                right_bottom.classList.add('right-bottom-back');
+                right_content.classList.add('left-content-back');
+                right_top.addEventListener('animationend', ()=> {
+                    right_top.classList.remove('right-top-back');
+                    right_bottom.classList.remove('right-bottom-back');
+                    right_content.classList.remove('left-content-back');
+                });
+                right_top.style.transform = 'translateY(252px)';
+                right_top.style.opacity = '1'
+                right_bottom.style.transform = 'translateY(-252px)';
+                right_bottom.style.opacity = '1';
+                right_content.style.opacity = '0';
+            } else {
+                right_top.classList.add('right-top-back');
+                right_bottom.classList.add('right-bottom-back');
+                right_content.classList.add('left-content-back');
+                right_top.addEventListener('animationend', ()=> {
+                    right_top.classList.remove('right-top-back');
+                    right_bottom.classList.remove('right-bottom-back');
+                    right_content.classList.remove('left-content-back');
+                    right_top.style.transform = 'translateY(14.25vh)';
+                    right_top.style.opacity = '1'
+                    right_bottom.style.transform = 'translateY(-14.25vh)';
+                    right_bottom.style.opacity = '1';
+                    right_content.style.opacity = '0';
+                    right_content.style.visibility = '0';
+                });
+            }
+        }
+        function rollDownWallet() {
+            let div = document.getElementById('wallet-content');
+            div.classList.add('rollDown');
+            div.addEventListener('animationend', ()=>{
+                div.classList.remove('rollDown');
+                div.style.marginTop = '0';
+                div.style.opacity = '1';
+            })
+        }
+        function rollUpWallet() {
+            let div = document.getElementById('wallet-content');
+            div.classList.add('rollUp');
+            div.addEventListener('animationend', ()=>{
+                div.classList.remove('rollUp');
+                div.style.marginTop = '-20px';
+                div.style.opacity = '0';
+            })
+        }
+        function rollDownItems() {
+            let div = document.getElementById('items-content');
+            div.classList.add('rollDown');
+            div.addEventListener('animationend', ()=>{
+                div.classList.remove('rollDown');
+                div.style.marginTop = '0';
+                div.style.opacity = '1';
+            })
+        }
+        function rollUpItems() {
+            let div = document.getElementById('items-content');
+            div.classList.add('rollUp');
+            div.addEventListener('animationend', ()=>{
+                div.classList.remove('rollUp');
+                div.style.marginTop = '-20px';
+                div.style.opacity = '0';
+            })
+        }
+
+    </script>
+</body>
+<script>
+    let viewHeight = $(window).height();
+    let viewWidth = $(window).width();
+    document.getElementById('intro').style.minHeight = viewHeight+'px';
+    document.getElementById('intro').style.maxHeight = viewHeight+'px';
+    let viewport = document.querySelector('meta[name=viewport]');
+    viewport.setAttribute('content', 'height=' + viewHeight + 'px, width=' + viewWidth + 'px, initial-scale = 1.0');
+</script>
+</html>

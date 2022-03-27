@@ -1,0 +1,144 @@
+
+    <div class="intro" id="intro">
+        <div class="diamonds">
+            <img src="diamond.svg" alt="" class="diamond1">
+            <img src="diamond_2.svg" alt="" class="diamond2">
+        </div>
+        <div class="mobile-top">
+            <div class="top-burger" id="top-burger">
+                <img src="burger.svg" alt="">
+            </div>
+            <div class="top-branding">
+                <div class="branding-name">
+                    <img src="sigred_heading.svg" alt="">
+                </div>
+                <div class="branding-logo">
+                    <img src="mobile_logo.png" alt="">
+                </div>
+            </div>
+        </div>
+        <% if (status == 'in') {%> 
+            <div class="routes" id="routes">
+                <div class="mobile-close-routes" id="mobile-close-routes">
+                    <img src="close.svg" alt="">
+                </div>
+                <a href="/index" id="button" class="route">Home</a>
+                <a href="/about" id="button" class="route">About</a>
+                <a href="/contact" id="button" class="route">Contact</a>
+                <div class="route" id="profile-route" style="display: flex; flex-direction: column; align-items: center; box-sizing: border-box; z-index: 2;">
+                    <a id="button" class='profile-link' style="color: #0a5a55;">
+                    <%= info.name %>
+                    <div class="me_expanded" id="me_expanded" style="display: none;">
+                        <a href="/profile" id="button">My Profile</a>
+                        <a href="/wallet" id="button">My Wallet</a>
+                        <a href="/items" id="button">My Items</a>
+                        <a href="/messages" id="button">My Messages</a>
+                    </div>
+                </a></div>
+                <script>
+                    var toRollDown = document.getElementById('me_expanded');
+                    function rollMe() {
+                        if (toRollDown.style.display == 'none'){
+                            toRollDown.style.display = 'flex';
+                            toRollDown.classList.add('rollDownMe');
+                            toRollDown.addEventListener('animationend', ()=>{
+                                toRollDown.classList.remove('rollDownMe');
+                                toRollDown.style.opacity = '1';
+                                toRollDown.style.transform = 'translateY(0)';
+                                toRollDown.style.display = 'flex'
+                            })
+                        } 
+                }
+                    function rollUp() {
+                        if (toRollDown.style.display != 'none') { 
+                        toRollDown.classList.add('rollUpMe');
+                        toRollDown.addEventListener('animationend', ()=>{
+                            toRollDown.classList.remove('rollUpMe');
+                            toRollDown.style.opacity = '0';
+                            toRollDown.style.transform = 'translateY(-20px)';
+                            toRollDown.style.display = 'none';
+                        })
+                        }
+                    }
+                    function roll(){
+                        if (toRollDown.style.display == 'none'){
+                            toRollDown.style.display = 'flex';
+                            toRollDown.classList.add('rollDownMe');
+                            toRollDown.addEventListener('animationend', ()=>{
+                                toRollDown.classList.remove('rollDownMe');
+                                toRollDown.style.opacity = '1';
+                                toRollDown.style.display = 'flex'
+                            })
+                        } else { 
+                            toRollDown.classList.add('rollUpMe');
+                            toRollDown.addEventListener('animationend', ()=>{
+                                toRollDown.classList.remove('rollUpMe');
+                                toRollDown.style.opacity = '0';
+                                toRollDown.style.display = 'none';
+                            })
+                        }
+                    }
+                    if (screen.width>480){
+                        document.getElementById('profile-route').addEventListener('mouseleave', rollUp);
+                        document.getElementById('profile-route').addEventListener('mouseover', rollMe);
+                    } else {
+                        document.getElementById('profile-route').addEventListener('click', roll);
+                    }
+                </script>
+                <a href="/help-centre" id="button" class="route" style="z-index: 1;">Help Centre</a>
+                <a href="/sessionLogout" id="button" class="route" style="z-index: 1;">Log out</a>
+                <% 
+                
+                    if (admin == true) {
+                        %>
+                            <a href="/admin" id="button" class="route" style="z-index: 1;">Admin</a>
+                        <%
+                    }
+                
+                %>
+            </div>
+        <% } else { %>    
+            <div class="routes" id="routes">
+                <div class="mobile-close-routes" id="mobile-close-routes">
+                    <img src="close.svg" alt="">
+                </div>
+                <a href="/index" class="route">Home</a>
+                <a href="/about" class="route">About</a>
+                <a href="/contact" class="route">Contact</a>
+                <a href="/help-centre" class="route">Help Centre</a>
+                <a href="/login" class="route">Log in</a>
+            </div>
+        <% } %> 
+        <div class="sidebar">
+            <div class="sidebar-socials">
+                <a href="https://www.instagram.com/sigred.inc/" target="_blank"><img src="/ig_icon.svg" alt="Instagram"></a>
+                <a href="/contact"><img src="/mail_icon.svg" alt="E-mail"></a>      
+            </div>
+        </div>
+        <h1>Sigred</h1>
+        <img src="/logo_1.svg" alt="COMPANY LOGO" class="logo-img">
+        <% if (status == 'in') {%>
+            <a href="/new-sell"><div class="scroll desktop" style="left: 19vw; background-color: #FFE0C4; color: #0a5a55;">sell</div></a>
+            <div class="scroll desktop" style="left: 61vw; background-color: #FFE0C4; color: #0a5a55;">buy</div>
+        <% } %>  
+        <div class="scroll desktop" onclick="window.scroll({
+            top: window.innerHeight+240,
+            behavior: 'smooth'
+        })">see what's nearby</div>
+        <div class="mobile-intro">
+            <a href="/new-sell"><div class="scroll-mobile mobile-special">
+                sell
+            </div></a>
+            <div class="scroll-mobile mobile-special">
+                buy
+            </div>
+            <div class="scroll-mobile mobile-classic" onclick="
+            let height = document.getElementById('intro').clientHeight;
+            document.body.scrollTo({
+            top: (height+240),
+            behavior: 'smooth'
+        })">
+                see what's nearby
+            </div>
+        </div>
+    </div>
