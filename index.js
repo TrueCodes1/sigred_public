@@ -394,10 +394,10 @@ app.get('/about', csurfMiddleware, function(req, res){
         })
 })
 */
-app.get('/login', function(req, res){
+/*app.get('/login', function(req, res){
     res.clearCookie('session');
     res.render('login', {title: 'Login', name: '', data: req,  password_state: 'ok', scroll: 'false', user: 'none'})
-})
+})*/
 /*
 app.get('/contact', csurfMiddleware, function(req, res){
 

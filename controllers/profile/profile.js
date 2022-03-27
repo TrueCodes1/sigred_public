@@ -73,7 +73,12 @@ const getProfile = async (req, res) => {
                 }
                 })
                 .then(() => {
-                    res.redirect('index');
+
+                    // CHECKING IF THE USER ID IS THE SAME AS THE ONE OF THE ADMIN
+                    // IF YES, TRUE IS SET AS VALUE OF ADMIN AND 
+                    // THERE WILL BE ADMIN OPTION ON THE FINAL VIEW RENDERED
+                    let admin = checkAdmin.checkAdmin(uid.toString());
+                    res.render('profile', {title: 'Profile', info: info, status: '', balance: balance, admin: admin})
                 })
             })
             
