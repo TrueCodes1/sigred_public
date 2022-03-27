@@ -958,7 +958,7 @@ app.get('/items', (req, res) => {
             res.render('login', {title: 'Login', name: '', data: req,  password_state: 'ok', scroll: 'false', user: 'none'})
         })
 })
-
+/*
 app.get('/help-centre', csurfMiddleware,(req, res) => {
 
     let sessionCookie = req.cookies.session || "";
@@ -1002,7 +1002,8 @@ app.get('/help-centre', csurfMiddleware,(req, res) => {
             res.render('help-centre', {title: 'Help Centre', status: 'out'})
         })
 })
-
+*/
+/*
 app.get('/messages', csurfMiddleware, (req, res) => {
 
     let sessionCookie = req.cookies.session || "";
@@ -1047,6 +1048,7 @@ app.get('/messages', csurfMiddleware, (req, res) => {
             res.render('login', {title: 'Login', name: '', data: req,  password_state: 'ok', scroll: 'false', user: 'none'})
         })
 })
+*/
 
 app.get('/terms-of-use', csurfMiddleware, (req, res) => {
 

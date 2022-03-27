@@ -9,10 +9,12 @@ const Index = require('./routes/index/index');
 const About = require('./routes/about/about');
 const Contact = require('./routes/contact/contact');
 const Cookies = require('./routes/cookies_policy/cookies_policy');
+const Privacy = require('./routes/privacy_policy/privacyPolicy');
 const Help = require('./routes/help_centre/help_centre');
 const LogIn = require('./routes/login/logIn');
 const LogOut = require('./routes/login/logOut');
 const Profile = require('./routes/profile/profile');
+const Messages = require('./routes/messages/messages');
 
 // *************************************************************************************************
 // ASSIGNING SPECIFIC ROUTES TO SPECIFIC ROUTERS ***************************************************
@@ -24,10 +26,12 @@ MainRouter.use('/index', Index.IndexRouter);
 MainRouter.use('/about', About.AboutRouter);
 MainRouter.use('/contact', Contact.ContactRouter);
 MainRouter.use('/cookies-policy', Cookies.CookiesRouter);
+MainRouter.use('/privacy-policy', Privacy.PrivacyRouter);
 MainRouter.use('/help-centre', Help.HelpRouter);
 MainRouter.use('/sessionLogin', LogIn.LogInRouter);
 MainRouter.use('/sessionLogout', LogOut.LogOutRouter);
 MainRouter.use('/profile', Profile.ProfileRouter);
+MainRouter.use('/messages', Messages.MessagesRouter);
 
 // *************************************************************************************************
 // ASSIGNING SPECIFIC ROUTES TO SPECIFIC ROUTERS ENDS HERE *****************************************

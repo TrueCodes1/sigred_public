@@ -41,6 +41,7 @@
   "scripts": {
     "start": "node index.js",
     "server": "nodemon index.js",
+    "git-update": "git add . && git commit -m 'updated' && git push origin main",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Norik",
