@@ -17,6 +17,7 @@ const LogIn = require('./routes/login/logIn');
 const LogOut = require('./routes/login/logOut');
 const Profile = require('./routes/profile/profile');
 const Messages = require('./routes/messages/messages');
+const Items = require('./routes/items/items');
 
 // *************************************************************************************************
 // ASSIGNING SPECIFIC ROUTES TO SPECIFIC ROUTERS ***************************************************
@@ -36,6 +37,7 @@ MainRouter.use('/sessionLogin', LogIn.LogInRouter);
 MainRouter.use('/sessionLogout', LogOut.LogOutRouter);
 MainRouter.use('/profile', Profile.ProfileRouter);
 MainRouter.use('/messages', Messages.MessagesRouter);
+MainRouter.use('/items', Items.ItemsRouter);
 
 // *************************************************************************************************
 // ASSIGNING SPECIFIC ROUTES TO SPECIFIC ROUTERS ENDS HERE *****************************************

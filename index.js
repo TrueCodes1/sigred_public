@@ -764,7 +764,6 @@ app.get('/items', (req, res) => {
         .verifySessionCookie(sessionCookie, true)
         .then( (userRecord)=>{
             uid = userRecord.uid;
-            console.log('from auth items: '+uid.toString())
             db.ref('/users/'+uid.toString()+'/personal-info').get()
             .then((data) => {
                 if (data.exists()){
