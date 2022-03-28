@@ -740,6 +740,7 @@ app.post('/top_up', (req, res) => {
     
 })
 
+/*
 app.get('/items', (req, res) => {
     
     let sessionCookie = req.cookies.session || "";
@@ -858,10 +859,10 @@ app.get('/items', (req, res) => {
                             }
                         }
                     })
-                    .then(() => {/*
+                    .then(() => {*//*
                         db.ref('/users/'+uid.toString()+'/items/bought').get()
                         .then((data) => {
-                            let val = data.val();*/
+                            let val = data.val();*//*
                             val = usersLoggedIn[uid].bought;
                             
                             if (val!=''){
@@ -899,11 +900,11 @@ app.get('/items', (req, res) => {
                                     bought[i] = item;
                                 }
                             }
-                        /*})
+                        *//*})
                         .then(() => {
                             db.ref('/users/'+uid.toString()+'/items/sold').get()
                             .then((data) => {
-                                let val = data.val();*/
+                                let val = data.val();*//*
                                 val = usersLoggedIn[uid].sold;
                                 if (val!=''){
                                     for (i in val){
@@ -938,16 +939,16 @@ app.get('/items', (req, res) => {
                                         item.video_link = video_link;
                             
                                         sold[i] = item;
-                                    /*}*/
+                                    *//*}*//*
                                 }
             
-                            }/*)
-                            .then(() => {*/
+                            }*//*)
+                            .then(() => {*//*
                                 let admin = false;
                                 uid == adminUID ? admin = true : admin = false;
                                 res.render('items', {title: 'My Items', info: info, selling: selling, bought: bought, sold: sold, admin: admin})
                             /*})
-                        })*/
+                        })*//*
                     })
                 })
             })
@@ -956,7 +957,7 @@ app.get('/items', (req, res) => {
             res.clearCookie('session');
             res.render('login', {title: 'Login', name: '', data: req,  password_state: 'ok', scroll: 'false', user: 'none'})
         })
-})
+})*/
 /*
 app.get('/help-centre', csurfMiddleware,(req, res) => {
 
@@ -2180,7 +2181,11 @@ app.get('/admin', csurfMiddleware, function(req, res){
                 }
             })
             .then(() => {
-                res.render('admin', {title: 'Admin', info: info, status: 'in', admin: admin})
+                if (uid == adminUID) {
+                    res.render('admin', {title: 'Admin', info: info, status: 'in', admin: admin})
+                } else {
+                    res.redirect(req.headers.referer)
+                }
             })
         })
         .catch((error)=>{

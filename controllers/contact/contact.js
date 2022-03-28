@@ -56,5 +56,10 @@ const getContact = async (req, res) => {
     }
 }
 
+// POST
+const postContact = async (req, res) => {
+    // FINISH THE FUNCTION TO SEND THE EMAIL FRO CONTACT FORM
+}
+
 // EXPORTING ALL THE FUNCTIONS
 module.exports = { getContact }
