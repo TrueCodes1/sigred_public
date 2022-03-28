@@ -10,7 +10,7 @@ const checkAdmin = require('../../functions/general/checkAdmin');
 // IMPORTING OTHER NECCESSARY FILES
 const adminUID = process.env.ADMIN_UID;
 const adminPWD = process.env.ADMIN_PWD;
-const usersLoggedIn = require('../../loggedIn');
+const usersLoggedIn = require('../../loggedIn').loggedIn;
 
 // DEFINING SPECIFIC PARTS OF IMPORTED FUNCTIONS
 const db = firebase.db;
