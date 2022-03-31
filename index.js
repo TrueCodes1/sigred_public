@@ -2196,7 +2196,7 @@ app.get('/admin', csurfMiddleware, function(req, res){
             res.render('login', {title: 'Login', name: '', data: req,  password_state: 'ok', scroll: 'false', user: 'none'})
         })
 })*/
-
+/*
 app.post('/admin-login', (req, res) => {
     
     let sessionCookie = req.cookies.session || "";
@@ -2218,7 +2218,7 @@ app.post('/admin-login', (req, res) => {
                 res.redirect('/admin')
             }
         })
-})
+})*/
 
 app.get('/admin-dashboard', (req, res) => {
 
