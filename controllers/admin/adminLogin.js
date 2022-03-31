@@ -22,7 +22,7 @@ const decrypt = crypto.decrypt;
 
 
 // GET 
-const getAdmin = async (req, res) => {
+const postAdminLogin = async (req, res) => {
 
     // USING VERIFY SESSION COOKIE FINCTION WITH REQUEST AS ARGUMENT
     // TO CHECK STATE OF THE USER IF THEY ARE LOGGED IN
@@ -56,10 +56,15 @@ const getAdmin = async (req, res) => {
         })
         .then(() => {
             let admin = checkAdmin.checkAdmin(uid.toString());
+            let pwd = req.body.password;
             if (admin == true) {
-                res.render('admin', {title: 'Admin', info: info, status: 'in', admin: admin})
+                if (pwd == adminPWD) {
+                    res.redirect('/admin-dashboard')
+                } else {
+                    res.redirect('/admin')
+                }
             } else {
-                res.redirect('/index')
+                    res.redirect('/index')
             }
         })
 
@@ -70,4 +75,4 @@ const getAdmin = async (req, res) => {
 }
 
 // EXPORTING ALL THE FUNCTIONS
-module.exports = { getAdmin }
+module.exports = { postAdminLogin }

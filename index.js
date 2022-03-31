@@ -122,7 +122,7 @@ app.get('/', /*csurfMiddleware,*//*function(req, res){
     res.redirect('index')
 })
 
-/*
+*//*
 app.get('/index', csurfMiddleware, function(req, res){
 
     let sessionCookie = req.cookies.session || "";
@@ -283,7 +283,7 @@ app.get('/index', csurfMiddleware, function(req, res){
                     .catch((error) => {
                         res.render('index', {title: 'Home', status: 'out', first_nine: ''})
                         return
-                    }) /*FINISH THIS WITH NOT RENDERED ITEMS*//*
+                    }) *//*FINISH THIS WITH NOT RENDERED ITEMS*//*
                 })
         )
         .catch((error)=>{
@@ -342,7 +342,7 @@ app.get('/index', csurfMiddleware, function(req, res){
             .catch((error) => {
                 res.render('index', {title: 'Home', status: 'out', first_nine: ''})
                 return
-            }) /*FINISH THIS WITH NOT RENDERED ITEMS*//*
+            }) *//*FINISH THIS WITH NOT RENDERED ITEMS*//*
         })
     }
     )
@@ -947,7 +947,7 @@ app.get('/items', (req, res) => {
                                 let admin = false;
                                 uid == adminUID ? admin = true : admin = false;
                                 res.render('items', {title: 'My Items', info: info, selling: selling, bought: bought, sold: sold, admin: admin})
-                            /*})
+                            *//*})
                         })*//*
                     })
                 })
@@ -1964,9 +1964,11 @@ app.post('/update_personal', (req, res) => {
         })
 })
 
-var videos = {};/*
+var videos = {};
+/*
 var temp_video;
-var file = '';*/
+var file = '';
+*/
 app.post('/upload_video', (req, res) => {
     
     let sessionCookie = req.cookies.session || "";
@@ -2119,7 +2121,7 @@ app.get('/profile', csurfMiddleware, function(req, res){
                 if (data.exists()){
                     let all = data.val();
                     balance.current = usersLoggedIn[uid].balance;
-                    balance.eur = Number(balance.current * 2).toFixed();/*
+                    balance.eur = Number(balance.current * 2).toFixed();*//*
                     balance = {
                         current: all.current_balance,
                         eur: Number(all.current_balance)*2
@@ -2148,7 +2150,7 @@ app.get('/profile', csurfMiddleware, function(req, res){
             res.render('login', {title: 'Login', name: '', data: req,  password_state: 'ok', scroll: 'false', user: 'none'})
         })
 })*/
-
+/*
 app.get('/admin', csurfMiddleware, function(req, res){
     let sessionCookie = req.cookies.session || "";
     
@@ -2182,6 +2184,7 @@ app.get('/admin', csurfMiddleware, function(req, res){
             })
             .then(() => {
                 if (uid == adminUID) {
+                    console.log('now')
                     res.render('admin', {title: 'Admin', info: info, status: 'in', admin: admin})
                 } else {
                     res.redirect(req.headers.referer)
@@ -2192,7 +2195,7 @@ app.get('/admin', csurfMiddleware, function(req, res){
             res.clearCookie('session');
             res.render('login', {title: 'Login', name: '', data: req,  password_state: 'ok', scroll: 'false', user: 'none'})
         })
-})
+})*/
 
 app.post('/admin-login', (req, res) => {
     
