@@ -8,10 +8,10 @@ const crypto = require('../../functions/general/crypto');
 const checkAdmin = require('../../functions/general/checkAdmin');
 const adminCookie = require('../../functions/adminLogin/randomCookieString');
 
-
 // IMPORTING OTHER NECCESSARY FILES
 const adminUID = process.env.ADMIN_UID;
 const adminPWD = process.env.ADMIN_PWD;
+const adminsLoggedIn = require('../../adminLoggedIn').adminsLoggedIn;
 
 // DEFINING SPECIFIC PARTS OF IMPORTED FUNCTIONS
 const db = firebase.db;
@@ -61,7 +61,17 @@ const postAdminLogin = async (req, res) => {
             let pwd = req.body.password;
             if (admin == true) {
                 if (pwd == adminPWD) {
-                    
+                    const adminCookieString = adminCookie.randomCookieString().adminLoggedIn;
+                    res.cookie(
+                        'adminLoggedIn', 
+                        JSON.stringify(adminCookieString), 
+                        adminCookie.randomCookieString().options 
+                    )
+                    adminsLoggedIn.push(adminCookieString);
+                    setTimeout(() => {
+                        adminsLoggedIn.splice(adminsLoggedIn.indexOf(adminCookieString), 1);
+                    }, 1000 * 60 * 10)
+                    // FINSIH FROM HERE ON, MAKE EVERY ADMIN ROUTE CHECK THE COOKIE
                     res.redirect('/admin-dashboard')
                 } else {
                     res.redirect('/admin')
