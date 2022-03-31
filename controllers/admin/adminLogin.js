@@ -6,6 +6,7 @@ const firebase = require('../../databaseConnection');
 const verifySessionCookie = require('../../functions/general/verifySessionCookie');
 const crypto = require('../../functions/general/crypto');
 const checkAdmin = require('../../functions/general/checkAdmin');
+const adminCookie = require('../../functions/adminLogin/randomCookieString');
 
 
 // IMPORTING OTHER NECCESSARY FILES
@@ -21,7 +22,8 @@ const encrypt = crypto.encrypt;
 const decrypt = crypto.decrypt;
 
 
-// GET 
+// GET
+
 const postAdminLogin = async (req, res) => {
 
     // USING VERIFY SESSION COOKIE FINCTION WITH REQUEST AS ARGUMENT
@@ -59,6 +61,7 @@ const postAdminLogin = async (req, res) => {
             let pwd = req.body.password;
             if (admin == true) {
                 if (pwd == adminPWD) {
+                    
                     res.redirect('/admin-dashboard')
                 } else {
                     res.redirect('/admin')
