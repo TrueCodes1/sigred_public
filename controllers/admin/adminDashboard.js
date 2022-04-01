@@ -22,7 +22,7 @@ const encrypt = crypto.encrypt;
 const decrypt = crypto.decrypt;
 
 
-// POST
+// GET
 
 const postAdminLogin = async (req, res) => {
 
