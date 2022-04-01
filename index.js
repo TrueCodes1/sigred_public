@@ -3242,11 +3242,12 @@ app.get('/sessionLogout', csurfMiddleware, function(req, res){
 */
 
 //404 page
+/*
 app.use((req, res) => {
     let requested = req.url;
     requested = requested.replace('/', '')
     res.status(404).render('404', {title: 'Error', page: requested})
-})
+})*/
 
 /*
 app.listen(3000, ()=>{

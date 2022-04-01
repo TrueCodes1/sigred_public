@@ -22,6 +22,8 @@ const Admin = require('./routes/admin/admin');
 const AdminLogin = require('./routes/admin/adminLogin');
 const AdminDashboard = require('./routes/admin/adminDashboard');
 
+const Error = require('./routes/error/error');
+
 // *************************************************************************************************
 // ASSIGNING SPECIFIC ROUTES TO SPECIFIC ROUTERS ***************************************************
 // *************************************************************************************************
@@ -44,6 +46,8 @@ MainRouter.use('/items', Items.ItemsRouter);
 MainRouter.use('/admin', Admin.AdminRouter);
 MainRouter.use('/admin-login', AdminLogin.AdminLoginRouter);
 MainRouter.use('/admin-dashboard', AdminDashboard.AdminDashboardRouter);
+
+MainRouter.use(Error.ErrorRouter);
 
 // *************************************************************************************************
 // ASSIGNING SPECIFIC ROUTES TO SPECIFIC ROUTERS ENDS HERE *****************************************
