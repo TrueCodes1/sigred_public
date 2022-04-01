@@ -2,13 +2,13 @@
 const express = require('express');
 
 // DEFINING ROUTER
-const AdminLoginRouter = express.Router();
+const AdminDashboardRouter = express.Router();
 
 // IMPORTING CONSTROLLERS
-const adminLoginController = require('../../controllers/admin/adminLogin');
+const adminDashboardController = require('../../controllers/admin/adminDashboard');
 
 // ASSIGNING SPECIFIC FUNCTIONS IN CONTROLLERS TO SPECIFIC ROUTES
-AdminLoginRouter.post('/', adminLoginController.postAdminLogin);
+AdminDashboardRouter.get('/', adminDashboardController.getDashboard);
 
 // EXPORTING ROUTER
-module.exports = { AdminLoginRouter }
+module.exports = { AdminDashboardRouter }

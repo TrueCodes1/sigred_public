@@ -2220,7 +2220,7 @@ app.post('/admin-login', (req, res) => {
             }
         })
 })*/
-
+/*
 app.get('/admin-dashboard', (req, res) => {
 
     let sessionCookie = req.cookies.session || "";
@@ -2339,7 +2339,7 @@ app.get('/admin-dashboard', (req, res) => {
             }
         })
 })
-
+*/
 const decodeItems = (items) => {
     let decoded = [];
     for (let key of Object.keys(items)) {
