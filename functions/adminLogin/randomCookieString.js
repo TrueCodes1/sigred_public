@@ -1,21 +1,27 @@
 const crypto = require('crypto');
 
 
+// DEFINING MINUTES THAT WILL SESSION OF ADMIN LOGIN LAST FOR
+// AFTER THE AMOUNT OF MINUTES, ADMIN WILL BE LOGGED OF WITH 
+// THE FIRST RELOAD OF THE PAGE
+const minutes = 10;
+
 // DEFINING OPTIONS FOR THE COOKIE MENTIONED ABOVE
 let options = {
     secure: false, // FOR LIVE WEBSITE RUNNING ON HTTPS, SET TO 'true'
-    httpOnly: true,
-    maxAge: 20 * 1000,
+    httpOnly: true, // TO MAKE THE COOKIE UNCREACHABLE AND UNCHANGABLE BY THE CLIENT SIDE JS
+    maxAge: minutes * 20 * 1000, // SETTING THE AGE OF THE COOKIE FOR THE NUMBER OF MINUTES DEFINED ABOVE
 }
 
 // GENERATING RANDOM STRING TO USE AS COOKIE
 // THAT WILL KEEP THE ADMIN LOGGED IN
 const randomCookieString = () => {
 
+    // GENERATING RANDOM STRING THAT WILL BE USED AS SESSION COOKIE FOR AN ADMIN
     const string = crypto.randomBytes(50).toString('hex');
-    
-    let date = new Date();
 
+    // RETURNING OBJECT WITH BOTH GENERATED STRING AND OPTIONS
+    // FOR THE FUTURE COOKIE
     return({
         adminLoggedIn: string,
         options: options

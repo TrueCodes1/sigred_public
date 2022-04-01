@@ -57,27 +57,40 @@ const postAdminLogin = async (req, res) => {
             }
         })
         .then(() => {
+            // DEFINING VARIABLE ADMIN, RETURNED BOOLEAN VALUE
             let admin = checkAdmin.checkAdmin(uid.toString());
+            // GRABBING PWD VALUE FROM REQUEST
             let pwd = req.body.password;
+            // IF THE ID OF USER IS THE ONE OF ADMIN, FURTHER
+            // ACTIONS HAPPEN. ELSEWAYS USER IS REDIRECTED TO HOMEPAGE
             if (admin == true) {
+                // THE PWD IS CHECKED
                 if (pwd == adminPWD) {
+                    // IF PWD IS CORRECT, STRING FOR COOKIE IS CREATED VIA IMPORTED FUNCTION
                     const adminCookieString = adminCookie.randomCookieString().adminLoggedIn;
+                    // COOKIE IS ASSIGNED TO THE RESPONSE
                     res.cookie(
                         'admin-logged-in', 
                         JSON.stringify(adminCookieString), 
                         adminCookie.randomCookieString().options 
                     )
+                    // THE COOKIE STRING IS SAVED IN THE LIST OF LOGGED IN ADMINS
+                    // AND IS DELETED AFTER 10 MINUTES. ADMIN THEN HAS TO LOG IN AGAIN.
                     adminsLoggedIn.push(adminCookieString);
+                    // TIMEOUT FOR DELETING THE CURRENT SESSION STRING
                     setTimeout(() => {
                         adminsLoggedIn.splice(adminsLoggedIn.indexOf(adminCookieString), 1);
                     }, 1000 * 60 * 10)
-                    // FINSIH FROM HERE ON, MAKE EVERY ADMIN ROUTE CHECK THE COOKIE
+                    // DASHBOARD IS FINALLY RENDERED AFTER SUCCESSFUL LOGIN
                     res.redirect('/admin-dashboard')
                 } else {
+                    // IF THE PWD IS WRONG, USER IS REDIRECTED TO THE ADMIN PAGE (BACK WHERE THEY WERE)
                     res.redirect('/admin')
                 }
             } else {
-                    res.redirect('/index')
+                // IF THE USER'S ID IS NOT THE ONE OF THE ADMIN, USER IS REDIRECTED
+                // TO THE HOMEPAGE
+                res.redirect('/index')
             }
         })
 
