@@ -2412,7 +2412,7 @@ app.post('/data-for-admin-search-engine', (req, res) => {
             }
         })
 })
-
+/*
 app.get('/admin-dashboard/user/:id', (req, res) => {
 
     let sessionCookie = req.cookies.session || "";
@@ -2501,7 +2501,7 @@ app.get('/admin-dashboard/user/:id', (req, res) => {
             console.log(err)
             res.redirect('/sessionLogout')
         })
-})
+})*/
 
 app.get('/admin-dashboard/item/:id', (req, res) => {
 
