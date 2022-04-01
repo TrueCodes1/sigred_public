@@ -5,7 +5,7 @@ const crypto = require('crypto');
 let options = {
     secure: false, // FOR LIVE WEBSITE RUNNING ON HTTPS, SET TO 'true'
     httpOnly: true,
-    expires: '',
+    maxAge: 20 * 1000,
 }
 
 // GENERATING RANDOM STRING TO USE AS COOKIE
@@ -15,7 +15,6 @@ const randomCookieString = () => {
     const string = crypto.randomBytes(50).toString('hex');
     
     let date = new Date();
-    options.expires = date.setTime(date.getTime() + (10 * 60 * 1000));
 
     return({
         adminLoggedIn: string,

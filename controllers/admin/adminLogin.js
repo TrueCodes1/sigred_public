@@ -63,7 +63,7 @@ const postAdminLogin = async (req, res) => {
                 if (pwd == adminPWD) {
                     const adminCookieString = adminCookie.randomCookieString().adminLoggedIn;
                     res.cookie(
-                        'adminLoggedIn', 
+                        'admin-logged-in', 
                         JSON.stringify(adminCookieString), 
                         adminCookie.randomCookieString().options 
                     )
