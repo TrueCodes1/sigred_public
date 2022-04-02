@@ -2502,7 +2502,7 @@ app.get('/admin-dashboard/user/:id', (req, res) => {
             res.redirect('/sessionLogout')
         })
 })*/
-
+/*
 app.get('/admin-dashboard/item/:id', (req, res) => {
 
     let sessionCookie = req.cookies.session || "";
@@ -2568,7 +2568,7 @@ app.get('/admin-dashboard/item/:id', (req, res) => {
             console.log(err)
             res.redirect('/sessionLogout')
         })
-})
+})*/
 
 app.post('/admin-dashboard/message-from-admin-to-user', (req, res) => {
 
