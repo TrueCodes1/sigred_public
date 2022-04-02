@@ -388,7 +388,7 @@ const fetchSearchEngineData = async (req, res) => {
                                 db.ref('/items_to_sell').get()
                                 .then((data) => {
                                     // RETRIEVING DATA ABOUT EACH ITEM THAT IS BEING OFFERED AT THE MOMENT FROM THE DATABASE
-                                    productsSearchEngine = decodeItems(data.val()) // DECODING WHOLE VALUE AT ONCE USING FUNCTION DECODE ITEMS
+                                    productsSearchEngine = decodeItems.decodeItems(data.val()) // DECODING WHOLE VALUE AT ONCE USING FUNCTION DECODE ITEMS
                                 })
                                 .then(() => {
                                     // SENDING RESPONSE IN FORM OF OBJECT, USERS + PRODUCTS

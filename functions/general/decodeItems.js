@@ -1,4 +1,8 @@
 
+// IMPORTING ALL NECCESSARY NODE MODULES
+const htmlencode = require('htmlencode');
+
+
 const decodeItems = (items) => {
     let decoded = [];
     for (let key of Object.keys(items)) {
