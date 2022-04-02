@@ -2628,7 +2628,7 @@ app.post('/admin-dashboard/message-from-admin-to-user', (req, res) => {
             }
         })
 })*/
-
+/*
 app.post('/admin-dashboard/message-from-admin-to-seller', (req, res) => {
 
     let sessionCookie = req.cookies.session || "";
@@ -2692,7 +2692,7 @@ app.post('/admin-dashboard/message-from-admin-to-seller', (req, res) => {
                 }
             })
         })
-})
+})*/
 
 app.post('/admin-dashboard/disable-account', (req, res) => {
 
