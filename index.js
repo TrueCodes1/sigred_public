@@ -113,6 +113,7 @@ for (let script of scripts){
 **********************************/
 
 let usersLoggedIn = {};
+/*
 app.get('/wallet', (req, res) => {
 
     let sessionCookie = req.cookies.session || "";
@@ -135,7 +136,6 @@ app.get('/wallet', (req, res) => {
         .verifySessionCookie(sessionCookie, true)
         .then( (userRecord)=>{
             let uid = userRecord.uid;
-            console.log('from wallet: '+uid.toString())
             db.ref('/users/'+uid.toString()+'/personal-info').get()
             .then((data) => {
                 if (data.exists()){
@@ -160,7 +160,7 @@ app.get('/wallet', (req, res) => {
                         balance = {
                             current: all.current_balance,
                             eur: Number(all.current_balance)*2
-                        }*/
+                        }*//*
                         console.log('from wallet: '+balance.toString())
                     } else {
                         console.log("Data don't exist.")
@@ -179,7 +179,7 @@ app.get('/wallet', (req, res) => {
             res.render('login', {title: 'Login', name: '', data: req,  password_state: 'ok', scroll: 'false', user: 'none'})
         })
 
-})
+})*/
 
 var topup_success = [];
 app.get('/successful_topup', csurfMiddleware, (req, res) => {

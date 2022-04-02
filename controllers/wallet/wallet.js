@@ -10,6 +10,7 @@ const crypto = require('../../functions/general/crypto');
 // IMPORTING OTHER NECCESSARY FILES
 const adminUID = process.env.ADMIN_UID;
 const adminPWD = process.env.ADMIN_PWD;
+const StripePublicKey = process.env.STRIPE_PUBLIC_KEY;
 
 // DEFINING SINGLE SPECIFIC PARTS OF FIREBASE IMPORT
 const db = firebase.db;
@@ -33,6 +34,11 @@ const getWallet = async (req, res) => {
             city: '',
             age: ''
         }
+            
+        let balance = {
+            current: '',
+            eur: ''
+        }
         
         let uid = userRecord.uid;
         db.ref('/users/'+uid.toString()+'/personal-info').get()
@@ -49,25 +55,32 @@ const getWallet = async (req, res) => {
             }
         })
         .then(
-            db.ref(`/admin/users/${uid.toString()}/email`).get()
+            db.ref('/users/'+uid.toString()+'/wallet').get()
             .then((data) => {
-                let val = data.val();
-                let email = crypto.decrypt(val.encrypted, adminPWD.repeat(5).substring(0, 32), val.iv);
-                info.email = email;
+                if (data.exists()){
+                    let all = data.val();
+                    let current = all['current_balance'];
+                    balance.current = crypto.decrypt(all['current_balance'].encrypted, adminPWD.repeat(5).substring(0, 32), all['current_balance'].iv);
+                    balance.eur = Number(balance.current * 2).toFixed();
+                } else {
+                    console.log("Data don't exist.")
+                }
             })
-            .then(() => {
-    
+            .then(() =>{
+
                 // CHECKING IF THE USER ID IS THE SAME AS THE ONE OF THE ADMIN
                 // IF YES, TRUE IS SET AS VALUE OF ADMIN AND 
                 // THERE WILL BE ADMIN OPTION ON THE FINAL VIEW RENDERED
+                console.log(balance)
                 let admin = checkAdmin.checkAdmin(uid.toString());
-                res.render('contact', {title: 'Contact', status: 'in', info: info, message: '', admin: admin})
+                res.render('wallet', {title: 'My Wallet', info: info, stripePublicKey: StripePublicKey, topup_status: '', balance: balance, admin: admin})
+
             })
         )
 
     } else {
 
-        res.render('contact', {title: 'Contact', status: 'out', message: ''})
+        res.redirect('/sessionLogout');
 
     }
 }
