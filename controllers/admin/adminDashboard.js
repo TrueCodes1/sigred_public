@@ -535,6 +535,8 @@ const fetchSearchEngineData = async (req, res) => {
 
 const messageUser = async (req, res) => {
 
+    const originURL = req.headers.referer;
+
     // USING VERIFY SESSION COOKIE FINCTION WITH REQUEST AS ARGUMENT
     // TO CHECK STATE OF THE USER IF THEY ARE LOGGED IN
     let userRecord = await verifySessionCookie.verifySessionCookie(req);
