@@ -97,7 +97,7 @@ for (let option of options) {
 // THESE 2 COMMENTS BELOW FOR SECTION USERS
 //making post request to get users for search engine
 
-const fetchData = () => $.post('/data-for-admin-search-engine', (data) => {
+const fetchData = () => $.post('/admin-dashboard/data-for-admin-search-engine', (data) => {
     usersForSearchengine = data.users;
     productsForSearchengine = data.products;
 
@@ -325,9 +325,6 @@ const searchFor = () => {
             newHtml+=`<option value="${result.item.userName || result.item.item_name}" class="search-result ${optNum}">${result.item.userName || result.item.item_name}</option>`
             optNum+=1
         }
-        /*
-        searchResults.html(newHtml);
-        searchResults.css('display', 'flex');*/
         
         updateOrder(currentPart, found)
 

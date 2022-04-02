@@ -7,6 +7,7 @@ const verifySessionCookie = require('../../functions/general/verifySessionCookie
 const crypto = require('../../functions/general/crypto');
 const checkAdmin = require('../../functions/general/checkAdmin');
 const adminCookie = require('../../functions/adminLogin/randomCookieString');
+const decodeItems = require('../../functions/general/decodeItems');
 
 // IMPORTING OTHER NECCESSARY FILES
 const adminUID = process.env.ADMIN_UID;
@@ -323,5 +324,97 @@ const getUser = async (req, res) => {
     }
 }
 
+// POST
+// FETCHING DATA FOR ADMIN SEARCH ENGINE
+const fetchSearchEngineData = async (req, res) => {
+
+    // USING VERIFY SESSION COOKIE FINCTION WITH REQUEST AS ARGUMENT
+    // TO CHECK STATE OF THE USER IF THEY ARE LOGGED IN
+    let userRecord = await verifySessionCookie.verifySessionCookie(req);
+
+    if (userRecord) {
+            
+        let info = {
+            name: '',
+            lastName: '',
+            email: '',
+            country: '',
+            city: '',
+            age: ''
+        }
+        
+        let uid = userRecord.uid;
+        // CHECKING IF THE USER ID IS THE ONE OF THE ADMIN
+        if (uid == adminUID) {
+                // GRABBING THE REQUEST COOKIE OF ADMIN LOGGED IN 
+                let adminLoggedInCookie = req.cookies['admin-logged-in'];
+                // IF THE COOKIE EXISTS, REMOVE THE FIRST AND LAST SYMBOL OF " USING SUBSTR()
+                if (adminLoggedInCookie) {
+                    adminLoggedInCookie = adminLoggedInCookie.toString().substr(1, adminLoggedInCookie.length-2);
+                    // IF THE COOKIE STRING EXISTS IN THE LIST OF COOKIE STRINGS OF ADMIN SESSIONS, TAKE FURTHER
+                    // ACTIONS AND FINALLY SERVE THE ADMIN WITH THE ADMIN DASHBOARD SUBPAGE WITH ALL DATA FROM DB
+                    if (adminsLoggedIn.includes(adminLoggedInCookie)) {
+                        // DEFINING EMPTY LISTS FOR USERS AND PRODUCTS FOR ADMIN SEARCH ENGINE
+                        let usersSearchEngine = [];
+                        let productsSearchEngine = [];/*
+                        let adminsSearchEngine = [];*/ // TO BE USED IN THE FUTURE WHEN MULTIPLE ADMINS EXIST
+                        db.ref('/users').get()
+                        .then((data) => {
+                            // RETRIEVING ALL DATA ABOUT USERS FROM DATABASE
+                            let val = data.val();
+                            for (let user in val){ // FOR EACH USER OF THE USERS FROM DATABASE
+                                let userName = val[user]['personal-info'].name + ' ' + val[user]['personal-info'].lastName;
+                                let userID = user;
+                                // ALL NEED-TO-BE-FORMATED STRINGS ARE FORMATED AND 
+                                usersSearchEngine.push({ // PUSHED TO THE FINAL LIST OF THE USERS
+                                    userName: userName,
+                                    userID: userID,
+                                    userWarned: ''
+                                })
+                            }
+                        })
+                        .then(
+                            db.ref(`/admin/users`).get()
+                            .then((data) => {
+                                // FOR EACH USER ONE MORE PULL FROM THE DATABASE IS NEEDED TO
+                                // GRAB THE EMAIL ADDRESSES OF THE USER, AS ITS VALUE IS DECRYPTED 
+                                let val = data.val();
+                                for (let user in usersSearchEngine) {
+                                    // DECRYPTING THE VALUE OF THE EMAIL ADDRESS
+                                    usersSearchEngine[user].userWarned = decrypt(val[usersSearchEngine[user].userID].history.disabled.encrypted, adminPWD.repeat(5).substring(0, 32), val[usersSearchEngine[user].userID].history.disabled.iv);
+                                }
+                            })
+                            .then(
+                                db.ref('/items_to_sell').get()
+                                .then((data) => {
+                                    // RETRIEVING DATA ABOUT EACH ITEM THAT IS BEING OFFERED AT THE MOMENT FROM THE DATABASE
+                                    productsSearchEngine = decodeItems(data.val()) // DECODING WHOLE VALUE AT ONCE USING FUNCTION DECODE ITEMS
+                                })
+                                .then(() => {
+                                    // SENDING RESPONSE IN FORM OF OBJECT, USERS + PRODUCTS
+                                    res.send({
+                                        users: usersSearchEngine, 
+                                        products: productsSearchEngine
+                                    })
+                                }
+                                )
+                            )
+                        )
+                    } else {
+                        res.redirect('/admin')
+                    }
+                } else {
+                    res.redirect('/admin')
+                }
+            // IF THE USER ID IS NOT THE ONE OF ADMIN, USER IS REDIRECTED TO THE HOMEPAGE
+        } else {
+            res.redirect('/admin')
+        }
+
+    } else {
+        res.redirect('/sessionLogout')
+    }
+}
+
 // EXPORTING ALL THE FUNCTIONS
-module.exports = { getDashboard, getUser }
+module.exports = { getDashboard, getUser, fetchSearchEngineData }

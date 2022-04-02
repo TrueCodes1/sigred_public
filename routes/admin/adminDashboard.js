@@ -8,8 +8,13 @@ const AdminDashboardRouter = express.Router();
 const adminDashboardController = require('../../controllers/admin/adminDashboard');
 
 // ASSIGNING SPECIFIC FUNCTIONS IN CONTROLLERS TO SPECIFIC ROUTES
+
+// GET REQUESTS
 AdminDashboardRouter.get('/', adminDashboardController.getDashboard);
-AdminDashboardRouter.get('/user/:id', adminDashboardController.getUser)
+AdminDashboardRouter.get('/user/:id', adminDashboardController.getUser);
+
+// POST REQUESTS
+AdminDashboardRouter.post('/data-for-admin-search-engine', adminDashboardController.fetchSearchEngineData);
 
 // EXPORTING ROUTER
 module.exports = { AdminDashboardRouter }

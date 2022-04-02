@@ -2357,7 +2357,7 @@ const decodeItems = (items) => {
     return decoded
 }
 
-app.post('/data-for-admin-search-engine', (req, res) => {
+app.post('/admin-dashboard/data-for-admin-search-engine', (req, res) => {
     
     let sessionCookie = req.cookies.session || "";
 
