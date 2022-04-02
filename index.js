@@ -935,22 +935,22 @@ function send_upload_success_email(body, uid, info){
     })
 
 }
-
+/*
 app.post('/contact', function(req, res){
     let body = req.body;
 
     let output = `
-    <body style='background-color: #FFE0C4; padding: 40px;'>
-    <p style="font-size: 1.1rem">You have recieved new message from <span style="font-weight: 600; padding: .35em; background-color: #0a5a55; color: #FFE0C4">${body.name}</span>, one of your customers.</p>
-    <h2 style='padding: .5em; background-color: #0a5a55; color: #FFE0C4; min-width: fit-content; max-width: fit-content'>Contact Details</h2>
-    <ul style='list-style: none'>
-        <li><b>Name:</b> <p style='font-size: 1.25rem; margin-left: 15px'>${body.name}</p> </li>
-        <li><b>E-mail:</b> <p style='font-size: 1.25rem; margin-left: 15px'>${body.email}</p> </li>
-        <li><b>Subject:</b> <p style='font-size: 1.25rem; margin-left: 15px'>${body.subject}</> </li>
-    </ul>
-    <h2 style='padding: .5em; background-color: #0a5a55; color: #FFE0C4; min-width: fit-content; max-width: fit-content'>Message</h2>
-    <p style="padding: .5em; text-align: justify; font-size: 1.1rem; font-weight: 400">${body.message}</p>
-    </body>
+        <body style='background-color: #FFE0C4; padding: 40px;'>
+        <p style="font-size: 1.1rem">You have recieved new message from <span style="font-weight: 600; padding: .35em; background-color: #0a5a55; color: #FFE0C4">${body.name}</span>, one of your customers.</p>
+        <h2 style='padding: .5em; background-color: #0a5a55; color: #FFE0C4; min-width: fit-content; max-width: fit-content'>Contact Details</h2>
+        <ul style='list-style: none'>
+            <li><b>Name:</b> <p style='font-size: 1.25rem; margin-left: 15px'>${body.name}</p> </li>
+            <li><b>E-mail:</b> <p style='font-size: 1.25rem; margin-left: 15px'>${body.email}</p> </li>
+            <li><b>Subject:</b> <p style='font-size: 1.25rem; margin-left: 15px'>${body.subject}</> </li>
+        </ul>
+        <h2 style='padding: .5em; background-color: #0a5a55; color: #FFE0C4; min-width: fit-content; max-width: fit-content'>Message</h2>
+        <p style="padding: .5em; text-align: justify; font-size: 1.1rem; font-weight: 400">${body.message}</p>
+        </body>
     `;
 
     let mailOptions = {
@@ -975,9 +975,9 @@ app.post('/contact', function(req, res){
     //send mail with defined transporter object
     transporter.sendMail(mailOptions, (error, infoo) => {
         if (error){
-            return console.log(error)
+            console.log(error);
+            res.end()
         } else{
-            console.log('Message sent!')
             if (body.status == 'in'){
                 let admin = false;
                 uid == adminUID ? admin = true : admin = false;
@@ -988,7 +988,7 @@ app.post('/contact', function(req, res){
         }
     })
 
-})
+})*/
 
 const encrypt = (text, pwd) => {
 
