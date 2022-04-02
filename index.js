@@ -2356,9 +2356,9 @@ const decodeItems = (items) => {
     }
     return decoded
 }
-
+/*
 app.post('/admin-dashboard/data-for-admin-search-engine', (req, res) => {
-    
+
     let sessionCookie = req.cookies.session || "";
 
     admin
@@ -2369,8 +2369,8 @@ app.post('/admin-dashboard/data-for-admin-search-engine', (req, res) => {
             
             if (uid == adminUID) {
                 let usersSearchEngine = [];
-                let productsSearchEngine = [];/*
-                let adminsSearchEngine = [];*/
+                let productsSearchEngine = [];*//*
+                let adminsSearchEngine = [];*//*
                 db.ref('/users').get()
                 .then((data) => {
                     let val = data.val();
@@ -2411,7 +2411,7 @@ app.post('/admin-dashboard/data-for-admin-search-engine', (req, res) => {
                 res.redirect('/admin')
             }
         })
-})
+})*/
 /*
 app.get('/admin-dashboard/user/:id', (req, res) => {
 
