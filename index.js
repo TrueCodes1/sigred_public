@@ -1017,98 +1017,6 @@ const decrypt = (text, pwd, iv) => {
 
 }
 
-app.post('/registrate', function(req, res){
-    let body = req.body;
-    let password = body.password;
-    let name = body.name;
-    let lastName = body.lastName;
-    let email = body.email;
-    let country = body.country;
-    let city = body.city;
-    let username = body.username;
-    let age = body.age;
-    let privacy = body['privacy-confirm'];
-    let ageC = body['age-confirm'];
-    let user = {
-        name: name,
-        lastName: lastName,
-        email: email,
-        country: country,
-        city: city,
-        username: username,
-        age: age
-    }
-    if (privacy == 'on'){
-        if (ageC == 'on'){
-            if (password[0] == password[1] && (password[0].length > 8 || password[0].length == 8)){
-                if (name!= '' && lastName!= '' && email != '' && country!=''&& city!='' && username!=''&& password != '' &&  age!= '') {
-                    var wholeName = name+' '+lastName;
-                    admin.auth().createUser({
-                        email: email,
-                        password: password[0]
-                    }).then((userRecord)=>{/*
-                        email = encryptEmail(email, password[0])*/
-                        db.ref('/users/'+(userRecord.uid).toString()+'/personal-info').set({
-                            name: name,
-                            lastName: lastName,
-                            username: username, 
-                            email: encrypt(email, password[0].repeat(5).substr(0, 32)),
-                            country: country, 
-                            city: city,
-                            age: age
-                        })
-                        .then(
-                            //saving to admin section in database
-                            db.ref('/admin/users/'+(userRecord.uid).toString()).set({
-                                status: encrypt('enabled', adminPWD.repeat(5).substring(0, 32)),
-                                established: encrypt(new Date().toLocaleString(), adminPWD.repeat(5).substring(0, 32)),
-                                date: encrypt('', adminPWD.repeat(5).substring(0, 32)), 
-                                history: {
-                                    disabled: encrypt('0', adminPWD.repeat(5).substring(0,32))
-                                },
-                                email: encrypt(email, adminPWD.repeat(5).substring(0, 32)),
-                                bought: encrypt('', adminPWD.repeat(5).substring(0, 32)),
-                                sold: encrypt('', adminPWD.repeat(5).substring(0, 32)),
-                                selling: ''
-                            })
-                            .then(
-                                db.ref('/users/'+(userRecord.uid).toString()+'/wallet').set({
-                                    current_balance: encrypt('0', password[0].repeat(5).substr(0, 32))
-                                })
-                                .then(
-                                    db.ref('/users/'+(userRecord.uid).toString()+'/items').set({
-                                        selling: '',
-                                        bought: encrypt('', password[0].repeat(5).substr(0, 32)),
-                                        sold: encrypt('', password[0].repeat(5).substr(0, 32))
-                                    })
-                                    .then(
-                                        res.render('login', {title: 'Login', data: req,  password_state: 'ok', password1: '', password2: '',  scroll: 'false', user: 'none', problem: '', privacy: '', ageC: ''})
-                                    )
-                                )
-                            )
-                        )
-                    })
-                } else {
-                    console.log('Sth not filled')
-                }
-            } else if (password[0] == password[1] && password[0].length < 8){
-                res.render('login', {title: 'Login', password_state: 'longer', password1: '', password2: '',  scroll: 'true', user: user, problem: '', privacy: 'ok', ageC: 'ok'})
-            } else if (password[0]  != password[1] && (password[0].length > 8 || password[0].length == 8)){
-                user.password = password[0];
-                res.render('login', {title: 'Login', password_state: 'reconfirm', password1: password[0], password2: '',  scroll: 'true', user: user, problem: '', privacy: 'ok', ageC: 'ok'})
-            } else if (password[0]  != password[1] && password[0].length < 8){
-                res.render('login', {title: 'Login', password_state: 'change_whole', password1: '', password2: '', scroll: 'true', user: user, problem: '', privacy: 'ok', ageC: 'ok'})
-            }
-        } else {
-            res.render('login', {title: 'Login', password_state: 'ok', password1: password[0], password2: password[1], scroll: 'true', user: user, problem: 'age-confirm', privacy: 'ok', ageC: ''})
-        }
-    } else if (privacy != 'on' && ageC == 'on'){
-        res.render('login', {title: 'Login', password_state: 'ok', password1: password[0], password2: password[1], scroll: 'true', user: user, problem: 'privacy-confirm', privacy: '', ageC: 'ok'})
-    } else if (privacy != 'on' && ageC != 'on'){
-        res.render('login', {title: 'Login', password_state: 'ok', password1: password[0], password2: password[1], scroll: 'true', user: user, problem: 'both', privacy: '', ageC: ''})
-    }
-})
-
 app.post('/update_personal', (req, res) => {
 
     let sessionCookie = req.cookies.session || "";
@@ -1296,23 +1204,6 @@ app.get('/video-checked', (req, res) => {
             res.render('login', {title: 'Login', name: '', data: req,  password_state: 'ok', scroll: 'false', user: 'none'})
         })
 })
-
-const decodeItems = (items) => {
-    let decoded = [];
-    for (let key of Object.keys(items)) {
-        let current = items[key];
-        decoded.push({
-            item_desc: JSON.parse('"'+htmlencode.htmlDecode(current.item_desc)+'"'),
-            item_location: JSON.parse('"'+htmlencode.htmlDecode(current.item_location)+'"'),
-            item_name: JSON.parse('"'+htmlencode.htmlDecode(current.item_name)+'"'),
-            item_price: JSON.parse('"'+htmlencode.htmlDecode(current.item_price)+'"'),
-            item_seller: JSON.parse('"'+htmlencode.htmlDecode(current.item_seller)+'"'),
-            video_link: current.video_link,
-            video_name: JSON.parse('"'+htmlencode.htmlDecode(current.video_name)+'"')
-        })
-    }
-    return decoded
-}
 
 
 var port = process.env.PORT || 3000;
