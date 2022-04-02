@@ -34,7 +34,7 @@ const finalFinishDisable = () => {
     let adminPWD = $('#disable-password-input').attr('value');
     if (message.replaceAll(' ', '').length > 0) {
     
-        fetch('/disable-item', {
+        fetch('/admin-dashboard/disable-item', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ const finalFinishEnable = () => {
     let adminPWD = $('#disable-password-input').attr('value');
     if (message.replaceAll(' ', '').length > 0) {
     
-        fetch('/enable-item', {
+        fetch('/admin-dashboard/enable-item', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

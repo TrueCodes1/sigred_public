@@ -401,18 +401,18 @@ const fetchSearchEngineData = async (req, res) => {
                             )
                         )
                     } else {
-                        res.redirect('/admin')
+                        res.end()
                     }
                 } else {
-                    res.redirect('/admin')
+                    res.end()
                 }
             // IF THE USER ID IS NOT THE ONE OF ADMIN, USER IS REDIRECTED TO THE HOMEPAGE
         } else {
-            res.redirect('/admin')
+            res.end()
         }
 
     } else {
-        res.redirect('/sessionLogout')
+        res.end()
     }
 }
 

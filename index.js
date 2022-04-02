@@ -2570,7 +2570,7 @@ app.get('/admin-dashboard/item/:id', (req, res) => {
         })
 })
 
-app.post('/message-from-admin-to-user', (req, res) => {
+app.post('/admin-dashboard/message-from-admin-to-user', (req, res) => {
 
     let sessionCookie = req.cookies.session || "";
     
@@ -2627,7 +2627,7 @@ app.post('/message-from-admin-to-user', (req, res) => {
         })
 })
 
-app.post('/message-from-admin-to-seller', (req, res) => {
+app.post('/admin-dashboard/message-from-admin-to-seller', (req, res) => {
 
     let sessionCookie = req.cookies.session || "";
     
@@ -2692,7 +2692,7 @@ app.post('/message-from-admin-to-seller', (req, res) => {
         })
 })
 
-app.post('/disable-account', (req, res) => {
+app.post('/admin-dashboard/disable-account', (req, res) => {
 
     let sessionCookie = req.cookies.session || "";
     
@@ -2799,7 +2799,7 @@ app.post('/disable-account', (req, res) => {
         })
 })
 
-app.post('/enable-account', (req, res) => {
+app.post('/admin-dashboard/enable-account', (req, res) => {
 
     let sessionCookie = req.cookies.session || "";
     
@@ -2896,7 +2896,7 @@ app.post('/enable-account', (req, res) => {
         })
 })
 
-app.post('/disable-item', (req, res) => {
+app.post('/admin-dashboard/disable-item', (req, res) => {
 
     let sessionCookie = req.cookies.session || "";
     
@@ -3071,7 +3071,7 @@ app.post('/disable-item', (req, res) => {
         })
 })
 
-app.post('/enable-item', (req, res) => {
+app.post('/admin-dashboard/enable-item', (req, res) => {
 
     let sessionCookie = req.cookies.session || "";
     
