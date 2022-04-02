@@ -2693,7 +2693,7 @@ app.post('/admin-dashboard/message-from-admin-to-seller', (req, res) => {
             })
         })
 })*/
-
+/*
 app.post('/admin-dashboard/disable-account', (req, res) => {
 
     let sessionCookie = req.cookies.session || "";
@@ -2799,8 +2799,8 @@ app.post('/admin-dashboard/disable-account', (req, res) => {
 
             }
         })
-})
-
+})*/
+/*
 app.post('/admin-dashboard/enable-account', (req, res) => {
 
     let sessionCookie = req.cookies.session || "";
@@ -2896,7 +2896,7 @@ app.post('/admin-dashboard/enable-account', (req, res) => {
 
             }
         })
-})
+})*/
 
 app.post('/admin-dashboard/disable-item', (req, res) => {
 
