@@ -419,5 +419,72 @@ const fetchSearchEngineData = async (req, res) => {
     }
 }
 
+/*******************************/
+// POSTS ABOUT USER START HERE //
+/*******************************/
+
+// MESSAGE USER
+
+const messageUser = async (req, res) => {
+
+
+
+}
+
+// DISABLE ACCOUNT
+
+const disableAccount = async (req, res) => {
+
+    
+
+}
+
+// ENABLE ACCOUNT
+
+const enableAccount = async (req, res) => {
+
+    
+
+}
+
+/*******************************/
+// POSTS ABOUT USER END HERE //
+/*******************************/
+
+/***************************************************************************************************************
+/***************************************************************************************************************
+ * 
+/*******************************/
+// POSTS ABOUT ITEM START HERE //
+/*******************************/
+
+// MESSAGE SELLER
+
+const messageSeller = async (req, res) => {
+
+    
+
+}
+
+// DISABLE ITEM
+
+const disableItem = async (req, res) => {
+
+    
+
+}
+
+// ENABLE ITEM
+
+const enableItem = async (req, res) => {
+
+    
+
+}
+
+/*******************************/
+// POSTS ABOUT ITEM START HERE //
+/*******************************/
+
 // EXPORTING ALL THE FUNCTIONS
-module.exports = { getDashboard, getUser, fetchSearchEngineData }
+module.exports = { getDashboard, getUser, fetchSearchEngineData, messageUser, disableAccount, enableAccount, messageSeller, disableItem, enableItem }
