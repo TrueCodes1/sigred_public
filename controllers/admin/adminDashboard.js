@@ -1,5 +1,6 @@
 // IMPORTING NECCESSARY NODE MODULES
 const htmlencode = require('htmlencode');
+const nodemailer = require('nodemailer');
 
 // IMPORTING ALL NECCESSARY FUNCTIONS
 const firebase = require('../../databaseConnection');
@@ -452,16 +453,7 @@ const fetchSearchEngineData = async (req, res) => {
     let userRecord = await verifySessionCookie.verifySessionCookie(req);
 
     if (userRecord) {
-            
-        let info = {
-            name: '',
-            lastName: '',
-            email: '',
-            country: '',
-            city: '',
-            age: ''
-        }
-        
+
         let uid = userRecord.uid;
         // CHECKING IF THE USER ID IS THE ONE OF THE ADMIN
         if (uid == adminUID) {
@@ -543,8 +535,79 @@ const fetchSearchEngineData = async (req, res) => {
 
 const messageUser = async (req, res) => {
 
+    // USING VERIFY SESSION COOKIE FINCTION WITH REQUEST AS ARGUMENT
+    // TO CHECK STATE OF THE USER IF THEY ARE LOGGED IN
+    let userRecord = await verifySessionCookie.verifySessionCookie(req);
 
+    if (userRecord) {
+            
+        let uid = userRecord.uid;
+        // CHECKING IF THE USER ID IS THE ONE OF THE ADMIN
+        if (uid == adminUID) {
+                // GRABBING THE REQUEST COOKIE OF ADMIN LOGGED IN 
+                let adminLoggedInCookie = req.cookies['admin-logged-in'];
+                // IF THE COOKIE EXISTS, REMOVE THE FIRST AND LAST SYMBOL OF " USING SUBSTR()
+                if (adminLoggedInCookie) {
+                    adminLoggedInCookie = adminLoggedInCookie.toString().substr(1, adminLoggedInCookie.length-2);
+                    // IF THE COOKIE STRING EXISTS IN THE LIST OF COOKIE STRINGS OF ADMIN SESSIONS, TAKE FURTHER
+                    // ACTIONS AND FINALLY SERVE THE ADMIN WITH THE ADMIN DASHBOARD SUBPAGE WITH ALL DATA FROM DB
+                    if (adminsLoggedIn.includes(adminLoggedInCookie)) {
 
+                        let output = `
+                            <body style='background-color: #FFE0C4; padding: 40px;'>
+                            <p style="font-size: 1.1rem; font-weight: 700">Hey, ${req.body.name}, we contact you on behalf of Sigred team.</p>
+                            <p style="font-size: 1.1rem">${req.body.text}</p>
+                            <h2 style='padding: .5em; background-color: #0a5a55; color: #FFE0C4; min-width: fit-content; max-width: fit-content'>Thank you for your trust.
+                            In case of any question, contact us on <span style="color: #0a5a55">sigred.inc@sigred.org</span> or via our contact page <span style="color: #0a5a55">www.sigred.org/contact</span></h2>
+                            </body>
+                        `;
+                    
+                        let mailOptions = {
+                            from: '"Sigred team" <sigred.inc@sigred.org>',
+                            to: req.body.email,
+                            subject: req.body.subject,
+                            text: 'Sigred - message from admin',
+                            html: output
+                        }
+                        
+                        //Part for sending emails - nodemailer
+                        //create transporter
+                        let transporter = nodemailer.createTransport({
+                            host: 'smtp.gmail.com',
+                            port: 465,
+                            secure: true, //true for 465
+                            auth: {
+                                user: 'sigred.inc@sigred.org',
+                                pass: 'nfcewbdavjpqgfho'
+                            },
+                            tls: {
+                                rejectUnauthorized: false
+                            }
+                        })
+                        //send mail with defined transporter object
+                        transporter.sendMail(mailOptions, (error, infoo) => {
+                            if (error){
+                                console.log(error);
+                                res.end()
+                            } else{
+                                res.status(200).redirect(originURL)
+                            }
+                        })
+
+                    } else {
+                        res.end()
+                    }
+                } else {
+                    res.end()
+                }
+            // IF THE USER ID IS NOT THE ONE OF ADMIN, USER IS REDIRECTED TO THE HOMEPAGE
+        } else {
+            res.end()
+        }
+
+    } else {
+        res.end()
+    }
 }
 
 // DISABLE ACCOUNT

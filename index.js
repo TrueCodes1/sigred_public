@@ -2569,7 +2569,7 @@ app.get('/admin-dashboard/item/:id', (req, res) => {
             res.redirect('/sessionLogout')
         })
 })*/
-
+/*
 app.post('/admin-dashboard/message-from-admin-to-user', (req, res) => {
 
     let sessionCookie = req.cookies.session || "";
@@ -2623,9 +2623,11 @@ app.post('/admin-dashboard/message-from-admin-to-user', (req, res) => {
                         res.status(200).redirect(originURL)
                     }
                 })
+            } else {
+                res.end()
             }
         })
-})
+})*/
 
 app.post('/admin-dashboard/message-from-admin-to-seller', (req, res) => {
 
