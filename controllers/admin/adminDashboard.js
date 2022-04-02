@@ -24,7 +24,8 @@ const decrypt = crypto.decrypt;
 
 
 // GET
-// GET DASHBOARD 
+
+// DASHBOARD 
 const getDashboard = async (req, res) => {
 
     // USING VERIFY SESSION COOKIE FINCTION WITH REQUEST AS ARGUMENT
@@ -183,7 +184,7 @@ const getDashboard = async (req, res) => {
         res.render('login', {title: 'Login', name: '', data: req,  password_state: 'ok', scroll: 'false', user: 'none'})
     }
 }
-// GET USER
+// USER
 const getUser = async (req, res) => {
 
     // USING VERIFY SESSION COOKIE FINCTION WITH REQUEST AS ARGUMENT
@@ -324,8 +325,10 @@ const getUser = async (req, res) => {
     }
 }
 
+
 // POST
-// FETCHING DATA FOR ADMIN SEARCH ENGINE
+
+// DATA FOR ADMIN SEARCH ENGINE
 const fetchSearchEngineData = async (req, res) => {
 
     // USING VERIFY SESSION COOKIE FINCTION WITH REQUEST AS ARGUMENT
