@@ -15,6 +15,7 @@ const adminDashboardController = require('../../controllers/admin/adminDashboard
 
 AdminDashboardRouter.get('/', adminDashboardController.getDashboard);
 AdminDashboardRouter.get('/user/:id', adminDashboardController.getUser);
+AdminDashboardRouter.get('/item/:id', adminDashboardController.getItem);
 
 // POST REQUESTS
 
