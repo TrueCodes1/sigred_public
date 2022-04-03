@@ -87,6 +87,7 @@ const getIndex = (req, res) => {
                     item.item_seller = item_seller;
                     item.video_name = video_name;
                     item.video_link = video_link;
+                    item.key = val[i].key;
         
                     let seller_id = val[i].item_seller_id;
                     if (disabled.includes(seller_id) != true) {
@@ -99,7 +100,6 @@ const getIndex = (req, res) => {
                     }
 
             }
-
         })
         .then(
             admin
@@ -164,6 +164,7 @@ const getIndex = (req, res) => {
                                 item.item_seller = item_seller;
                                 item.video_name = video_name;
                                 item.video_link = video_link;
+                                item.key = val[i].key;
                     
                                 let seller_id = val[i].item_seller_id;
                                 if (disabled.includes(seller_id) != true) {
@@ -222,6 +223,7 @@ const getIndex = (req, res) => {
                         item.item_seller = item_seller;
                         item.video_name = video_name;
                         item.video_link = video_link;
+                        item.key = val[i].key;
                     
                         let seller_id = val[i].item_seller_id;
                         if (disabled.includes(seller_id) != true) {

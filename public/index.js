@@ -149,8 +149,11 @@ function handle_right() {
     }
 }
 
-function open_item(){
-    /* */
+function openItem(id){
+    let num = id.toString().substring(id.length-1, id.length);
+    let parentProduct = document.getElementById(`product-${num}`);
+    let itemId = parentProduct.querySelector('.item-id').value;
+    window.location = `/selling/${itemId}`;
 }
 
 function buy_item(){

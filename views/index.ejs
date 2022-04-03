@@ -21,8 +21,12 @@
             <img src="diamond_2_content.svg" alt="" class="diamond4 diamond-single">
             <img src="diamond_content.svg" alt="" class="diamond5 diamond-single">
             <img src="diamond_2_content.svg" alt="" class="diamond6 diamond-single">
-        <% for (i in first_nine) {%>  
-            <div class="products-product">
+        <% 
+            let num = 0;
+            for (i in first_nine) {
+        %>  
+            <div class="products-product" id="product-<%=num%>">
+                <input type="hidden" class="item-id" value="<%=first_nine[i].key%>">
                 <div class="product-image">
                     <video loop muted class="video" preload='' playsinline>
                         <source src="<%= first_nine[i].video_link %> " type="video/mp4">
@@ -50,7 +54,7 @@
                 </div>
                 <div class="product-distance"><%= first_nine[i].item_location %> </div>
                 <div class="open">
-                    <div class="open-open">
+                    <div class="open-open" id="open-item-<%=num%>" onclick="openItem(this.id)">
                         open
                     </div>
                     <div class="open-buy">
@@ -58,7 +62,7 @@
                     </div>
                 </div>
             </div>
-        <% } %>   
+        <% num +=1 } %>   
         <%- include('./partials/footer-mobile.ejs') %>
         </div>
     </div>

@@ -59,7 +59,10 @@ const getItem = async (req, res) => {
             })
             .then(
                 db.ref(`/items_selling/${itemId}`).get()
-                
+                .then((data) => {
+                    let val = data.val();
+                    console.log(val)
+                })
             )
     
         } else {
