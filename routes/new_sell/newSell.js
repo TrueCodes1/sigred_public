@@ -9,6 +9,7 @@ const sellController = require('../../controllers/new_sell/newSell');
 
 // ASSIGNING SPECIFIC FUNCTIONS IN CONTROLLERS TO SPECIFIC ROUTES
 SellRouter.get('/', sellController.getSell);
+SellRouter.post('/', sellController.makeSell);
 
 // EXPORTING ROUTER
 module.exports = { SellRouter }

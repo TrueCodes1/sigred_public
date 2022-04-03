@@ -475,8 +475,9 @@ app.get('/change-personal', csurfMiddleware, (req, res) => {
             res.render('login', {title: 'Login', name: '', data: req,  password_state: 'ok', scroll: 'false', user: 'none'})
         })
 })
-
+/*
 var currently_adding = {};
+*/
 /*
 app.get('/new-sell', csurfMiddleware, (req, res) => {
 
@@ -533,9 +534,10 @@ app.get('/new-sell', csurfMiddleware, (req, res) => {
             res.render('login', {title: 'Login', name: '', data: req,  password_state: 'ok', scroll: 'false', user: 'none'})
         })
 })*/
-
+/*
 var queue_to_upload = [];
-
+*/
+/*
 app.post('/new-sell', (req, res) => {
     
     let sessionCookie = req.cookies.session || "";
@@ -603,16 +605,16 @@ app.post('/new-sell', (req, res) => {
                             let file_size = req.file.size;
     
                             let name_to_check = req.file.originalname;/*
-                            let accepted_formats = ['.mov', '.mp4', '.MOV', '.avi', '.mkv'];*/
+                            let accepted_formats = ['.mov', '.mp4', '.MOV', '.avi', '.mkv'];*//*
                             let suffix = name_to_check.split('.')[1];
                             if (name_to_check.split('.').length == 2){
                                 if (suffix == 'mov' || suffix == 'mp4' || suffix == 'MOV' || suffix == 'avi' || suffix == 'mkv'){
                                     if (name_to_check.replace('.', '').includes('.')){
-                                        res.render('new-sell', {title: 'New Sale', info: info, video_status: '', adding_status: '', upload_status: 'bad_suffix'})
+                                        res.render('new-sell', {title: 'New Sell', info: info, video_status: '', adding_status: '', upload_status: 'bad_suffix'})
                                     } else {
         
                                         if (Number(file_size) > 26214400){
-                                            res.render('new-sell', {title: 'New Sale', info: info, video_status: '', adding_status: '', upload_status: 'too_large_video'})
+                                            res.render('new-sell', {title: 'New Sell', info: info, video_status: '', adding_status: '', upload_status: 'too_large_video'})
                                         } else {
                                             let to_upload = {
                                                 req: req,
@@ -624,21 +626,21 @@ app.post('/new-sell', (req, res) => {
                 
                                             queue_to_upload.push(to_upload);
                 
-                                            res.render('new-sell', {title: 'New Sale', info: info, video_status: '', adding_status: '', upload_status: 'pending', admin: admin});
+                                            res.render('new-sell', {title: 'New Sell', info: info, video_status: '', adding_status: '', upload_status: 'pending', admin: admin});
                 
                                             upload_from_queue();
                                         }
                                     } 
                                 } else {
-                                    res.render('new-sell', {title: 'New Sale', info: info, video_status: '', adding_status: '', upload_status: 'bad_suffix', admin: admin})
+                                    res.render('new-sell', {title: 'New Sell', info: info, video_status: '', adding_status: '', upload_status: 'bad_suffix', admin: admin})
                                 }
                             } else {
-                                res.render('new-sell', {title: 'New Sale', info: info, video_status: '', adding_status: '', upload_status: 'bad_suffix', admin: admin})
+                                res.render('new-sell', {title: 'New Sell', info: info, video_status: '', adding_status: '', upload_status: 'bad_suffix', admin: admin})
                             }
     /*
                             fs.unlink('public/.jpg', () => {*/
     /*
-                            })*/
+                            })*//*
                             
                         }
                     })
@@ -649,8 +651,9 @@ app.post('/new-sell', (req, res) => {
             res.clearCookie('session');
             res.render('login', {title: 'Login', name: '', data: req,  password_state: 'ok', scroll: 'false', user: 'none'})
         })
-})
+})*/
 
+/*
 function upload_from_queue(){
     for (key of Object.keys(queue_to_upload)){
         let upload = queue_to_upload[key];
@@ -664,8 +667,8 @@ function upload_from_queue(){
         
         upload_single_item(req, body, unique_video_name, uid, info)
     }
-}
-
+}*/
+/*
 function upload_single_item(req, body, unique_video_name, uid, info){
     
     let storage = multer.diskStorage({
@@ -696,7 +699,7 @@ function upload_single_item(req, body, unique_video_name, uid, info){
             let proc = new ffmpeg({source: './public/'+mp4_file_name})
                 .toFormat('mp4') //TRYING IF THE FORMAT WILL BE CHANGED
                 .output('./public/'+mkv_file_name)/*
-                .size('1280x720')*/
+                .size('1280x720')*//*
                 .size('720x1280')
                 .on('progress', ()=>{
                     console.log('progress')
@@ -712,7 +715,7 @@ function upload_single_item(req, body, unique_video_name, uid, info){
                         .then(() => {
                             console.log('UPLOADED')
 /*
-                            let body = req.body;*/
+                            let body = req.body;*//*
             
                             currently_adding[uid.toString()] = 'false';
             
@@ -786,7 +789,7 @@ function upload_single_item(req, body, unique_video_name, uid, info){
                                     item_seller_id: uid.toString(),
                                     item_selling_time: new Date().toLocaleString()
                                 }
-                                db.ref('/items_to_sell/'+video_name.toString()+'/').set(
+                                db.ref('/items_to_sell').push(
                                     item
                                 )
                                 .then(
@@ -805,7 +808,7 @@ function upload_single_item(req, body, unique_video_name, uid, info){
                                         /*
                                         () => {
                                             currently_adding[uid.toString()] = 'true'
-                                        }*/
+                                        }*//*
                                     )
                                     .then(() => {
                                         send_upload_success_email(body, uid, info)
@@ -816,7 +819,7 @@ function upload_single_item(req, body, unique_video_name, uid, info){
                                                 res.redirect('/new-sell')
                                             }
                                         }
-                                    )*/
+                                    )*//*
                                 )
                             })
                         })
@@ -837,8 +840,8 @@ function upload_single_item(req, body, unique_video_name, uid, info){
             .run()
         }
     })
-}
-
+}*/
+/*
 function send_failure_mail(body, uid, info){
 
     let output = `
@@ -886,8 +889,8 @@ function send_failure_mail(body, uid, info){
         }
     })
 
-}
-
+}*/
+/*
 function send_upload_success_email(body, uid, info){
 
     let output = `
@@ -935,7 +938,7 @@ function send_upload_success_email(body, uid, info){
         }
     })
 
-}
+}*/
 /*
 app.post('/contact', function(req, res){
     let body = req.body;
