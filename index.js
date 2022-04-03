@@ -523,7 +523,7 @@ app.get('/new-sell', csurfMiddleware, (req, res) => {
                 } else {*/
                     let admin = false;
                     uid == adminUID ? admin = true : admin = false;
-                    res.render('new-sell', {title: 'New Sale', info: info, video_status: '', adding_status: '', upload_status: '', admin: admin})/*
+                    res.render('new-sell', {title: 'New Sell', info: info, video_status: '', adding_status: '', upload_status: '', admin: admin})/*
                 }*/
             })
         })

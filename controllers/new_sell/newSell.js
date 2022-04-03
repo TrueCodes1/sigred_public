@@ -18,7 +18,7 @@ const admin = firebase.admin;
 const bucket = firebase.bucket;
 
 // GET 
-const getWallet = async (req, res) => {
+const getSell = async (req, res) => {
 
     // USING VERIFY SESSION COOKIE FINCTION WITH REQUEST AS ARGUMENT
     // TO CHECK STATE OF THE USER IF THEY ARE LOGGED IN
@@ -35,11 +35,6 @@ const getWallet = async (req, res) => {
             age: ''
         }
             
-        let balance = {
-            current: '',
-            eur: ''
-        }
-        
         let uid = userRecord.uid;
         db.ref('/users/'+uid.toString()+'/personal-info').get()
         .then((data) => {
@@ -54,28 +49,15 @@ const getWallet = async (req, res) => {
                 console.log("Data don't exist.")
             }
         })
-        .then(
-            db.ref('/users/'+uid.toString()+'/wallet').get()
-            .then((data) => {
-                if (data.exists()){
-                    let all = data.val();
-                    balance.current = all['current_balance'];
-                    balance.eur = Number(balance.current * 2).toFixed();
-                } else {
-                    console.log("Data don't exist.")
-                }
-            })
-            .then(() =>{
+        .then(() => {
 
-                // CHECKING IF THE USER ID IS THE SAME AS THE ONE OF THE ADMIN
-                // IF YES, TRUE IS SET AS VALUE OF ADMIN AND 
-                // THERE WILL BE ADMIN OPTION ON THE FINAL VIEW RENDERED
-                console.log(balance)
-                let admin = checkAdmin.checkAdmin(uid.toString());
-                res.render('wallet', {title: 'My Wallet', info: info, stripePublicKey: StripePublicKey, topup_status: '', balance: balance, admin: admin})
-
-            })
-        )
+            // CHECKING IF THE USER ID IS THE SAME AS THE ONE OF THE ADMIN
+            // IF YES, TRUE IS SET AS VALUE OF ADMIN AND 
+            // THERE WILL BE ADMIN OPTION ON THE FINAL VIEW RENDERED
+            let admin = checkAdmin.checkAdmin(uid.toString());
+            res.render('new-sell', {title: 'New Sell', info: info, video_status: '', adding_status: '', upload_status: '', admin: admin})
+    
+        })
 
     } else {
 
@@ -86,4 +68,4 @@ const getWallet = async (req, res) => {
 
 
 // EXPORTING ALL THE FUNCTIONS
-module.exports = { getWallet }
+module.exports = { getSell }
