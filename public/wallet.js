@@ -222,3 +222,83 @@ document.getElementById('card-payment-submit').addEventListener('click', () => {
             }
         )
 })
+
+const fetchCurrentBalance = (e) => {
+    let whichForm = e.target.id;
+    switch(whichForm.toString() == 'submit-input') { // CHECKING WHICH OF THE TWO SUBMITS HAVE BEEN CLICKED
+        case true: // IF IT WAS FIRST ONE
+
+            let pwd = $('#password-input').attr('value');
+            fetch('/wallet/show-my-balance', {
+                method: 'POST', 
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    password: pwd
+                })
+            })
+            .then(res => res.json())
+            .then((res) => {
+                if (res.error) {
+                    if (res.error == 'wrong-pwd') {
+                        alert('Please, try again with correct password.')
+                    }
+                } else {
+                    let balance = res.balance;
+                    let sigecoins = balance.current;
+                    let eur = balance.eur;
+
+                    $('#balance-sigecoins').html(
+                        `${sigecoins.toString()}  <img src="/sigecoin_icon_currency.svg" alt="" class="desktop"> <img src="/sigecoin_icon_currency.svg" alt="" class="mobile">`
+                    )
+                    $('#balance-eur').html(
+                        `${eur.toString()}  €`
+                    )
+                }
+            })
+
+            break // STOP THE EXECUTION OF THE SWITCH STATEMENT AFTER WE HAVE TAKEN SPECIFIC ACTIONS NEEDED
+        case false: // IF IT WAS SECOND ONE
+
+            let pwdEur = $('#password-input-eur').attr('value');
+            fetch('/wallet/show-my-balance', {
+                method: 'POST', 
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    password: pwdEur
+                })
+            })
+            .then(res => res.json())
+            .then((res) => {
+                if (res.error) {
+                    if (res.error == 'wrong-pwd') {
+                        alert('Please, try again with correct password.')
+                    }
+                } else {
+                    let balance = res.balance;
+                    let sigecoins = balance.current;
+                    let eur = balance.eur;
+
+                    $('#balance-sigecoins').html(
+                        `${sigecoins.toString()}  <img src="/sigecoin_icon_currency.svg" alt="" class="desktop"> <img src="/sigecoin_icon_currency.svg" alt="" class="mobile">`
+                    )
+                    $('#balance-eur').html(
+                        `${eur.toString()}  €`
+                    )
+                }
+            })
+
+            break // STOP THE EXECUTION OF THE SWITCH STATEMENT AFTER WE HAVE TAKEN SPECIFIC ACTIONS NEEDED
+    }
+}
+
+const submit1 = $('#submit-input');
+const submit2 = $('#submit-input-eur');
+
+$(submit1).on('click', fetchCurrentBalance);
+$(submit2).on('click', fetchCurrentBalance);

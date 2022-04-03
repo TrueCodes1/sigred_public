@@ -34,11 +34,6 @@ const getWallet = async (req, res) => {
             city: '',
             age: ''
         }
-            
-        let balance = {
-            current: '',
-            eur: ''
-        }
         
         let uid = userRecord.uid;
         db.ref('/users/'+uid.toString()+'/personal-info').get()
@@ -54,28 +49,62 @@ const getWallet = async (req, res) => {
                 console.log("Data don't exist.")
             }
         })
-        .then(
-            db.ref('/users/'+uid.toString()+'/wallet').get()
-            .then((data) => {
+        .then(() => {
+
+            // CHECKING IF THE USER ID IS THE SAME AS THE ONE OF THE ADMIN
+            // IF YES, TRUE IS SET AS VALUE OF ADMIN AND 
+            // THERE WILL BE ADMIN OPTION ON THE FINAL VIEW RENDERED
+            let admin = checkAdmin.checkAdmin(uid.toString());
+            res.render('wallet', {title: 'My Wallet', info: info, stripePublicKey: StripePublicKey, topup_status: '', admin: admin})
+
+        })
+
+    } else {
+
+        res.redirect('/sessionLogout');
+
+    }
+}
+
+// POST
+const showBalance = async (req, res) => {
+
+    // USING VERIFY SESSION COOKIE FINCTION WITH REQUEST AS ARGUMENT
+    // TO CHECK STATE OF THE USER IF THEY ARE LOGGED IN
+    let userRecord = await verifySessionCookie.verifySessionCookie(req);
+
+    if (userRecord) {
+            
+        let balance = {
+            current: '',
+            eur: ''
+        }
+        
+        let uid = userRecord.uid;
+        let pwd = req.body.password;
+
+        db.ref('/users/'+uid.toString()+'/wallet').get()
+        .then((data) => {
                 if (data.exists()){
                     let all = data.val();
-                    balance.current = all['current_balance'];
+                    balance.current = crypto.decrypt(all['current_balance'].encrypted, pwd.repeat(5).substring(0, 32), all['current_balance'].iv);
                     balance.eur = Number(balance.current * 2).toFixed();
                 } else {
                     console.log("Data don't exist.")
                 }
-            })
-            .then(() =>{
+        })
+        .then(() =>{
 
-                // CHECKING IF THE USER ID IS THE SAME AS THE ONE OF THE ADMIN
-                // IF YES, TRUE IS SET AS VALUE OF ADMIN AND 
-                // THERE WILL BE ADMIN OPTION ON THE FINAL VIEW RENDERED
-                console.log(balance)
-                let admin = checkAdmin.checkAdmin(uid.toString());
-                res.render('wallet', {title: 'My Wallet', info: info, stripePublicKey: StripePublicKey, topup_status: '', balance: balance, admin: admin})
+            res.send({
+                balance: balance
+            }).end()
 
-            })
-        )
+        })
+        .catch((err) => {
+            res.send({
+                error: 'wrong-pwd'
+            }).end()
+        })
 
     } else {
 
@@ -86,4 +115,4 @@ const getWallet = async (req, res) => {
 
 
 // EXPORTING ALL THE FUNCTIONS
-module.exports = { getWallet }
+module.exports = { getWallet, showBalance }
