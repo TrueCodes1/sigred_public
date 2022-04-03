@@ -79,7 +79,8 @@ app.use(csurfMiddleware);*/
  * 
  * OBFUSCATING JS SCRIPTS
  * 
-**********************************//*
+**********************************/
+/*
 
 const scripts = ['all.js', 'index.js', 'login.js', 'new_sell.js', 'wallet_2.js', 'wallet.js'];
 
@@ -104,8 +105,7 @@ for (let script of scripts){
         }
     })
 
-}*/
-
+}*//*
 /*********************************
  * 
  * END OF OBFUSCATING JS SCRIPTS

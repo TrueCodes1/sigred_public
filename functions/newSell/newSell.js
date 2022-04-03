@@ -9,11 +9,13 @@ const fs = require('fs');
 const hbjs = require('handbrake-js');
 const ffmpegInstaller = require('@ffmpeg-installer/ffmpeg');
 const ffmpeg = require('fluent-ffmpeg');
+const crypto = require('crypto');
 
 ffmpeg.setFfmpegPath(ffmpegInstaller.path);
 
 // IMPORTING ALL NECCESSARY FUNCTIONS
 const firebase = require('../../databaseConnection');
+const crypting = require('../general/crypto');
 
 // DEFINING SINGLE SPECIFIC PARTS OF FIREBASE IMPORT
 const db = firebase.db;
@@ -62,7 +64,7 @@ const upload_single_item = (req, body, unique_video_name, uid, info) => {
     upload(req, unique_video_name, function(err) {
 
         if(err) {
-            console.log('ERRROR')
+            console.log('ERROR')
             console.log(err)
         }
         else {
@@ -127,7 +129,6 @@ const upload_single_item = (req, body, unique_video_name, uid, info) => {
                             }
                             let seller = info.name+' '+info.lastName;
                             
-            
                             bucket.file( 'items_videos/static_videos/'+mkv_file_name ).getSignedUrl({
                                 action: "read",
                                 expires: '03-17-2025'
@@ -152,7 +153,10 @@ const upload_single_item = (req, body, unique_video_name, uid, info) => {
                                 seller = unicode_escape(seller);
                                 seller = htmlencode.htmlEncode(seller);
             
+                                let dbItemName = crypto.randomBytes(20).toString('hex');
+                                
                                 let item = {
+                                    id: dbItemName.toString(),
                                     video_name: video_name.toString(),
                                     video_link: url[0].toString(),
                                     item_name: item_name.toString(),
@@ -163,11 +167,17 @@ const upload_single_item = (req, body, unique_video_name, uid, info) => {
                                     item_seller_id: uid.toString(),
                                     item_selling_time: new Date().toLocaleString()
                                 }
-                                db.ref('/items_to_sell').push(
+
+                                db.ref(`/items_to_sell/${dbItemName}/`).set(
                                     item
                                 )
+                                .then(`admin/users/${uid.toString}/${dbItemName}/`).set({
+                                    availability: crypting.encrypt('available', adminPWD.repeat(5).substring(0, 32)),
+                                    disabled: crypting.encrypt('', adminPWD.repeat(5).substring(0, 32)),
+                                    history: crypting.encrypt('0', adminPWD.repeat(5).substring(0, 32))
+                                })
                                 .then(
-                                    db.ref('/users/'+uid.toString()+'/items/selling/'+video_name+'/').set(
+                                    db.ref(`/users/${uid.toString()}/items/selling/${dbItemName}/`).set(
                                         item
                                     )
                                     .then(
@@ -257,8 +267,7 @@ const send_failure_mail = (body, uid, info) => {
     //send mail with defined transporter object
     transporter.sendMail(mailOptions, (error, infoo) => {
         if (error){
-            console.log(error);
-            res.end()
+            return console.log(error);
         } else{
             console.log('Message sent!')
         }
@@ -282,10 +291,8 @@ const send_upload_success_email = (body, uid, info) => {
         </body>
     `;
 
-    console.log(info.email);
-
     let mailOptions = {
-        from: '"Contact" <sigred.inc@sigred.org>',
+        from: '"Sigred" <sigred.inc@sigred.org>',
         to: info.email,
         subject: 'Item uploaded successfuly.',
         text: 'Sigred - Item Upload Status',
