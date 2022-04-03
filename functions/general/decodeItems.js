@@ -22,4 +22,12 @@ const decodeItems = (items) => {
     return decoded
 }
 
-module.exports = { decodeItems }
+const decodeItem = (object) => {
+    let objectReturn = {};
+    for (let key of Object.keys(object)) {
+        objectReturn[key] = JSON.parse('"'+htmlencode.htmlDecode(object[key])+'"')
+    }
+    return objectReturn
+}
+
+module.exports = { decodeItems, decodeItem }

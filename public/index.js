@@ -153,7 +153,9 @@ function openItem(id){
     let num = id.toString().substring(id.length-1, id.length);
     let parentProduct = document.getElementById(`product-${num}`);
     let itemId = parentProduct.querySelector('.item-id').value;
-    window.location = `/selling/${itemId}`;
+    let linkToClick = `<a href='http://localhost:3000/selling/${itemId}' id='link-to-click' style='display: none'></a>`;
+    $('#space-for-link').html(linkToClick);
+    document.getElementById('link-to-click').click()
 }
 
 function buy_item(){
