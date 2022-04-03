@@ -477,6 +477,7 @@ app.get('/change-personal', csurfMiddleware, (req, res) => {
 })
 
 var currently_adding = {};
+/*
 app.get('/new-sell', csurfMiddleware, (req, res) => {
 
     let sessionCookie = req.cookies.session || "";
@@ -520,18 +521,18 @@ app.get('/new-sell', csurfMiddleware, (req, res) => {
                         delete currently_adding[uid.toString()]
                         res.render('new-sell', {title: 'New Sale', info: info, video_status: '', adding_status: 'problem'})
                     }
-                } else {*/
+                } else {*//*
                     let admin = false;
                     uid == adminUID ? admin = true : admin = false;
                     res.render('new-sell', {title: 'New Sell', info: info, video_status: '', adding_status: '', upload_status: '', admin: admin})/*
-                }*/
+                }*//*
             })
         })
         .catch((error)=>{
             res.clearCookie('session');
             res.render('login', {title: 'Login', name: '', data: req,  password_state: 'ok', scroll: 'false', user: 'none'})
         })
-})
+})*/
 
 var queue_to_upload = [];
 
@@ -1096,6 +1097,7 @@ app.post('/update_personal', (req, res) => {
 })
 
 var videos = {};
+/*
 app.post('/upload_video', (req, res) => {
     
     let sessionCookie = req.cookies.session || "";
@@ -1141,8 +1143,8 @@ app.post('/upload_video', (req, res) => {
             res.clearCookie('session');
             res.render('login', {title: 'Login', name: '', data: req,  password_state: 'ok', scroll: 'false', user: 'none'})
         })
-})
-
+})*/
+/*
 app.get('/video-checked', (req, res) => {
 
     let sessionCookie = req.cookies.session || "";
@@ -1203,7 +1205,7 @@ app.get('/video-checked', (req, res) => {
             res.clearCookie('session');
             res.render('login', {title: 'Login', name: '', data: req,  password_state: 'ok', scroll: 'false', user: 'none'})
         })
-})
+})*/
 
 
 var port = process.env.PORT || 3000;

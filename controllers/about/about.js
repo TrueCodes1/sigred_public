@@ -13,6 +13,7 @@ const bucket = firebase.bucket;
 
 // GET 
 const getAbout = async (req, res) => {
+
     // USING VERIFY SESSION COOKIE FINCTION WITH REQUEST AS ARGUMENT
     // TO CHECK STATE OF THE USER IF THEY ARE LOGGED IN
     let userRecord = await verifySessionCookie.verifySessionCookie(req);
