@@ -26,6 +26,8 @@ const bucket = firebase.bucket;
 const uploading = require('../../uploading');
 
 // DEFINING SPECIFIC PARTS OF THE IMPORTED FILES
+const adminUID = process.env.ADMIN_UID;
+const adminPWD = process.env.ADMIN_PWD;
 const currently_adding = uploading.currently_adding;
 const queue_to_upload = uploading.queue_to_upload;
 
@@ -156,7 +158,7 @@ const upload_single_item = (req, body, unique_video_name, uid, info) => {
                                 let dbItemName = crypto.randomBytes(20).toString('hex');
                                 
                                 let item = {
-                                    id: dbItemName.toString(),
+                                    key: dbItemName.toString(),
                                     video_name: video_name.toString(),
                                     video_link: url[0].toString(),
                                     item_name: item_name.toString(),
@@ -171,39 +173,41 @@ const upload_single_item = (req, body, unique_video_name, uid, info) => {
                                 db.ref(`/items_to_sell/${dbItemName}/`).set(
                                     item
                                 )
-                                .then(`admin/users/${uid.toString}/${dbItemName}/`).set({
-                                    availability: crypting.encrypt('available', adminPWD.repeat(5).substring(0, 32)),
-                                    disabled: crypting.encrypt('', adminPWD.repeat(5).substring(0, 32)),
-                                    history: crypting.encrypt('0', adminPWD.repeat(5).substring(0, 32))
-                                })
                                 .then(
-                                    db.ref(`/users/${uid.toString()}/items/selling/${dbItemName}/`).set(
-                                        item
-                                    )
+                                    db.ref(`admin/users/${uid.toString()}/selling/${dbItemName}`).set({
+                                        availability: crypting.encrypt('available', adminPWD.repeat(5).substring(0, 32)),
+                                        disabled: crypting.encrypt('', adminPWD.repeat(5).substring(0, 32)),
+                                        history: crypting.encrypt('0', adminPWD.repeat(5).substring(0, 32))
+                                    })
                                     .then(
-                                        fs.unlink('public/'+mkv_file_name, ()=>{
-                                            console.log('DELETED .MOV')
-                                        })
-                                    )
-                                    .then(
-                                        
-                                        console.log('WE ARE DONE')
-                                        
-                                        /*
-                                        () => {
-                                            currently_adding[uid.toString()] = 'true'
-                                        }*/
-                                    )
-                                    .then(() => {
-                                        send_upload_success_email(body, uid, info)
-                                    })/*
-                                    .then(
-                                        () => {
-                                            if (currently_adding[uid.toString()] == 'true'){
-                                                res.redirect('/new-sell')
+                                        db.ref(`/users/${uid.toString()}/items/selling/${dbItemName}`).set(
+                                            item
+                                        )
+                                        .then(
+                                            fs.unlink('public/'+mkv_file_name, ()=>{
+                                                console.log('DELETED .MOV')
+                                            })
+                                        )
+                                        .then(
+                                            
+                                            console.log('WE ARE DONE')
+                                            
+                                            /*
+                                            () => {
+                                                currently_adding[uid.toString()] = 'true'
+                                            }*/
+                                        )
+                                        .then(() => {
+                                            send_upload_success_email(body, uid, info)
+                                        })/*
+                                        .then(
+                                            () => {
+                                                if (currently_adding[uid.toString()] == 'true'){
+                                                    res.redirect('/new-sell')
+                                                }
                                             }
-                                        }
-                                    )*/
+                                        )*/
+                                    )
                                 )
                             })
                         })

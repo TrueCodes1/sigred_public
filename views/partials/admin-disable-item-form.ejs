@@ -32,7 +32,7 @@
     </div>
     <div class="disable-pwd" id="disable-pwd">
         <input type="password" class="disable-password-input" id="disable-password-input" placeholder="Admin password...">
-        <input type="hidden" value="<%=itemInfo.item_name%>" id="item-name-hidden-input">
+        <input type="hidden" value="<%=itemInfo.key%>" id="item-name-hidden-input">
         <input type="hidden" value="<%=itemInfo.item_seller_id%>" id="seller-id-hidden-input">
         <%if (itemInfo.status == 'available') {%>
             <div class="disable-password-submit" onclick="finalFinishDisable()">

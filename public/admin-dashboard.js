@@ -101,6 +101,8 @@ const fetchData = () => $.post('/admin-dashboard/data-for-admin-search-engine', 
     usersForSearchengine = data.users;
     productsForSearchengine = data.products;
 
+    console.log(productsForSearchengine)
+
     //updating users part
     let newHtml = '';
     let num = 1;
@@ -138,6 +140,7 @@ const fetchData = () => $.post('/admin-dashboard/data-for-admin-search-engine', 
         newHtml+=`
                     
             <ul class="list-user" id="list-product-${num}" onclick='openItem(this.id)'>
+                <input type='hidden' value='${product.id}' class='item-id'/>
                 <li class="user-name">
                     ${product.item_name}
                 </li>
@@ -249,6 +252,7 @@ const updateOrder = (who, list) => {
             newHtml+=`
                         
             <ul class="list-user" id="list-product-${num}" onclick='openItem(this.id)'>
+                <input type='hidden' value='${product.id}' class='item-id'/>
                 <li class="user-name">
                     ${product.item.item_name}
                 </li>
@@ -275,6 +279,7 @@ const updateOrder = (who, list) => {
             newHtml+=`
                         
             <ul class="list-user" id="list-product-${num}" onclick='openItem(this.id)'>
+                <input type='hidden' value='${product.id}' class='item-id'/>
                 <li class="user-name">
                     ${resultRest.item_name}
                 </li>
@@ -476,12 +481,9 @@ const openUser = (id) => {
 }
 
 const openItem = (id) => {
-    let itemName = document.getElementById(id).querySelector('.user-name').innerText;
-    for (let item of productsForSearchengine) {
-        if (item.item_name == itemName) {
-            let link = `<a style='visibility: hidden' noopener norefferer id='link-to-click' href='/admin-dashboard/item/${item.item_name.replaceAll(' ', '')}'></a>`;
-            $('#space-for-link').html(link);
-            document.getElementById('link-to-click').click()
-        }
-    }
+    let itemName = document.getElementById(id).querySelector('.item-id').value;
+    let link = `<a style='visibility: hidden' noopener norefferer id='link-to-click' href='/admin-dashboard/item/${itemName.replaceAll(' ', '')}'></a>`;
+    $('#space-for-link').html(link);
+    document.getElementById('link-to-click').click()
+    
 }

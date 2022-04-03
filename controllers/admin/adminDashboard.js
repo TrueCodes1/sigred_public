@@ -383,8 +383,8 @@ const getItem = async (req, res) => {
                             let found = false;
                             for (let item of Object.keys(val)){ // FOR EACH ITEM
                                 if (found != true) { // IF IT WAS NOT FOUND SO FAR
-                                    let itemName = JSON.parse('"'+htmlencode.htmlDecode(val[item].item_name)+'"'); // ITEM NAME NEEDS TO BE DECODED
-                                    if (itemName.toString().split(' ').join('') == req.params.id.toString()) { // IF IT IS THE ITEM THAT WAS REQUIRED BY THE ADMIN
+                                    let itemId = val[item].key
+                                    if (itemId == req.params.id.toString()) { // IF IT IS THE ITEM THAT WAS REQUIRED BY THE ADMIN
                                         itemInfo = val[item]; // ITS VALUE IS ASSIGNED TO THE VARIABLE 'itemInfo' AND
                                         found = true; // VARIABLE 'found' IS ASSIGNED 'true' AS WE ALREADY FOUND THE ITEM
                                     }
@@ -397,7 +397,7 @@ const getItem = async (req, res) => {
                             
                             // BEFORE SENDING THE FINAL VIEW, SERVER CHECKS IF THE ITEM IS ENABLED AND
                             // THIS INFORMATION IS SAVED ENCRYPTED, SO THERE IS ONE MORE PULL FROM DATABASE NEEDED
-                            db.ref(`/admin/users/${itemInfo.item_seller_id.toString()}/selling/${itemInfo.item_name.split(' ').join('')}`).get()
+                            db.ref(`/admin/users/${itemInfo.item_seller_id.toString()}/selling/${req.params.id.toString()}`).get()
                             .then((data) => {
                                 // RETRIEVING DATA FROM ADMIN ENCRYPTED PART OF THE DATABASE
                                 let val = data.val()
@@ -500,6 +500,7 @@ const fetchSearchEngineData = async (req, res) => {
                                 .then((data) => {
                                     // RETRIEVING DATA ABOUT EACH ITEM THAT IS BEING OFFERED AT THE MOMENT FROM THE DATABASE
                                     productsSearchEngine = decodeItems.decodeItems(data.val()) // DECODING WHOLE VALUE AT ONCE USING FUNCTION DECODE ITEMS
+                                    console.log(Object.keys(productsSearchEngine));
                                 })
                                 .then(() => {
                                     // SENDING RESPONSE IN FORM OF OBJECT, USERS + PRODUCTS
@@ -991,22 +992,22 @@ const disableItem = async (req, res) => {
                             let email = '';
                             let name = '';
         
-                            db.ref(`/admin/users/${body.userID}/selling/${req.body.itemName.toString().split(' ').join('')}/availability`).set(
+                            db.ref(`/admin/users/${body.userID}/selling/${req.body.itemName}/availability`).set(
                                 encrypt('disabled', adminPWD.repeat(5).substring(0, 32))
                             )
                             .then(
-                                db.ref(`/admin/users/${body.userID}/selling/${req.body.itemName.toString().split(' ').join('')}/disabled`).set(
+                                db.ref(`/admin/users/${body.userID}/selling/${req.body.itemName}/disabled`).set(
                                     encrypt(body.time, adminPWD.repeat(5).substring(0, 32))
                                 )
                                 .then(
-                                    db.ref(`/admin/users/${body.userID}/selling/${req.body.itemName.toString().split(' ').join('')}/history`).get()
+                                    db.ref(`/admin/users/${body.userID}/selling/${req.body.itemName}/history`).get()
                                     .then((data) => {
                                         let val = data.val();
                                         if (val) {
                                             let num = decrypt(val.encrypted, adminPWD.repeat(5).substring(0, 32), val.iv);
                                             num = Number(num)   
                                             num+=1;
-                                            db.ref(`/admin/users/${body.userID}/selling/${req.body.itemName.toString().split(' ').join('')}/history`).set(
+                                            db.ref(`/admin/users/${body.userID}/selling/${req.body.itemName}/history`).set(
                                                 encrypt(num.toString(), adminPWD.repeat(5).substring(0, 32))
                                             )
                                             .then(
@@ -1071,7 +1072,7 @@ const disableItem = async (req, res) => {
                                             let num = 0;
                                             num = Number(num)   
                                             num+=1;
-                                            db.ref(`/admin/users/${body.userID}/selling/${req.body.itemName.toString().split(' ').join('')}/history`).set(
+                                            db.ref(`/admin/users/${body.userID}/selling/${req.body.itemName}/history`).set(
                                                 encrypt(num.toString(), adminPWD.repeat(5).substring(0, 32))
                                             )
                                             .then(
@@ -1188,7 +1189,7 @@ const enableItem = async (req, res) => {
                             let email = '';
                             let name = '';
         
-                            db.ref(`/admin/users/${body.userID}/selling/${body.itemName.toString().split(' ').join('')}/availability`).set(
+                            db.ref(`/admin/users/${body.userID}/selling/${body.itemName}/availability`).set(
                                 encrypt('available', adminPWD.repeat(5).substring(0, 32))
                             )
                             .then(

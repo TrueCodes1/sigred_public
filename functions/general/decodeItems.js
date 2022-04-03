@@ -8,6 +8,8 @@ const decodeItems = (items) => {
     for (let key of Object.keys(items)) {
         let current = items[key];
         decoded.push({
+            id: current.key,
+            item_seller_id: current.item_seller_id,
             item_desc: JSON.parse('"'+htmlencode.htmlDecode(current.item_desc)+'"'),
             item_location: JSON.parse('"'+htmlencode.htmlDecode(current.item_location)+'"'),
             item_name: JSON.parse('"'+htmlencode.htmlDecode(current.item_name)+'"'),
