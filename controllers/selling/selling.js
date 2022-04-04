@@ -76,13 +76,13 @@ const getItem = async (req, res) => {
                         // THERE WILL BE ADMIN OPTION ON THE FINAL VIEW RENDERED
                         let admin = checkAdmin.checkAdmin(uid.toString());
 
-                        res.render('item', {info: info, item: item, title: `Item | ${item.item_name}`, status: 'in', admin: admin})
+                        res.render('item', {info: info, item: item, title: `${item.item_name}`, status: 'in', admin: admin})
                     
                     })
         
                 } else {
                     
-                    res.render('item', {item: item, title: `Item | ${item.item_name}`, status: 'out'})
+                    res.render('item', {item: item, title: `${item.item_name}`, status: 'out'})
             
                 }
 
