@@ -4,6 +4,7 @@ const htmlencode = require('htmlencode');
 // IMPORTING ALL NECCESSARY FUNCTIONS
 const firebase = require('../../databaseConnection');
 const verifySessionCookie = require('../../functions/general/verifySessionCookie');
+const checkAdmin = require('../../functions/general/checkAdmin');
 const crypto = require('../../functions/general/crypto');
 
 // IMPORTING OTHER NECCESSARY FILES
@@ -122,8 +123,12 @@ const getIndex = (req, res) => {
                         }
                     })
                     .then(() =>{
-                        let admin = false;
-                        uid == adminUID ? admin = true : admin = false;
+
+                        // CHECKING IF THE USER ID IS THE SAME AS THE ONE OF THE ADMIN
+                        // IF YES, TRUE IS SET AS VALUE OF ADMIN AND 
+                        // THERE WILL BE ADMIN OPTION ON THE FINAL VIEW RENDERED
+                        let admin = checkAdmin.checkAdmin(uid.toString());
+
                         res.render('index', {title: 'Home', status: 'in', info: info, items: items, first_nine: first_nine, admin: admin});
                     })
                 })
@@ -177,6 +182,7 @@ const getIndex = (req, res) => {
                                 }
                                 
                         }
+
                         res.render('index', {title: 'Home', status: 'out', items: items, first_nine: first_nine, admin: admin});
                         return
                     })

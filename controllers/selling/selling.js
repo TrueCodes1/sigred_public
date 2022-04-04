@@ -69,9 +69,16 @@ const getItem = async (req, res) => {
                             console.log("Data don't exist.")
                         }
                     })
-                    .then(
-                        res.render('item', {info: info, item: item, title: `Item | ${item.item_name}`, status: 'in'})
-                    )
+                    .then(() => {
+
+                        // CHECKING IF THE USER ID IS THE SAME AS THE ONE OF THE ADMIN
+                        // IF YES, TRUE IS SET AS VALUE OF ADMIN AND 
+                        // THERE WILL BE ADMIN OPTION ON THE FINAL VIEW RENDERED
+                        let admin = checkAdmin.checkAdmin(uid.toString());
+
+                        res.render('item', {info: info, item: item, title: `Item | ${item.item_name}`, status: 'in', admin: admin})
+                    
+                    })
         
                 } else {
                     
