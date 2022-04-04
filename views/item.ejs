@@ -61,9 +61,12 @@
             </div>
             <div class="item-info">
                 <div class="info-item-name">
-                    <%=item.item_name%>
+                    <%=item.item_name%><%=item.item_name%><%=item.item_name%><%=item.item_name%><%=item.item_name%><%=item.item_name%><%=item.item_name%>
                 </div>
                 <div class="info-item-seller">
+                    <div class="seller-photo">
+                        <img src="/nopic.svg" alt="">
+                    </div>
                     <div class="seller-name" id="seller-name">
                         <%=item.item_seller%>
                     </div>
@@ -72,7 +75,8 @@
                     </div>
                 </div>
                 <div class="item-info-desc">
-                    <%=item.item_desc%>
+                    <%=item.item_desc%><%=item.item_desc%><%=item.item_desc%><%=item.item_desc%>
+                    <%=item.item_desc%><%=item.item_desc%><%=item.item_desc%><%=item.item_desc%>
                 </div>
                 <div class="item-info-price">
                     <%=item.item_price%>
@@ -81,8 +85,13 @@
 
             </div>
             <div class="item-options">
+                <div class="option-buy">
+                    buy for 
+                    <%=item.item_price%>
+                    <img src="/sigecoin_icon_currency.svg" alt="" class="item-info-price-currency">
+                </div>
                 <div class="option-contact" onclick="openMessage()">
-                    contact seller
+                    message seller
                 </div>
             </div>
         </div>

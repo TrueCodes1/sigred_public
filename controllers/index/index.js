@@ -91,7 +91,7 @@ const getIndex = (req, res) => {
         
                     let seller_id = val[i].item_seller_id;
                     if (disabled.includes(seller_id) != true) {
-                        if (disabled_items[seller_id].includes(item_name.split(' ').join('')) != true) {
+                        if (disabled_items[seller_id].includes(val[i].key) != true) {
                             items[i] = item;
                             if (Object.keys(first_nine).length<9){
                                 first_nine[i] = item
@@ -168,7 +168,7 @@ const getIndex = (req, res) => {
                     
                                 let seller_id = val[i].item_seller_id;
                                 if (disabled.includes(seller_id) != true) {
-                                    if (disabled_items[seller_id].includes(item_name.split(' ').join('')) != true) {
+                                    if (disabled_items[seller_id].includes(val[i].key) != true) {
                                         items[i] = item;
                                         if (Object.keys(first_nine).length<9){
                                             first_nine[i] = item
@@ -227,7 +227,7 @@ const getIndex = (req, res) => {
                     
                         let seller_id = val[i].item_seller_id;
                         if (disabled.includes(seller_id) != true) {
-                            if (disabled_items[seller_id].includes(item_name.split(' ').join('')) != true) {
+                            if (disabled_items[seller_id].includes(val[i].key) != true) {
                                 items[i] = item;
                                 if (Object.keys(first_nine).length<9){
                                     first_nine[i] = item
