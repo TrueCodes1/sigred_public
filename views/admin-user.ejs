@@ -3,29 +3,29 @@
 <head>
     <%- include('./partials/cookie_consent.ejs') %> 
     <%- include('./partials/head.ejs') %>
-    <link rel="stylesheet" href="/index.css">
-    <link rel="stylesheet" href="/login.css">
-    <link rel="stylesheet" href="/admin-user.css">
+    <link rel="stylesheet" href="/index/index.css">
+    <link rel="stylesheet" href="/login/login.css">
+    <link rel="stylesheet" href="/admin/admin-user.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.5.3"></script>
-    <script src="/all.js" defer></script>
+    <script src="/general/all.js" defer></script>
 </head>
 <body>
     <div class="intro" id="intro">
         <div class="diamonds">
-            <img src="/diamond.svg" alt="" class="diamond1">
-            <img src="/diamond_2.svg" alt="" class="diamond2">
+            <img src="/general/diamond.svg" alt="" class="diamond1">
+            <img src="/general/diamond_2.svg" alt="" class="diamond2">
         </div>
         <div class="mobile-top">
             <div class="top-burger" id="top-burger">
-                <img src="/burger.svg" alt="">
+                <img src="/general/burger.svg" alt="">
             </div>
             <div class="top-branding">
                 <div class="branding-name">
                     User | Admin
                 </div>
                 <div class="branding-logo">
-                    <img src="/mobile_logo.png" alt="">
+                    <img src="/general/mobile_logo.png" alt="">
                 </div>
             </div>
         </div>
@@ -126,11 +126,11 @@
                                                     <%=userInfo.selling[key].item_price%>
                                                 </span>
                                                 <span id="price-sign">
-                                                    <img src="/sigecoin_icon_currency_light.png" alt="sigecoin">
+                                                    <img src="/general/sigecoin_icon_currency_light.png" alt="sigecoin">
                                                 </span>
                                             </div>
                                             <div class="check">
-                                                <img src="/tick-mark.png" alt="">
+                                                <img src="/admin/tick-mark.png" alt="">
                                             </div>
                                         </div>
                                     </div>
@@ -173,7 +173,7 @@
                 <%- include('./partials/admin-disable-form.ejs')  %>   
             </div>
         </div>
-        <script src="/admin-user.js" defer></script>
+        <script src="/admin/admin-user.js" defer></script>
 </body>
 <script>
     let viewHeight = $(window).height();
