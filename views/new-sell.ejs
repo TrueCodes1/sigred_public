@@ -3,28 +3,28 @@
     <%- include('./partials/cookie_consent.ejs') %> 
     <%- include('./partials/head.ejs') %>
     <%- include('./partials/sidebar.ejs')  %>   
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="new-sell.css">
+    <link rel="stylesheet" href="/index/index.css">
+    <link rel="stylesheet" href="/new_sell/new-sell.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <script src="all.js" defer></script><!--
+    <script src="/general/all.js" defer></script><!--
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUjLixjHG2oFnJJ8c7LVyx9GNaoNTDw8w&libraries=places" defer></script>-->
 </head>
 <body>  
     <div class="intro" id="intro">
         <div class="diamonds">
-            <img src="diamond.svg" alt="" class="diamond1">
-            <img src="diamond_2.svg" alt="" class="diamond2">
+            <img src="/general/diamond.svg" alt="" class="diamond1">
+            <img src="/general/diamond_2.svg" alt="" class="diamond2">
         </div>
         <div class="mobile-top" id="mobile-top">
             <div class="top-burger" id="top-burger">
-                <img src="burger.svg" alt="">
+                <img src="/general/burger.svg" alt="">
             </div>
             <div class="top-branding">
                 <div class="branding-name">
                     New Sell
                 </div>
                 <div class="branding-logo">
-                    <img src="mobile_logo.png" alt="">
+                    <img src="/general/mobile_logo.png" alt="">
                 </div>
             </div>
         </div>
@@ -92,7 +92,7 @@
         <div class="video-desc part-desc" id="video-desc">the way to imagine what you gonna buy in the most realistic way.<i><b>We even dream in video format.</b></i></div>
         <div class="video-content part-content" id="video-content">
             <div class="content-phone desktop">
-                <img src="phone.png" alt="">
+                <img src="/new_sell/phone.png" alt="">
                 <div class="phone-content">
                     <div class="phone-mid" id="phone-mid">
                         <% if (video_status == 'ok') { %>
@@ -111,7 +111,7 @@
             <div class="content-video mobile" id="content-video-mobile">
                 <% if (video_status == 'ok') { %>
                     <div class="video mobile" id="video-mobile-div">
-                        <video loop autoplay muted src="<%=url%> " frameborder="0" class="" id="video"></video>
+                        <video loop autoplay muted src="<%=url%>" frameborder="0" class="" id="video"></video>
                     </div>
                     <script>
                         if (screen.width<500){
@@ -229,7 +229,7 @@
         <div class="price-desc part-desc">bear in mind the shape, age and maybe some signs of usage.<i><b>Hit it just fine! Not too much, not too less.</b></i></div>
         <div class="price-content part-content">
             <input type="tel" id="price-input" class="price-input">
-            <img src="sigecoin_icon_currency.svg" alt="">
+            <img src="/general/sigecoin_icon_currency.svg" alt="">
         </div>
         <div class="scroll move recap" onclick="recap()">
             move on & recap
@@ -237,12 +237,12 @@
     </div>
     <div class="sell-recap sell-part" id="sell-recap">
         <div class="recap-video">
-            <img src="phone.png" alt="" class="desktop">
+            <img src="/new_sell/phone.png" alt="" class="desktop">
             <div class="phone-content desktop">
                 <div class="phone-mid" id="phone-mid-recap">
                     <% if (video_status == 'ok') { %>
                         <div class="video">
-                            <video loop autoplay muted src="<%= url %> " frameborder="0" class=""></video>
+                            <video loop autoplay muted src="<%=url%>" frameborder="0" class=""></video>
                         </div>
                     <% } %>  
                 </div>
@@ -256,7 +256,7 @@
         <div class="content-video mobile" id="recap-video">
             <% if (video_status == 'ok') { %>
                 <div class="video mobile">
-                    <video loop autoplay muted src="<%= url %> " frameborder="0" class=""></video>
+                    <video loop autoplay muted src="<%=url%>" frameborder="0" class=""></video>
                 </div>
             <% } %> 
         </div>
@@ -295,7 +295,7 @@
                     pass it
                 </div>
                 <div class="close">
-                    <img src="/makesure_close.svg" alt="" class="makesure-close" id="makesure-close">
+                    <img src="/new_sell/makesure_close.svg" alt="" class="makesure-close" id="makesure-close">
                 </div>
             </div>
         </div>

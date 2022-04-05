@@ -2,28 +2,28 @@
 <head>
     <%- include('./partials/cookie_consent.ejs') %> 
     <%- include('./partials/head.ejs') %>
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="/index/index.css">
+    <link rel="stylesheet" href="/login/login.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <script src="all.js" defer></script>
-    <script src="login.js" defer></script>
+    <script src="/general/all.js" defer></script>
+    <script src="/login/login.js" defer></script>
 </head>
 <body>
     <div class="intro" id="intro">
         <div class="diamonds">
-            <img src="diamond.svg" alt="" class="diamond1">
-            <img src="diamond_2.svg" alt="" class="diamond2">
+            <img src="/general/diamond.svg" alt="" class="diamond1">
+            <img src="/general/diamond_2.svg" alt="" class="diamond2">
         </div>
         <div class="mobile-top">
             <div class="top-burger" id="top-burger">
-                <img src="burger.svg" alt="">
+                <img src="/general/burger.svg" alt="">
             </div>
             <div class="top-branding">
                 <div class="branding-name">
                     Log in
                 </div>
                 <div class="branding-logo">
-                    <img src="mobile_logo.png" alt="">
+                    <img src="/general/mobile_logo.png" alt="">
                 </div>
             </div>
         </div>
@@ -622,15 +622,7 @@
                     </div>
                 </div>
                 
-            <% } %><!--
-            <input type="password" id="reg-password-rep" name="password" placeholder="Repeat password" required><img src="/eye.svg" alt="" style="margin-left: -55px; cursor: pointer;" onclick="showPwdRep()"><br>
-            <% if (password_state == 'reconfirm'){ %>
-               <p class='password-state' style="margin-left: 1em;font-size: .75rem;"> please, confirm your password one more time </p>  
-            <%  } else if (password_state == 'longer'){ %> 
-                <p class='password-state' style="margin-left: 1em;font-size: .75rem;"> please, make your password longer </p>  
-            <% } else if (password_state == 'change_whole'){ %>
-                <p class='password-state' style="margin-left: 1em;font-size: .75rem;"> please, make your password longer and confirm it correctly </p>  
-            <% } %> -->
+            <% } %>
             <input type="submit" class="reg-submit" value="make it happen!" style="color: #FFE0C4; background-color: #0a5a55; border: 1px solid transparent; cursor: pointer;">
         </form>
     </div>

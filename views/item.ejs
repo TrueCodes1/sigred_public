@@ -1,10 +1,10 @@
 <html lang="en">
 <head>
     <%- include('./partials/head.ejs') %>
-    <link rel="stylesheet" href="/index.css">
-    <link rel="stylesheet" href="/item.css">
-    <script src="/all.js" defer></script>
-    <script src="/index.js" defer></script>
+    <link rel="stylesheet" href="/index/index.css">
+    <link rel="stylesheet" href="/item/item.css">
+    <script src="/general/all.js" defer></script>
+    <script src="/index/index.js" defer></script>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins" />
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
@@ -13,19 +13,19 @@
     <%- include('./partials/cookie_consent.ejs') %> 
     <div class="intro" id="intro">
         <div class="diamonds">
-            <img src="diamond.svg" alt="" class="diamond1">
-            <img src="diamond_2.svg" alt="" class="diamond2">
+            <img src="/general/diamond.svg" alt="" class="diamond1">
+            <img src="/general/diamond_2.svg" alt="" class="diamond2">
         </div>
         <div class="mobile-top">
             <div class="top-burger" id="top-burger">
-                <img src="burger.svg" alt="">
+                <img src="/general/burger.svg" alt="">
             </div>
             <div class="top-branding">
                 <div class="branding-name">
                     Item
                 </div>
                 <div class="branding-logo">
-                    <img src="mobile_logo.png" alt="">
+                    <img src="/general/mobile_logo.png" alt="">
                 </div>
             </div>
         </div>
@@ -80,7 +80,7 @@
                 </div>
                 <div class="item-info-price">
                     <%=item.item_price%>
-                    <img src="/sigecoin_icon_currency.svg" alt="" class="item-info-price-currency">
+                    <img src="/general/sigecoin_icon_currency.svg" alt="" class="item-info-price-currency">
                 </div>
 
             </div>
@@ -88,7 +88,7 @@
                 <div class="option-buy">
                     buy for 
                     <%=item.item_price%>
-                    <img src="/sigecoin_icon_currency.svg" alt="" class="item-info-price-currency">
+                    <img src="/general/sigecoin_icon_currency.svg" alt="" class="item-info-price-currency">
                 </div>
                 <div class="option-contact" onclick="openMessage()">
                     message seller
