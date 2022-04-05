@@ -61,9 +61,9 @@
                     <input type="text" id="reg-last-name" name="lastName" placeholder="Last name" required><br>
                     <input type="email" id="reg-email" name="email" placeholder="E-mail address" required><br>
                     <input type="text" id="reg-username" name="username" placeholder="Username" required><br>
-                    <input type="password" id="reg-password" name="password" placeholder="Password" required oninput="pwdCheck()"><img src="/eye.svg" alt="" id="unhide_pwd" onclick="showPwd()"><br> 
+                    <input type="password" id="reg-password" name="password" placeholder="Password" required oninput="pwdCheck()"><img src="/login/eye.svg" alt="" id="unhide_pwd" onclick="showPwd()"><br> 
                     <p class="password-check" id="password-check"></p>
-                    <input type="password" id="reg-password-rep" name="password" placeholder="Repeat password" required><img src="/eye.svg" alt="" id="unhide_pwd" onclick="showPwdRep()"><br>
+                    <input type="password" id="reg-password-rep" name="password" placeholder="Repeat password" required><img src="/login/eye.svg" alt="" id="unhide_pwd" onclick="showPwdRep()"><br>
                     <% if (password_state == 'reconfirm'){ %>
                        <p class='password-state' style="margin-left: 1em;font-size: .75rem;"> please, confirm your password one more time </p>  
                     <%  } else if (password_state == 'longer'){ %> 
@@ -344,9 +344,9 @@
                     <input type="text" id="reg-last-name" name="lastName" placeholder="Last name" required value=<%= user.lastName %> ><br>
                     <input type="email" id="reg-email" name="email" placeholder="E-mail address" required value=<%= user.email %> ><br>
                     <input type="text" id="reg-username" name="username" placeholder="Username" required value=<%= user.username %> ><br>
-                    <input type="password" id="reg-password" name="password" placeholder="Password" required oninput="pwdCheck()" value="<%= password1 %>" ><img src="/eye.svg" alt="" id="unhide_pwd" onclick="showPwd()"><br> 
+                    <input type="password" id="reg-password" name="password" placeholder="Password" required oninput="pwdCheck()" value="<%= password1 %>" ><img src="/login/eye.svg" alt="" id="unhide_pwd" onclick="showPwd()"><br> 
                     <p class="password-check" id="password-check" style="margin-left: 1em;font-size: .75rem;"></p>    
-                    <input type="password" id="reg-password-rep" name="password" placeholder="Repeat password" required <% if (password_state == 'ok' && scroll == 'true'){ %> value=<%= password2 %>  <% } %> ><img src="/eye.svg" alt="" id="unhide_pwd" onclick="showPwdRep()"><br>
+                    <input type="password" id="reg-password-rep" name="password" placeholder="Repeat password" required <% if (password_state == 'ok' && scroll == 'true'){ %> value=<%= password2 %>  <% } %> ><img src="/login/eye.svg" alt="" id="unhide_pwd" onclick="showPwdRep()"><br>
                     <% if (password_state == 'reconfirm'){ %>
                     <p class='password-state'> please, confirm your password one more time </p>  
                     <%  } else if (password_state == 'longer'){ %> 
