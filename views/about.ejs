@@ -3,27 +3,27 @@
 <head>
     <%- include('./partials/cookie_consent.ejs') %> 
     <%- include('./partials/head.ejs') %>
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="/index/index.css">
+    <link rel="stylesheet" href="/about/about.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <script src="all.js" defer></script>
+    <script src="/general/all.js" defer></script>
 </head>
 <body>
     <div class="intro" id="intro">
         <div class="diamonds">
-            <img src="diamond.svg" alt="" class="diamond1">
-            <img src="diamond_2.svg" alt="" class="diamond2">
+            <img src="/general/diamond.svg" alt="" class="diamond1">
+            <img src="/general/diamond_2.svg" alt="" class="diamond2">
         </div>
         <div class="mobile-top">
             <div class="top-burger" id="top-burger">
-                <img src="burger.svg" alt="">
+                <img src="/general/burger.svg" alt="">
             </div>
             <div class="top-branding">
                 <div class="branding-name">
                     About
                 </div>
                 <div class="branding-logo">
-                    <img src="mobile_logo.png" alt="">
+                    <img src="/general/mobile_logo.png" alt="">
                 </div>
             </div>
         </div>
@@ -61,12 +61,12 @@
     </div>
     <%- include('./partials/stripes.ejs')  %>
     <div class="about-whole">
-        <img src="/big_logo.svg" alt="" class="big-logo desktop">
+        <img src="/general/big_logo.svg" alt="" class="big-logo desktop">
         <div class="about-header">
             Hey <span style="font-weight: 1000;">Sigredian!</span><br> <span style="opacity: .5;">We are Samuel and Adam.</span>
         </div>
         <div class="about-photo">
-            <img src="/about_photo.jpg" class="desktop" alt="Sorry, but for some reason, you cannot see our photo at the moment. :-/">
+            <img src="/about/about_photo.jpg" class="desktop" alt="Sorry, but for some reason, you cannot see our photo at the moment. :-/">
         </div>
         <div class="about-text desktop">
             <span> 
@@ -108,10 +108,10 @@
             </span>
         </div>
         <div class="sigred-meaning desktop">
-            <img src="/sigred_meaning.svg" alt="" class="sigred-meaning-img desktop">
+            <img src="/about/sigred_meaning.svg" alt="" class="sigred-meaning-img desktop">
         </div>
         <div class="sigred-meaning-mobile">
-            <img src="/sigred_meaning.svg" alt="" class="sigred-meaning-img mobile">
+            <img src="/about/sigred_meaning.svg" alt="" class="sigred-meaning-img mobile">
         </div>
         <div class="scroll-2 desktop" onclick="window.scroll({
             top: (window.innerHeight*2)+240,
@@ -130,16 +130,16 @@
             </div>
         </div>
         <div class="sigc-intro desktop">
-            <a href='/sigecoin'><img src="/sigecoin.svg" alt="" class="sigc-img desktop"></a>
+            <a href='/sigecoin'><img src="/about/sigecoin.svg" alt="" class="sigc-img desktop"></a>
         </div>
         <div class="sigc-intro mobile">
-            <img src="/sigecoin.png" alt="" class="sigc-img mobile">
+            <img src="/about/sigecoin.png" alt="" class="sigc-img mobile">
         </div>
         <div class="sigc-word desktop">
-            <img src="/sigecoin_word.svg" alt="" class="word-img desktop">
+            <img src="/about/sigecoin_word.svg" alt="" class="word-img desktop">
         </div>
         <div class="sigc-word mobile">
-            <img src="/sigecoin_word.png" alt="" class="word-img mobile">
+            <img src="/about/sigecoin_word.png" alt="" class="word-img mobile">
         </div>
     </div>
 </body>

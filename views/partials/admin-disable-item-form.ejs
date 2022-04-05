@@ -1,9 +1,9 @@
-<link rel="stylesheet" href="/admin-message-to-seller.css">
-<link rel="stylesheet" href="/admin-disable-item-form.css">
+<link rel="stylesheet" href="/admin/admin-message-to-seller.css">
+<link rel="stylesheet" href="/admin/admin-disable-item-form.css">
 
 <div class="disable-form" id="disable-form">
     <div class="message-close" id="message-close" onclick="document.getElementById('disable-form').style.display = 'none'">
-        <img src="/close.svg" alt="">
+        <img src="/general/close.svg" alt="">
     </div>
     <div class="disable-header">
         <span id="disable-user-text">You are going to <%if (itemInfo.status == 'available') {%> disable <% } else { %> enable <%}%> item </span><span id="disable-user-name"><%=itemInfo.item_name%></span> 
