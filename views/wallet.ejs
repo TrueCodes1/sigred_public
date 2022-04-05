@@ -3,10 +3,10 @@
     <%- include('./partials/cookie_consent.ejs') %> 
     <%- include('./partials/head.ejs') %>
     <%- include('./partials/sidebar.ejs')  %>   
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="profile.css">
-    <link rel="stylesheet" href="wallet.css">
-    <script src="all.js" defer></script>
+    <link rel="stylesheet" href="/index/index.css">
+    <link rel="stylesheet" href="/profile/profile.css">
+    <link rel="stylesheet" href="/wallet/wallet.css">
+    <script src="/general/all.js" defer></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script src="https://checkout.stripe.com/checkout.js" defer></script>
     <script src="https://js.stripe.com/v3/"></script>
@@ -15,7 +15,7 @@
         var StripePublicKey = '<%= stripePublicKey %>';
         var stripe = Stripe(StripePublicKey)
      </script>
-    <script src="wallet.js" defer></script>
+    <script src="/wallet/wallet.js" defer></script>
     <script>
         let viewHeight = $(window).height();
         let viewWidth = $(window).width();
@@ -26,19 +26,19 @@
 <body onscroll="/*body_scroll()*/">
     <div class="intro" id="intro">
         <div class="diamonds">
-            <img src="diamond.svg" alt="" class="diamond1">
-            <img src="diamond_2.svg" alt="" class="diamond2">
+            <img src="/general/diamond.svg" alt="" class="diamond1">
+            <img src="/general/diamond_2.svg" alt="" class="diamond2">
         </div>
         <div class="mobile-top">
             <div class="top-burger" id="top-burger">
-                <img src="burger.svg" alt="">
+                <img src="/general/burger.svg" alt="">
             </div>
             <div class="top-branding">
                 <div class="branding-name">
                     My Wallet
                 </div>
                 <div class="branding-logo">
-                    <img src="mobile_logo.png" alt="">
+                    <img src="/general/mobile_logo.png" alt="">
                 </div>
             </div>
         </div>
@@ -78,8 +78,8 @@
         <div class="wallet-left">
             <div class="left-img" id="left-img" style="cursor: pointer;">
                 <div class="img-top" id="left-top" style="cursor: pointer;">
-                    <img src="/top_up_part.svg" alt="" class="desktop">
-                    <img src="/top_up_part.png" alt="" class="mobile">
+                    <img src="/wallet/top_up_part.svg" alt="" class="desktop">
+                    <img src="/wallet/top_up_part.png" alt="" class="mobile">
                 </div>
                 <div class="left-content" id="left-content">
                     <div class="left-balance">
@@ -102,8 +102,8 @@
                         </div>
                         <div class="calcul-sig">
                             <input type="text" class="calcul-input" id="calcul-sig" onkeypress="return false" disabled>
-                            <img src="/sigecoin_icon_currency_light.svg" alt="" style="margin: 0 20px 0 -10px;" class="desktop">
-                            <img src="/sigecoin_icon_currency_light.svg" alt="" class="mobile">
+                            <img src="/general/sigecoin_icon_currency_light.svg" alt="" style="margin: 0 20px 0 -10px;" class="desktop">
+                            <img src="/general/sigecoin_icon_currency_light.svg" alt="" class="mobile">
                         </div>
                     </div>
                     <div class="left-btn" onclick='open_topup()'>
@@ -111,16 +111,16 @@
                     </div>
                 </div>
                 <div class="img-bottom" id="left-bottom"  style="z-index: 2;">
-                    <img src="/top_up.svg" alt="" class="desktop">
-                    <img src="/top_up.png" alt="" class="mobile">
+                    <img src="/wallet/top_up.svg" alt="" class="desktop">
+                    <img src="/wallet/top_up.png" alt="" class="mobile">
                 </div>
             </div>
         </div>
         <div class="wallet-right">
             <div class="right-img" id="right-img" style="cursor: pointer;">
                 <div class="img-top" id="right-top" style="z-index: 2;">
-                    <img src="/withdraw.svg" alt="" class="desktop">
-                    <img src="/withdraw.png" alt="" class="mobile">
+                    <img src="/wallet/withdraw.svg" alt="" class="desktop">
+                    <img src="/wallet/withdraw.png" alt="" class="mobile">
                 </div>
                 <div class="right-content" id="right-content">
                     <div class="left-balance">
@@ -139,8 +139,8 @@
                     <div class="right-calcul">
                         <div class="calcul-sig">
                             <input type="text" class="calcul-input" id="calcul-sig-right" value="1" style="user-select: text;" >
-                            <img src="/sigecoin_icon_currency_light.svg" alt="" style="margin: 0 20px 0 -10px;" class="desktop">
-                            <img src="/sigecoin_icon_currency.svg" alt="" class="mobile">
+                            <img src="/general/sigecoin_icon_currency_light.svg" alt="" style="margin: 0 20px 0 -10px;" class="desktop">
+                            <img src="/general/sigecoin_icon_currency.svg" alt="" class="mobile">
                         </div>
                         <div class="calcul-eur" style="font-size: 1.8rem;">
                             <input type="text" class="calcul-input" id="calcul-eur-right" onkeypress="return false" disabled><span>€</span>
@@ -151,8 +151,8 @@
                     </div>
                 </div>
                 <div class="img-bottom" id="right-bottom" style="z-index: 1;">
-                    <img src="/withdraw_part.svg" alt="" class="desktop">
-                    <img src="/withdraw_part.png" alt="" class="mobile">
+                    <img src="/wallet/withdraw_part.svg" alt="" class="desktop">
+                    <img src="/wallet/withdraw_part.png" alt="" class="mobile">
                 </div>
             </div>
         </div>
@@ -162,7 +162,7 @@
         <div class="topup-bg"></div>
         <div class="topup-content">
             <div class="topup-close">
-                <img src="/close.svg" alt="" style="cursor: pointer;" onclick='
+                <img src="/general/close.svg" alt="" style="cursor: pointer;" onclick='
                     document.getElementById("topup-whole").style.transition = "all .25s ease";
                     document.getElementById("topup-whole").style.opacity = "0";
                     document.getElementById("topup-whole").style.display = "none";
@@ -191,7 +191,7 @@
                 <div class="card-bg mobile" id="card-bg"></div>
                 <div class="card-payment" id="card-payment">
                     <div class="topup-close" style="top: 0;">
-                        <img src="/close_light.svg" alt="" style="cursor: pointer;" onclick="card_leave()">
+                        <img src="/general/close_light.svg" alt="" style="cursor: pointer;" onclick="card_leave()">
                     </div>
                     <div class="payment-amount">
                         <div class="amount-amount" id="card-amount">25€</div>
@@ -211,7 +211,7 @@
         <div class="topup-bg"></div>
         <div class="topup-content withdraw">
             <div class="topup-close">
-                <img src="/close.svg" alt="" style="cursor: pointer;" onclick='
+                <img src="/general/close.svg" alt="" style="cursor: pointer;" onclick='
                     document.getElementById("withdraw-whole").style.transition = "all .25s ease";
                     document.getElementById("withdraw-whole").style.opacity = "0";
                     document.getElementById("withdraw-whole").style.display = "none";

@@ -3,27 +3,27 @@
     <%- include('./partials/cookie_consent.ejs') %> 
     <%- include('./partials/head.ejs') %>
     <%- include('./partials/sidebar.ejs')  %>   
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="/index/index.css">
+    <link rel="stylesheet" href="/profile/profile.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <script src="all.js" defer></script>
+    <script src="/general/all.js" defer></script>
 </head>
 <body>
     <div class="intro" id="intro">
         <div class="diamonds">
-            <img src="diamond.svg" alt="" class="diamond1">
-            <img src="diamond_2.svg" alt="" class="diamond2">
+            <img src="/general/diamond.svg" alt="" class="diamond1">
+            <img src="/general/diamond_2.svg" alt="" class="diamond2">
         </div>
         <div class="mobile-top">
             <div class="top-burger" id="top-burger">
-                <img src="burger.svg" alt="">
+                <img src="/general/burger.svg" alt="">
             </div>
             <div class="top-branding">
                 <div class="branding-name">
                     Profile
                 </div>
                 <div class="branding-logo">
-                    <img src="mobile_logo.png" alt="">
+                    <img src="/general/mobile_logo.png" alt="">
                 </div>
             </div>
         </div>
@@ -51,11 +51,13 @@
     <div class="me-whole">
         <div class="me-wallet">
             <div class="wallet-img">
-                <a href='/wallet'><img src="/wallet_icon.svg" alt="" class="wallet-img-img" onmouseover="rollDownWallet()" onmouseout="rollUpWallet()"></a>
+                <a href='/wallet'>
+                    <img src="/profile/wallet_icon.svg" alt="" class="wallet-img-img" onmouseover="rollDownWallet()" onmouseout="rollUpWallet()">
+                </a>
             </div>
             <div class="wallet-content" id="wallet-content">
                 <div class="content-balance-sig">
-                    <div class="balance-balance"><%= balance.current  %><img src="/sigecoin_icon_currency.svg" alt="" class="balance-icon"></div>
+                    <div class="balance-balance"><%= balance.current  %><img src="/general/sigecoin_icon_currency.svg" alt="" class="balance-icon"></div>
                     <div class="balance-label">current balance</div>
                 </div>
                 <div class="content-balance-eur">
@@ -67,7 +69,7 @@
         <div class="me-details" id="me-details">
             <div class="me-basics">
                 <div class="me-photo">
-                    <img src="nopic.svg" alt="" class="photo-photo">
+                    <img src="/general/nopic.svg" alt="" class="photo-photo">
                     <div class="img-overflow"></div>
                 </div>
                 <div class="me-name">
@@ -96,7 +98,9 @@
         </div>
         <div class="me-items">
             <div class="items-img">
-                <a href="/items"><img src="/items_icon.svg" alt="" class="wallet-img-img" onmouseover="rollDownItems()" onmouseout="rollUpItems()"></a>
+                <a href="/items">
+                    <img src="/profile/items_icon.svg" alt="" class="wallet-img-img" onmouseover="rollDownItems()" onmouseout="rollUpItems()">
+                </a>
             </div>
             <div class="items-content" id="items-content">
                 <div class="content-items-list">
@@ -116,7 +120,7 @@
             <div class="personal-bg" id="personal-bg"></div>
             <div class="personal-content">
                 <div class="personal-close" onclick='close_change()'>
-                    <img src="/close_light.svg" alt="">
+                    <img src="/general/close_light.svg" alt="">
                 </div>
                 <script>
                     var whole = document.getElementById('change-personal-whole');
