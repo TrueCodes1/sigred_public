@@ -13,14 +13,14 @@
     <div class="content">
         <div class="products-header">products nearby</div>
 
-        <img src='/handle_left.png' class="handlebar handle-left" onclick="handle_left()">
-        <img src='/handle_right.png' class="handlebar handle-right" onclick="handle_right()">
+        <img src='/index/handle_left.png' class="handlebar handle-left" onclick="handle_left()">
+        <img src='/index/handle_right.png' class="handlebar handle-right" onclick="handle_right()">
         
         <div class="products-products" id="products-products">
-            <img src="diamond_content.svg" alt="" class="diamond3 diamond-single">
-            <img src="diamond_2_content.svg" alt="" class="diamond4 diamond-single">
-            <img src="diamond_content.svg" alt="" class="diamond5 diamond-single">
-            <img src="diamond_2_content.svg" alt="" class="diamond6 diamond-single">
+            <img src="/general/diamond_content.svg" alt="" class="diamond3 diamond-single">
+            <img src="/general/diamond_2_content.svg" alt="" class="diamond4 diamond-single">
+            <img src="/general/diamond_content.svg" alt="" class="diamond5 diamond-single">
+            <img src="/general/diamond_2_content.svg" alt="" class="diamond6 diamond-single">
         <% 
             let num = 0;
             for (i in first_nine) {
@@ -40,7 +40,7 @@
                 </div>
                 <div class="product-seller">
                     <div class="seller-photo">
-                        <img src="nopic_transparent.svg" alt="">
+                        <img src="/general/nopic_transparent.svg" alt="">
                     </div>
                     <div class="seller-name">
                         <%= first_nine[i].item_seller %> 
@@ -49,7 +49,7 @@
                         <div class="price-number">
                             <%= first_nine[i].item_price %> 
                         </div>
-                        <img src="sigecoin_icon_currency.png" alt="" class="price-currency">
+                        <img src="/general/sigecoin_icon_currency.png" alt="" class="price-currency">
                     </div>
                 </div>
                 <div class="product-distance"><%= first_nine[i].item_location %> </div>
