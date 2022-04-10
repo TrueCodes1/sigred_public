@@ -1,7 +1,22 @@
-Source code of www.sigred.org
+# Sigred
 
--- CLIENT WORK --
+🤝 client work
 
-Platform to sell anything online within the community of mainly young people safely, simply and fast.
+📚 full-stack
 
--- 2021, 2022
+📅 2021
+
+💻 www.sigred.org
+
+____
+
+## ✨ Technologies used
+
+
+##  🔍 What Sigred is? 
+
+
+## 🎛️ How to use Sigred? 
+
+
+## 🚀 What drove me? 
