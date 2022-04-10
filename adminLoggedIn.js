@@ -3,4 +3,6 @@
 
 const adminsLoggedIn = []
 
+// EXPORTING MODULE
+
 module.exports = { adminsLoggedIn }
