@@ -12,6 +12,11 @@ ____
 
 ## ✨ Technologies used
 
+### Front-end
+
+### Design
+
+### Back-end
 
 ##  🔍 What Sigred is? 
 
