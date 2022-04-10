@@ -12,11 +12,27 @@ ____
 
 ## ✨ Technologies used
 
-### Front-end
+### 📱 Front-end
 
-### Design
+&nbsp;&nbsp;&nbsp;&nbsp; HTML
 
-### Back-end
+&nbsp;&nbsp;&nbsp;&nbsp; EJS (SSR)
+
+&nbsp;&nbsp;&nbsp;&nbsp; CSS
+
+&nbsp;&nbsp;&nbsp;&nbsp; JavaScript
+
+### 🎨 Design
+
+&nbsp;&nbsp;&nbsp;&nbsp; Figma
+
+### 🔧 Back-end
+
+&nbsp;&nbsp;&nbsp;&nbsp; Node.js
+
+&nbsp;&nbsp;&nbsp;&nbsp; Express.js
+
+&nbsp;&nbsp;&nbsp;&nbsp; Firebase (database, authentication, storage)
 
 ##  🔍 What Sigred is? 
 
