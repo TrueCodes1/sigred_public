@@ -58,5 +58,7 @@ Now this web app is available for both registered and not-registered visitors.
 
 entering the landing page you will explore what's for sale around you. Each item is presented with its own video (that plays when clicked on mobile screen or hovered over on computer screen), its name, price and seller name. You can open the item, check it out, contact the seller or just simply buy it. If you are not registered, clicking the 'Buy' button will actually lead you to the sign-up page, to give you the ability to buy. 
 
-You can easily visit About Us
+You can easily visit all subpages, that are not connected to specific user, just like [About Us](https://www.sigred.org/about), [Contact](https://www.sigred.org/contact), [Help Centre](https://www.sigred.org/help-centre) or some utilities like [Cookies Policy](https://www.sigred.org/cookies-policy), [Privacy Policy](https://www.sigred.org/privacy-policy) or [Terms of Use](https://www.sigred.org/terms-of-use).
+ 
+
 ## 🚀 What drove me? 
