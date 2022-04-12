@@ -1,5 +1,6 @@
 *{
     list-style: none;
+    user-select: none;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -55,6 +56,19 @@
     }
     .unused {
         opacity: .5;
+    }
+    .small-nav > .small-scrollbar{
+        position: absolute;
+        min-width: calc(50vw * 0.25);
+        max-width: calc(50vw * 0.25);
+        min-height: 4px;
+        max-height: 4px;
+        background-color: #0a5a55;
+        border-radius: 5px;
+        transform: translate( calc( -1  * ( ( ( (100vw - 20px) / 3 ) - ( 0.25 * 50vw ) ) ) - ( 0.25 * 50vw ) ), 20px)
+    }
+    #small-scrollbar-desktop {
+        display: none;
     }
     .small-searchbar, .searchbar-whole {
         display: flex;

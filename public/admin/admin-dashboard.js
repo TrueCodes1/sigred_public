@@ -5,7 +5,8 @@ let adminOption3 = $('#admin-option-3');
 
 let options = [adminOption1, adminOption2, adminOption3];
 
-let smallScrollbar = $('#small-scrollbar');
+let smallScrollbarDesktop = $('#small-scrollbar-desktop');
+let smallScrollbarMobile = $('#small-scrollbar-mobile');
 
 let currentPart = 'users';
 
@@ -73,11 +74,14 @@ const moveSmallScrollbar = (e) => {
             break
     }
     if (sign != '') {
-        smallScrollbar.css('transform',`translateX( calc( (${sign}50vw / 4) ${sign} ( (0.25 * 50vw) / 4) ))`);
+        smallScrollbarDesktop.css('transform',`translateX( calc( (${sign}50vw / 4) ${sign} ( (0.25 * 50vw) / 4) ))`);
+        smallScrollbarMobile.css('transform',`translate(calc( ${sign}1  * ( ( ( (100vw - 20px) / 3 ) - ( 0.25 * 50vw ) ) ) ${sign} ( 0.25 * 50vw ) ), 20px)`);
     } else {
-        smallScrollbar.css('transform',`translateX(0)`);
+        smallScrollbarDesktop.css('transform',`translateX(0)`);
+        smallScrollbarMobile.css('transform',`translateY(20px) translateX(0)`);
     }
-    smallScrollbar.css('transition', 'all .1s linear');
+    smallScrollbarDesktop.css('transition', 'all .1s linear');
+    smallScrollbarMobile.css('transition', 'all .1s linear');
         
     for (let option of options) {
         $(option).removeClass('used')
@@ -85,6 +89,7 @@ const moveSmallScrollbar = (e) => {
         $(option).addClass('unused')
     }
 
+    $(`#${id}`).removeClass('unused')
     $(`#${id}`).addClass('used')
 
 }
