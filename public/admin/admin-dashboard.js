@@ -115,7 +115,7 @@ const fetchData = () => $.post('/admin-dashboard/data-for-admin-search-engine', 
                     ${user.userName}
                 </li>
                 <li class="user-status disabled-${user.userWarned}">
-                    ${user.userWarned} time${Number(user.userWarned) == 1 ? '' : 's'} disabled
+                    ${user.userWarned} !
                 </li>
                 <li class="user-date">
                     -
@@ -203,7 +203,7 @@ const updateOrder = (who, list) => {
                     ${user.item.userName}
                 </li>
                 <li class="user-status disabled-${user.item.userWarned}">
-                    ${user.item.userWarned} time${Number(user.item.userWarned) == 1 ? '' : 's'} disabled
+                    ${user.item.userWarned} !
                 </li>
                 <li class="user-date">
                     -
@@ -229,7 +229,7 @@ const updateOrder = (who, list) => {
                     ${resultRest.userName}
                 </li>
                 <li class="user-status disabled-${resultRest.userWarned}">
-                    ${resultRest.userWarned} time${Number(resultRest.userWarned) == 1 ? '' : 's'} disabled
+                    ${resultRest.userWarned} !
                 </li>
                 <li class="user-date">
                     -
