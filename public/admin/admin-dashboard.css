@@ -4,6 +4,93 @@
 }
 
 @media only screen and (max-width: 480px) {
+    .branding-name {
+        font-size: 9vw;
+    }
+    .content {
+        min-height: 87vh;
+        max-height: 87vh;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+    }
+    .top-part, .main-part {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        color: #0a5a55;
+    }
+    .top-part {
+        min-height: 17vh;
+        max-height: 17vh;
+    }
+    .small-nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        min-width: 100%;
+        max-width: 100%;
+    }
+    .small-nav ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .small-nav ul li {
+        min-width: calc((100vw - 20px) / 3);
+        max-width: calc((100vw - 20px) / 3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 0;
+        font-size: 20px;
+    }
+    .used {
+        opacity: 1;
+    }
+    .unused {
+        opacity: .5;
+    }
+    .small-searchbar, .searchbar-whole {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .searchbar {
+        margin-top: 10px;
+        font-size: 20px;
+        padding: 15px;
+        min-width: calc(100vw - 20px);
+        max-width: calc(100vw - 20px);
+        border-radius: 10px;
+        outline: none;
+        border: none;
+        color: #0a5a55;
+    }
+    .main-part {
+        min-height: 70vh;
+        max-height: 70vh;
+        border: 2px solid red;
+    }
+    .main-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .top-review {
+        min-width: calc(100vw - 30px);
+        max-width: calc(100vw - 30px);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 15px;
+    }
 }
 
 @media only screen and (min-width: 1385px) {
