@@ -67,7 +67,7 @@ You can easily visit all subpages, that are not connected to specific user, just
 
 ## 🚀 What drove me? 
 
-The main aspect of Sigred, that caught my attention were the pillers of this ides, which are these: going ahead towards future digital age and being eco at the same time - reusing of one item by more people. Sigred is a unique spiece among C2C marketplaces, as it has it all - it's safe & reliable, it has clean design and it has really useful functions. 
+The main aspect of Sigred, that caught my attention were the pillars of this ides, which are these: going ahead towards future digital age and being eco at the same time - reusing of one item by more people. Sigred is a unique spiece among C2C marketplaces, as it has it all - it's safe & reliable, it has clean design and it has really useful functions. 
 
 As a coder, I loved the idea of pushing something this large and this precious as Sigred is to my GitHub. I cannot express how much I appreciate this chance. 
 
