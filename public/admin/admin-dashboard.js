@@ -284,7 +284,7 @@ const updateOrder = (who, list) => {
             newHtml+=`
                         
             <ul class="list-user" id="list-product-${num}" onclick='openItem(this.id)'>
-                <input type='hidden' value='${product.id}' class='item-id'/>
+                <input type='hidden' value='${resultRest.id}' class='item-id'/>
                 <li class="user-name">
                     ${resultRest.item_name}
                 </li>
