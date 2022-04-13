@@ -3,6 +3,9 @@
 }
 
 @media only screen and (max-width: 480px) {
+    .branding-name {
+        font-size: 7vw;
+    }
 }
 
 @media only screen and (min-width: 1385px) {
