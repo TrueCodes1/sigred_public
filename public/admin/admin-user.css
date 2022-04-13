@@ -60,7 +60,7 @@
     .account-tag-disabled, .account-tag-enabled {
         position: absolute;
     }
-    #account-tag-enabled, #account-tag-disabled {
+    #account-tag-enabled, #account-tag-disabled, .top-info {
         position: absolute;
         top: 60px;
         left: 10px;

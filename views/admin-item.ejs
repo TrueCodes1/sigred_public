@@ -71,7 +71,7 @@
                         item offered on <%=itemInfo.item_selling_time.split(',')[0]%>,<b> disabled on <%=itemInfo.disabled.split(',')[0]%></b>
                     </div>
                 <%}%>
-                <div class="history-status">
+                <div class="history-status top-info">
                     <% if (Number(itemInfo.history) == 1) {%>
                         this item has been disabled <%=itemInfo.history%> time
                     <% } else if (Number(itemInfo.history) > 1) { %>
@@ -84,6 +84,9 @@
             <div class="item">
                 <div class="item-video">
                     <video src="<%=itemInfo.video_link%>" class="item-video-video" alt="video preview" autoplay loop muted preload></video>
+                </div>
+                <div class="wholescreen-btn">
+                    wholescreen
                 </div>
                 <div class="item-info">
                     <div class="info-item-name">
@@ -99,6 +102,35 @@
                     </div>
                     <div class="item-info-desc">
                         <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
+                        <%=itemInfo.item_desc%>
                     </div>
                     <div class="item-info-price">
                         <%=itemInfo.item_price%>
@@ -107,15 +139,15 @@
 
                 </div>
                 <div class="item-options">
-                    <div class="option-contact" onclick="openMessage()">
+                    <div class="option-contact change-state" onclick="openMessage()">
                         contact seller
                     </div>
                     <%if (itemInfo.status == 'available') {%>
-                        <div class="option-disable" onclick="disableItem()">
+                        <div class="option-disable change-state disable" onclick="disableItem()">
                             disable item
                         </div>
                     <% } else { %>
-                        <div class="option-enable" onclick="enableItem()">
+                        <div class="option-enable change-state enable" onclick="enableItem()">
                             enable item
                         </div>
                     <% } %>
