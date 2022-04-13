@@ -6,7 +6,7 @@
         <img src="/general/close_light.svg" alt="">
     </div>
     <div class="disable-header">
-        <span id="disable-user-text">You are going to <%if (userInfo.status == 'enabled') {%> disable <% } else { %> enable <%}%> account of </span><span id="disable-user-name"> John Doe </span> 
+        <span id="disable-user-text">You are going to <%if (userInfo.status == 'enabled') {%> disable <% } else { %> enable <%}%> account of </span><span id="disable-user-name"> <%= userInfo.info.name %> <%= userInfo.info.lastName %> </span> 
     </div>
     <div class="disable-description">
         <%if (userInfo.status == 'enabled') {%>
@@ -24,7 +24,7 @@
         <%}%>
     </div>
     <div class="disable-message">
-        <textarea name="text" id="disable-message" class="disable-message" placeholder="Message..."></textarea>
+        <textarea name="text" id="disable-message" class="disable-message-textarea" placeholder="Message..."></textarea>
         <%if (userInfo.status == 'enabled') {%>
             <div class="disable-finish" onclick="disableAskForPassword()">Finish & Disable Account</div>
         <% } else { %>
@@ -35,14 +35,14 @@
         <input type="password" class="disable-password-input" id="disable-password-input" placeholder="Admin password...">
         <%if (userInfo.status == 'enabled') {%>
             <div class="disable-password-submit" onclick="finalFinishDisable()">
-                Disable Account of John Doe
+                Disable Account of <%= userInfo.info.name %> <%= userInfo.info.lastName %>
             </div>
             <div class="disable-pwd-back" onclick="goBackToDisable()">
                 back
             </div>
         <% } else { %>
             <div class="disable-password-submit" onclick="finalFinishEnable()">
-                Enable Account of John Doe
+                Enable Account of <%= userInfo.info.name %> <%= userInfo.info.lastName %>
             </div>
             <div class="disable-pwd-back" onclick="goBackToEnable()">
                 back
