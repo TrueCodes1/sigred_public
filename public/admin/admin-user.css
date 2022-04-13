@@ -6,6 +6,150 @@
     .branding-name {
         font-size: 7vw;
     }
+    #stripe-3{
+        background-color: #478380;
+        color: #C2D6D5;
+    }
+    .content {
+        background: #0a5a55;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        min-height: 87vh;
+    }
+    .back {
+        position: absolute;
+        border: none;
+        background-color: #0a5a55;
+        color: #FFE0C4;
+        min-width: 130px;
+        max-width: 130px;
+        min-height: 40px;
+        max-height: 40px;
+        border-radius: 5px;
+        top: 10px;
+        left: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 999;
+        box-shadow:  5px 5px 10px #052c2918,
+                    5px 5px 10px #052c2918,
+                    5px -5px 10px #052c2918,
+                    -5px 5px 10px #052c2918,
+                    5px 5px 10px #052c292c inset,
+                    -5px -5px 10px #052c292d inset;
+
+    }
+    .message, .disable-form {
+        display: none;
+    }
+    .user-items {
+        display: none;
+    }
+    .user {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        min-height: calc(80vw + 15vh);
+        max-height: calc(80vw + 15vh);
+        margin-top: 40px;
+        padding: 0 20px;
+    }
+    .account-tag-disabled, .account-tag-enabled {
+        position: absolute;
+    }
+    #account-tag-enabled, #account-tag-disabled {
+        position: absolute;
+        top: 60px;
+        left: 10px;
+        max-width: 90vw;
+        min-height: fit-content;
+        max-height: fit-content;
+        font-size: 15px;
+        padding: 10px;
+        color: #FFE0C4;
+        border-radius: 5px;
+        background-color: #0a5a55;
+        z-index: 999;
+        box-shadow:  5px 5px 10px #052c2918,
+                    5px 5px 10px #052c2918,
+                    5px -5px 10px #052c2918,
+                    -5px 5px 10px #052c2918,
+                    5px 5px 10px #052c292c inset,
+                    -5px -5px 10px #052c292d inset;
+
+    }
+    #account-tag-disabled{
+        background: #FF5A5A;
+        color: #FFE0C4;
+    }
+    .user-info .info-photo {
+        border-radius: 1vh;
+        overflow: hidden;
+        background: url('/general/nopic.svg') no-repeat center;
+        min-height: 80vw;
+        max-height: 80vw;
+        min-width: 80vw;
+        max-width: 80vw;
+        margin-left: calc(10vw - 20px);
+        box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.062),
+                    10px 10px 5px rgba(0, 0, 0, 0.062),
+                    10px -10px 5px rgba(0, 0, 0, 0.051),
+                    -10px 10px 5px rgba(0, 0, 0, 0.051),
+                    10px 10px 10px rgba(0, 0, 0, 0.151) inset,
+                    -5px -5px 10px rgba(0, 0, 0, 0.151) inset;
+    }
+    .user-info .info-name {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 30px;
+        color: #FFE0C4;
+        padding: 40px 0 20px 0;
+    }
+    #user-name {
+        opacity: 1;
+    }
+    #user-age {
+        opacity: .5;
+    }
+    .user-info .info-message {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        color: #FFE0C4;
+        padding: 10px 0;
+        font-size: 15px;
+    }
+    .message-button {
+        background-color: #0a5a55;
+        border-radius: .5em;
+        padding: 10px;
+        margin-left: .5em;
+        box-shadow: .2em .2em .4em rgba(0, 0, 0, 0.041),
+                    .2em .2em .4em rgba(0, 0, 0, 0.041),
+                    .2em -.2em .4em rgba(0, 0, 0, 0.041),
+                    -.1em .1em .4em rgba(0, 0, 0, 0.041),
+                    .2em .2em .4em rgba(0, 0, 0, 0.151) inset;
+    }
+    .info-info .info-geolocation {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 20px 0;
+        color: #FFE0C4;
+        font-weight: 100;
+    }
+    #user-city {
+        font-weight: 500;
+    }
 }
 
 @media only screen and (min-width: 1385px) {
