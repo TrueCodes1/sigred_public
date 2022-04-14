@@ -39,6 +39,7 @@
     .disable-header {
         font-size: 4vh;
         line-height: 1.2em;
+        font-weight: 600;
     }
     #disable-user-text {
         opacity: .5;
@@ -62,17 +63,18 @@
         resize: none;
         outline: none;
         border: none;
-        background: #0a5a55;
-        box-shadow: -5px -5px 5px #04221f15,
-                    5px 5px 5px #04221f2d inset,
-                    -5px -5px 5px #18c7bb2f inset;
+        background: #fff;
+        box-shadow: -5px -5px 10px #4141411f,
+                    inset 5px 5px 10px #41414153,
+                    inset 2.5px 2.5px 5px #4141411f;
         font-size: 15px;
         padding: 10px 15px;
         border-radius: 10px;
-        color: #FFE0C4;
+        color: #0a5a55;
     }
     .disable-finish {
         font-size: 20px;
+        font-weight: 600;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -83,7 +85,7 @@
                     2.5px 2.5px 5px #04221f2d inset,
                     -2.5px -2.5px 5px #04221f2d inset;
         padding: 1vh;
-        margin-top: 15px;
+        margin-top: 20px;
         border-radius: 5px;
     }
     .disable-pwd {
