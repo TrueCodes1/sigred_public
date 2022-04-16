@@ -55,6 +55,7 @@
     </div>
     <%- include('./partials/stripes.ejs')  %>
     <div class="content">
+        <%- include('./partials/item-message-to-seller.ejs') %>
         <div class="item">
             <div class="item-video">
                 <video src="<%=item.video_link%>" class="item-video-video" alt="video preview" autoplay loop muted preload></video>
@@ -98,6 +99,7 @@
                 </div>
             </div>
         </div>
+        <script src="/item/item.js"></script>
         <%- include('./partials/footer-mobile.ejs') %>
     </div>
 </body>

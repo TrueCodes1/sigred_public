@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="/admin/admin-message-to-seller.css">
+
+<div class="message" id="message" style="opacity: 0; transition: all .25s ease;">
+    <div class="message-close" id="message-close" onclick="closeMessage()">
+        <img src="/general/close.svg" alt="">
+    </div>
+    <form action="" method="POST">
+        <input type="hidden" name="item_name" value="<%=item.item_name%>">
+        <input type="hidden" name="seller_id" class="message-input" readonly="readonly" value="<%=item.item_seller_id%>">
+        <input type="hidden" name="name" id="input-name" class="message-input" readonly="readonly" value="<%=item.item_seller%>">
+        <input type="text" name="subject" id="input-subject" class="message-input" placeholder="Subject">
+        <textarea name="text" id="input-text" class="message-input" cols="30" rows="10" placeholder="Message"></textarea>
+        <button type="submit" class="submit-message-button" id="submit-message-button" value="Message <%= item.item_seller%>">
+            Message <%=item.item_seller%>
+        </button>
+    </form>
+</div>
