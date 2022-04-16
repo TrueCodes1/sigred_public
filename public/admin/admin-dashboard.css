@@ -90,6 +90,11 @@
                     -5px -5px 10px rgba(127, 127, 127, 0.116),
                     inset 2.5px 2.5px 5px rgba(91, 91, 91, 0.229),
                     inset -2.5px -2.5px 5px rgba(91, 91, 91, 0.229);
+        -webkit-box-shadow: 5px 5px 10px rgba(127, 127, 127, 0.116),
+                        -5px -5px 10px rgba(127, 127, 127, 0.116),
+                        inset 2.5px 2.5px 5px rgba(91, 91, 91, 0.229),
+                        inset -2.5px -2.5px 5px rgba(91, 91, 91, 0.229);
+        -webkit-appearance: none;
     }
     .main-part {
         min-height: 65vh;
