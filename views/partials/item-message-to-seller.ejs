@@ -4,14 +4,20 @@
     <div class="message-close" id="message-close" onclick="closeMessage()">
         <img src="/general/close.svg" alt="">
     </div>
-    <form action="" method="POST">
-        <input type="hidden" name="item_name" value="<%=item.item_name%>">
-        <input type="hidden" name="seller_id" class="message-input" readonly="readonly" value="<%=item.item_seller_id%>">
+    <form >
+        <input type="hidden" name="item_name" id="item-name" value="<%=item.item_name%>">
+        <input type="hidden" name="seller_id" id="seller-id" class="message-input" readonly="readonly" value="<%=item.item_seller_id%>">
         <input type="hidden" name="name" id="input-name" class="message-input" readonly="readonly" value="<%=item.item_seller%>">
         <input type="text" name="subject" id="input-subject" class="message-input" placeholder="Subject">
         <textarea name="text" id="input-text" class="message-input" cols="30" rows="10" placeholder="Message"></textarea>
-        <button type="submit" class="submit-message-button" id="submit-message-button" value="Message <%= item.item_seller%>">
+        <!--
+
+            THIS FORM DOES NOT GET SENT ITSELF (SUBMIT BTN), BUT IS GRABBED BY JS AND SENT AS FETCH
+            POST REQUEST TO BE ABLE TO CATCH RESPONSE FROM THE SERVER AS JSON
+
+         -->   
+        <div class="submit-message-button" id="submit-message-button" value="Message <%= item.item_seller%>">
             Message <%=item.item_seller%>
-        </button>
+        </div>
     </form>
 </div>

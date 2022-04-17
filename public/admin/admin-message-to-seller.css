@@ -146,7 +146,11 @@
         scrollbar-width: none; 
         scroll-behavior: smooth; 
     }
-    .message form button {
+    .message form button, .message form .submit-message-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
         font-weight: 1000;
         cursor: pointer;
         box-shadow: 5px 5px 10px rgba(155, 155, 155, 0.295),
