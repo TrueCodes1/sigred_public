@@ -101,14 +101,14 @@ const postContactSeller = () => {
                     alert('No such item has been found.')
                 }
             } else {
-                alert('Your message have been sent to the user.')
+                alert('Your message has been sent to the user.')
                 window.location.reload()
             }
         })
 
     } else {
 
-        alert("sth's missing")
+        alert("Please, fill in all the fields.")
 
     }
 

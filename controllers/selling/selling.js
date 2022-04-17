@@ -218,7 +218,9 @@ const messageSeller = async (req, res) => {
                         console.log(error);
                         res.end()
                     } else {
-                        res.status(200).send()
+                        res.json({
+                            success: 'success'
+                        }).end()
                     }
                 })
             } else {
