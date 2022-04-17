@@ -95,7 +95,11 @@ const postContactSeller = () => {
             if (res.status == 'not-logged-in') {
                 alert('Please, log in before contacting')
             } else if (res.error) {
-                alert('A mistake occured while proccessing the message, try it again later, please. We are sorry.')
+                if (res.error == 'db-isue') {
+                    alert('Sorry, a mistake occured on our side. Please, try to contact the seller again later.')
+                } else if (res.error == 'no-such-item') {
+                    alert('No such item has been found.')
+                }
             }
         })
 

@@ -1,3 +1,7 @@
+
+// IMPORTING ALL NECCESSARY NODE MODULES
+const htmlencode = require('htmlencode');
+
 // IMPORTING ALL NECCESSARY FUNCTIONS
 const firebase = require('../../databaseConnection');
 const verifySessionCookie = require('../../functions/general/verifySessionCookie');
@@ -119,85 +123,111 @@ const messageSeller = async (req, res) => {
         let clientId = uid;
         let subject = body.subject;
         let text = body.text;
+        let itemName = body.itemName;
 
-        let sellerEmail;
-        let sellerName;
-        let clientEmail;
-        let clientName;
+        let itemNameExists = false;
 
-        sellerSideOk = true;
-        clientSideOk = true;
+        let itemNameCheck = await db.ref(`/users/${sellerId}/items/selling`).get()
 
-        sellerEmail = await db.ref(`/admin/users/${sellerId}/email`).get()
-        if (sellerEmail.val()) {
-            sellerEmail = crypto.decrypt(sellerEmail.val().encrypted, adminPWD.repeat(5).substring(0, 32), sellerEmail.val().iv);
-        } else {
-            sellerSideOk = false
-        }
-        sellerName = await db.ref(`/users/${sellerId}/personal-info`).get()
-        if (sellerName.val()) {
-            sellerName = `${sellerName.val().name} ${sellerName.val().lastName}`
-        } else {
-            sellerSideOk = false
-        }
-        clientEmail = await db.ref(`/admin/users/${clientId}/email`).get()
-        if (clientEmail.val()) {
-            clientEmail = crypto.decrypt(clientEmail.val().encrypted, adminPWD.repeat(5).substring(0, 32), clientEmail.val().iv)
-        } else {
-            clientSideOk = false
-        }
-        clientName = await db.ref(`/users/${clientId}/personal-info`).get()
-        if (clientName.val()) {
-            clientName = `${clientName.val().name} ${clientName.val().lastName}`
-        } else {
-            clientSideOk = false
-        }
-
-        if (sellerSideOk != false && clientSideOk != false) {
-
-            let output = `
-                <body style='background-color: #FFE0C4; padding: 40px;'>
-                <p style="font-size: 1.1rem; font-weight: 700">Hey, ${sellerName}, we contact you on behalf of Sigred team about the item <i>${req.body.item_name}</i>, that you're currently selling.</p>
-                <p style="font-size: 1.1rem">${req.body.text}</p>
-                <h2 style='padding: .5em; background-color: #0a5a55; color: #FFE0C4; min-width: fit-content; max-width: fit-content'>Thank you for your trust.
-                In case of any question, contact us on <span style="color: #0a5a55">sigred.inc@sigred.org</span> or via our contact page <span style="color: #0a5a55">www.sigred.org/contact</span></h2>
-                </body>
-            `;
-            
-            let mailOptions = {
-                from: '"Sigred team" <sigred.inc@sigred.org>',
-                to: sellerEmail,
-                subject: req.body.subject,
-                text: 'Sigred - message from admin',
-                html: output
+        if (itemNameCheck.val()) {
+            itemNameCheck = itemNameCheck.val();
+            for (let key of Object.keys(itemNameCheck)) {
+                if (itemNameCheck == false) {
+                    let itemNameEncoded = itemNameCheck[key].item_name;
+                    let itemNameDecoded = JSON.parse('"'+htmlencode.htmlDecode(itemNameEncoded)+'"');
+                    if (itemNameDecoded == itemName) {
+                        itemNameExists = true
+                    }
+                }
             }
+        }
+
+        if (itemNameExists == true) {
+
+            let sellerEmail;
+            let sellerName;
+            let clientEmail;
+            let clientName;
+    
+            sellerSideOk = true;
+            clientSideOk = true;
+    
+            sellerEmail = await db.ref(`/admin/users/${sellerId}/email`).get()
+            if (sellerEmail.val()) {
+                sellerEmail = crypto.decrypt(sellerEmail.val().encrypted, adminPWD.repeat(5).substring(0, 32), sellerEmail.val().iv);
+            } else {
+                sellerSideOk = false
+            }
+            sellerName = await db.ref(`/users/${sellerId}/personal-info`).get()
+            if (sellerName.val()) {
+                sellerName = `${sellerName.val().name} ${sellerName.val().lastName}`
+            } else {
+                sellerSideOk = false
+            }
+            clientEmail = await db.ref(`/admin/users/${clientId}/email`).get()
+            if (clientEmail.val()) {
+                clientEmail = crypto.decrypt(clientEmail.val().encrypted, adminPWD.repeat(5).substring(0, 32), clientEmail.val().iv)
+            } else {
+                clientSideOk = false
+            }
+            clientName = await db.ref(`/users/${clientId}/personal-info`).get()
+            if (clientName.val()) {
+                clientName = `${clientName.val().name} ${clientName.val().lastName}`
+            } else {
+                clientSideOk = false
+            }
+    
+            if (sellerSideOk != false && clientSideOk != false) {
+    
+                let output = `
+                    <body style='background-color: #FFE0C4; padding: 40px;'>
+                    <p style="font-size: 1.1rem; font-weight: 700">Hey, ${sellerName}, we contact you on behalf of Sigred user <i>${clientName}</i>, that would like to conatact you
+                     regarding item ${itemName}, that is currently offered by you. Please, continue further conversation with ${clientName} on his address ${clientEmail}.</p>
+                    <p style="font-size: 1.1rem">${text}</p>
+                    <h2 style='padding: .5em; background-color: #0a5a55; color: #FFE0C4; min-width: fit-content; max-width: fit-content'>Thank you for your trust.
+                    In case of any question, contact us on <span style="color: #0a5a55">sigred.inc@sigred.org</span> or via our contact page <span style="color: #0a5a55">www.sigred.org/contact</span></h2>
+                    </body>
+                `;
                 
-            //Part for sending emails - nodemailer
-            //create transporter
-            let transporter = nodemailer.createTransport({
-                host: 'smtp.gmail.com',
-                port: 465,
-                secure: true, //true for 465
-                auth: {
-                    user: 'sigred.inc@sigred.org',
-                    pass: 'nfcewbdavjpqgfho'
-                },
-                tls: {
-                    rejectUnauthorized: false
+                let mailOptions = {
+                    from: '"Sigred team" <sigred.inc@sigred.org>',
+                    to: sellerEmail,
+                    subject: subject,
+                    text: `Sigred - message from client ${clientName}`,
+                    html: output
                 }
-            })
-            //send mail with defined transporter object
-            transporter.sendMail(mailOptions, (error, infoo) => {
-                if (error){
-                    console.log(error);
-                    res.end()
-                } else {
-                    res.status(200).redirect(originURL)
-                }
-            })
+                    
+                //Part for sending emails - nodemailer
+                //create transporter
+                let transporter = nodemailer.createTransport({
+                    host: 'smtp.gmail.com',
+                    port: 465,
+                    secure: true, //true for 465
+                    auth: {
+                        user: 'sigred.inc@sigred.org',
+                        pass: 'nfcewbdavjpqgfho'
+                    },
+                    tls: {
+                        rejectUnauthorized: false
+                    }
+                })
+                //send mail with defined transporter object
+                transporter.sendMail(mailOptions, (error, infoo) => {
+                    if (error){
+                        console.log(error);
+                        res.end()
+                    } else {
+                        res.status(200).redirect(originURL)
+                    }
+                })
+            } else {
+                res.json({
+                    error: 'db-issue'
+                }).end()
+            }
         } else {
             res.json({
-                error: 'error'
+                error: 'no-such-item'
             }).end()
         }
 
