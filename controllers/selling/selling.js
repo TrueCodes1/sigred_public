@@ -1,6 +1,7 @@
 
 // IMPORTING ALL NECCESSARY NODE MODULES
 const htmlencode = require('htmlencode');
+const nodemailer = require('nodemailer');
 
 // IMPORTING ALL NECCESSARY FUNCTIONS
 const firebase = require('../../databaseConnection');
@@ -132,7 +133,7 @@ const messageSeller = async (req, res) => {
         if (itemNameCheck.val()) {
             itemNameCheck = itemNameCheck.val();
             for (let key of Object.keys(itemNameCheck)) {
-                if (itemNameCheck == false) {
+                if (itemNameExists == false) {
                     let itemNameEncoded = itemNameCheck[key].item_name;
                     let itemNameDecoded = JSON.parse('"'+htmlencode.htmlDecode(itemNameEncoded)+'"');
                     if (itemNameDecoded == itemName) {
@@ -217,7 +218,7 @@ const messageSeller = async (req, res) => {
                         console.log(error);
                         res.end()
                     } else {
-                        res.status(200).redirect(originURL)
+                        res.status(200).send()
                     }
                 })
             } else {

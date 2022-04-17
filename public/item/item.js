@@ -93,13 +93,16 @@ const postContactSeller = () => {
         .then(res => res.json())
         .then( res => {
             if (res.status == 'not-logged-in') {
-                alert('Please, log in before contacting')
+                alert('Please, log in before contacting the seller')
             } else if (res.error) {
                 if (res.error == 'db-isue') {
                     alert('Sorry, a mistake occured on our side. Please, try to contact the seller again later.')
                 } else if (res.error == 'no-such-item') {
                     alert('No such item has been found.')
                 }
+            } else {
+                alert('Your message have been sent to the user.')
+                window.location.reload()
             }
         })
 
