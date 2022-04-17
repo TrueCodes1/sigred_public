@@ -120,70 +120,86 @@ const messageSeller = async (req, res) => {
         let subject = body.subject;
         let text = body.text;
 
+        let sellerEmail;
+        let sellerName;
+        let clientEmail;
+        let clientName;
+
         sellerSideOk = true;
         clientSideOk = true;
 
-        let sellerEmail = await db.get(`/admin/users/${sellerId}/email`).get()
-        if (sellerEmail) {
-            sellerEmail = crypto.decrypt(sellerEmail.encrypted, adminPWD.repeat(5).substring(0, 32), sellerEmail.iv);
+        sellerEmail = await db.ref(`/admin/users/${sellerId}/email`).get()
+        if (sellerEmail.val()) {
+            sellerEmail = crypto.decrypt(sellerEmail.val().encrypted, adminPWD.repeat(5).substring(0, 32), sellerEmail.val().iv);
         } else {
             sellerSideOk = false
         }
-        let clientEmail = await db.get(`/admin/users/${clientId}/email`).get()
-        if (clientEmail) {
-            clientEmail = crypto.decrypt(clientEmail.encrypted, adminPWD.repeat(5).substring(0, 32), clientEmail.iv)
+        sellerName = await db.ref(`/users/${sellerId}/personal-info`).get()
+        if (sellerName.val()) {
+            sellerName = `${sellerName.val().name} ${sellerName.val().lastName}`
+        } else {
+            sellerSideOk = false
+        }
+        clientEmail = await db.ref(`/admin/users/${clientId}/email`).get()
+        if (clientEmail.val()) {
+            clientEmail = crypto.decrypt(clientEmail.val().encrypted, adminPWD.repeat(5).substring(0, 32), clientEmail.val().iv)
+        } else {
+            clientSideOk = false
+        }
+        clientName = await db.ref(`/users/${clientId}/personal-info`).get()
+        if (clientName.val()) {
+            clientName = `${clientName.val().name} ${clientName.val().lastName}`
         } else {
             clientSideOk = false
         }
 
         if (sellerSideOk != false && clientSideOk != false) {
 
+            let output = `
+                <body style='background-color: #FFE0C4; padding: 40px;'>
+                <p style="font-size: 1.1rem; font-weight: 700">Hey, ${sellerName}, we contact you on behalf of Sigred team about the item <i>${req.body.item_name}</i>, that you're currently selling.</p>
+                <p style="font-size: 1.1rem">${req.body.text}</p>
+                <h2 style='padding: .5em; background-color: #0a5a55; color: #FFE0C4; min-width: fit-content; max-width: fit-content'>Thank you for your trust.
+                In case of any question, contact us on <span style="color: #0a5a55">sigred.inc@sigred.org</span> or via our contact page <span style="color: #0a5a55">www.sigred.org/contact</span></h2>
+                </body>
+            `;
+            
+            let mailOptions = {
+                from: '"Sigred team" <sigred.inc@sigred.org>',
+                to: sellerEmail,
+                subject: req.body.subject,
+                text: 'Sigred - message from admin',
+                html: output
+            }
+                
+            //Part for sending emails - nodemailer
+            //create transporter
+            let transporter = nodemailer.createTransport({
+                host: 'smtp.gmail.com',
+                port: 465,
+                secure: true, //true for 465
+                auth: {
+                    user: 'sigred.inc@sigred.org',
+                    pass: 'nfcewbdavjpqgfho'
+                },
+                tls: {
+                    rejectUnauthorized: false
+                }
+            })
+            //send mail with defined transporter object
+            transporter.sendMail(mailOptions, (error, infoo) => {
+                if (error){
+                    console.log(error);
+                    res.end()
+                } else {
+                    res.status(200).redirect(originURL)
+                }
+            })
         } else {
             res.json({
                 error: 'error'
             }).end()
         }
-
-    let output = `
-        <body style='background-color: #FFE0C4; padding: 40px;'>
-        <p style="font-size: 1.1rem; font-weight: 700">Hey, ${req.body.name}, we contact you on behalf of Sigred team about the item <i>${req.body.item_name}</i>, that you're currently selling.</p>
-        <p style="font-size: 1.1rem">${req.body.text}</p>
-        <h2 style='padding: .5em; background-color: #0a5a55; color: #FFE0C4; min-width: fit-content; max-width: fit-content'>Thank you for your trust.
-        In case of any question, contact us on <span style="color: #0a5a55">sigred.inc@sigred.org</span> or via our contact page <span style="color: #0a5a55">www.sigred.org/contact</span></h2>
-        </body>
-    `;
-    
-    let mailOptions = {
-        from: '"Sigred team" <sigred.inc@sigred.org>',
-        to: sellerEmail,
-        subject: req.body.subject,
-        text: 'Sigred - message from admin',
-        html: output
-    }
-        
-    //Part for sending emails - nodemailer
-    //create transporter
-    let transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
-        secure: true, //true for 465
-        auth: {
-            user: 'sigred.inc@sigred.org',
-            pass: 'nfcewbdavjpqgfho'
-        },
-        tls: {
-            rejectUnauthorized: false
-        }
-    })
-    //send mail with defined transporter object
-    transporter.sendMail(mailOptions, (error, infoo) => {
-        if (error){
-            console.log(error);
-            res.end()
-        } else {
-            res.status(200).redirect(originURL)
-        }
-    })
 
     } else {
         res.json({
