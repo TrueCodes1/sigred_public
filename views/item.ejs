@@ -54,7 +54,7 @@
     </div>
     </div>
     <%- include('./partials/stripes.ejs')  %>
-    <div class="content">
+    <div class="content" id="content">
         <%- include('./partials/item-message-to-seller.ejs') %>
         <div class="item">
             <div class="item-history">
@@ -72,7 +72,7 @@
             <div class="item-video-wholescreen" id="item-video-wholescreen">
                 <video src="<%=item.video_link%>" class="item-video-video" alt="video preview" autoplay loop muted preload></video>
                 <div class="close" onclick="closeWholescreen()">
-                    <img src="/general/close.svg" alt="close button">
+                    back
                 </div>
             </div>
             <div class="item-info">

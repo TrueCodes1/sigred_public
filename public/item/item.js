@@ -37,7 +37,7 @@ const openMessage = () => {
                 $('#message').css('opacity', '1');
             }, 1)
             setTimeout(() => {
-                $(document).on('scroll', closeMessage)
+                $(document.body).on('touchmove', closeMessage)
             }, 1000)
         } else {
             $('#message').css('display', 'flex');
@@ -45,7 +45,7 @@ const openMessage = () => {
             setTimeout(() => {
                 $('#message').css('opacity', '1');
             }, 1)
-            $(document).on('scroll', closeMessage)
+            $(document.body).on('touchmove', closeMessage)
         }
     } else {
         if (window.pageYOffset != window.innerHeight + 240) {
