@@ -150,11 +150,13 @@ const makeSell = async (req, res) => {
                         if (name_to_check.split('.').length == 2){
                             if (suffix == 'mov' || suffix == 'mp4' || suffix == 'MOV' || suffix == 'avi' || suffix == 'mkv'){
                                 if (name_to_check.replace('.', '').includes('.')){
-                                    res.render('new-sell', {title: 'New Sell', info: info, video_status: '', adding_status: '', upload_status: 'bad_suffix'})
+                                    let admin = checkAdmin.checkAdmin(uid.toString());
+                                    res.render('new-sell', {title: 'New Sell', info: info, video_status: '', adding_status: '', upload_status: 'bad_suffix', admin: admin})
                                 } else {
     
                                     if (Number(file_size) > 26214400){
-                                        res.render('new-sell', {title: 'New Sell', info: info, video_status: '', adding_status: '', upload_status: 'too_large_video'})
+                                        let admin = checkAdmin.checkAdmin(uid.toString());
+                                        res.render('new-sell', {title: 'New Sell', info: info, video_status: '', adding_status: '', upload_status: 'too_large_video', admin: admin})
                                     } else {
     
                                         let to_upload = {

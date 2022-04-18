@@ -182,7 +182,7 @@ const messageSeller = async (req, res) => {
     
                 let output = `
                     <body style='background-color: #FFE0C4; padding: 40px;'>
-                    <p style="font-size: 1.1rem; font-weight: 700">Hey, ${sellerName}, we contact you on behalf of Sigred user <i>${clientName}</i>, that would like to conatact you
+                    <p style="font-size: 1.1rem; font-weight: 700">Hey, ${sellerName}, we contact you on behalf of Sigred user <i>${clientName}</i>, that would like to contact you
                      regarding item ${itemName}, that is currently offered by you. Please, continue further conversation with ${clientName} on his address ${clientEmail}.</p>
                     <p style="font-size: 1.1rem">${text}</p>
                     <h2 style='padding: .5em; background-color: #0a5a55; color: #FFE0C4; min-width: fit-content; max-width: fit-content'>Thank you for your trust.
