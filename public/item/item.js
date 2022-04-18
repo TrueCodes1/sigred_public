@@ -36,16 +36,18 @@ const openMessage = () => {
             setTimeout(() => {
                 $('#message').css('opacity', '1');
             }, 1)
+            /*
             setTimeout(() => {
-                $(document.body).on('touchmove', closeMessage)
+                $(document.body).on('scroll', closeMessage)
             }, 1000)
+            */
         } else {
             $('#message').css('display', 'flex');
             $('#message').css('transition', 'all .25s ease');
             setTimeout(() => {
                 $('#message').css('opacity', '1');
             }, 1)
-            $(document.body).on('touchmove', closeMessage)
+            $(document.body).on('scroll', closeMessage)
         }
     } else {
         if (window.pageYOffset != window.innerHeight + 240) {
@@ -55,9 +57,11 @@ const openMessage = () => {
             setTimeout(() => {
                 $('#message').css('opacity', '1');
             }, 1)
+            /*
             setTimeout(() => {
                 $(document).on('scroll', closeMessage)
             }, 1000)
+            */
         } else {
             $('#message').css('display', 'flex');
             $('#message').css('transition', 'all .25s ease');
