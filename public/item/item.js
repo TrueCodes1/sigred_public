@@ -1,9 +1,17 @@
 
-const scrollToMain = () => {
-    window.scroll({
-        top: (window.innerHeight)+240,
-        behavior: 'smooth'
-    })
+const scrollToMain = (typeOfDevice) => {
+    if (typeOfDevice == 'mobile') {
+        let height = $(window).height();
+        document.body.scrollTo({
+            top: ((height+240) - (2 * (0.13 * height))),
+            behavior: 'smooth'
+        })
+    } else if (typeOfDevice == 'desktop') {
+        window.scroll({
+            top: (window.innerHeight)+240,
+            behavior: 'smooth'
+        })
+    }
 }
 
 const removeEventListener = () => {
@@ -19,23 +27,45 @@ const closeMessage = () => {
 }
 
 const openMessage = () => {
-    if (window.pageYOffset != window.innerHeight + 240) {
-        scrollToMain()
-        $('#message').css('display', 'flex');
-        $('#message').css('transition', 'all .25s ease');
-        setTimeout(() => {
-            $('#message').css('opacity', '1');
-        }, 1)
-        setTimeout(() => {
+    if ($(window).width() < 481) {
+        let height = document.getElementById('intro').clientHeight;
+        if (window.pageYOffset != height + 240) {
+            scrollToMain('mobile')
+            $('#message').css('display', 'flex');
+            $('#message').css('transition', 'all .25s ease');
+            setTimeout(() => {
+                $('#message').css('opacity', '1');
+            }, 1)
+            setTimeout(() => {
+                $(document).on('scroll', closeMessage)
+            }, 1000)
+        } else {
+            $('#message').css('display', 'flex');
+            $('#message').css('transition', 'all .25s ease');
+            setTimeout(() => {
+                $('#message').css('opacity', '1');
+            }, 1)
             $(document).on('scroll', closeMessage)
-        }, 1000)
+        }
     } else {
-        $('#message').css('display', 'flex');
-        $('#message').css('transition', 'all .25s ease');
-        setTimeout(() => {
-            $('#message').css('opacity', '1');
-        }, 1)
-        $(document).on('scroll', closeMessage)
+        if (window.pageYOffset != window.innerHeight + 240) {
+            scrollToMain('desktop')
+            $('#message').css('display', 'flex');
+            $('#message').css('transition', 'all .25s ease');
+            setTimeout(() => {
+                $('#message').css('opacity', '1');
+            }, 1)
+            setTimeout(() => {
+                $(document).on('scroll', closeMessage)
+            }, 1000)
+        } else {
+            $('#message').css('display', 'flex');
+            $('#message').css('transition', 'all .25s ease');
+            setTimeout(() => {
+                $('#message').css('opacity', '1');
+            }, 1)
+            $(document).on('scroll', closeMessage)
+        }
     }
 }
 

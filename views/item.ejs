@@ -57,11 +57,17 @@
     <div class="content">
         <%- include('./partials/item-message-to-seller.ejs') %>
         <div class="item">
+            <div class="item-history">
+                item was offered on <%= item.item_selling_time.split(',')[0] %>
+            </div>
             <div class="item-video">
                 <video src="<%=item.video_link%>" class="item-video-video" alt="video preview" autoplay loop muted preload></video>
                 <div class="wholescreen-choice" onclick="openWholescreen()">
                     wholescreen
                 </div>
+            </div>
+            <div class="wholescreen-choice-mobile" onclick="openWholescreen()">
+                wholescreen
             </div>
             <div class="item-video-wholescreen" id="item-video-wholescreen">
                 <video src="<%=item.video_link%>" class="item-video-video" alt="video preview" autoplay loop muted preload></video>
@@ -82,6 +88,19 @@
                     </div>
                     <div class="seller-location">
                         <%=item.item_location%>
+                    </div>
+                </div>
+                <div class="info-item-seller-mobile">
+                    <div class="seller-photo">
+                        <img src="/general/nopic.svg" alt="">
+                    </div>
+                    <div class="seller-info">
+                        <div class="seller-name" id="seller-name">
+                            <%=item.item_seller%>
+                        </div>
+                        <div class="seller-location">
+                            <%=item.item_location%>
+                        </div>
                     </div>
                 </div>
                 <div class="item-info-desc">
