@@ -167,15 +167,18 @@ const makeSell = async (req, res) => {
             
                                         queue_to_upload.push(to_upload);
             
+                                        let admin = checkAdmin.checkAdmin(uid.toString());
                                         res.render('new-sell', {title: 'New Sell', info: info, video_status: '', adding_status: '', upload_status: 'pending', admin: admin});
             
                                         sell.upload_from_queue();
                                     }
                                 } 
                             } else {
+                                let admin = checkAdmin.checkAdmin(uid.toString());
                                 res.render('new-sell', {title: 'New Sell', info: info, video_status: '', adding_status: '', upload_status: 'bad_suffix', admin: admin})
                             }
                         } else {
+                            let admin = checkAdmin.checkAdmin(uid.toString());
                             res.render('new-sell', {title: 'New Sell', info: info, video_status: '', adding_status: '', upload_status: 'bad_suffix', admin: admin})
                         }
                         

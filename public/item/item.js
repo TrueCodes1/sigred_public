@@ -115,3 +115,18 @@ const postContactSeller = () => {
 }
 
 $('#submit-message-button').on('click', postContactSeller)
+
+const openWholescreen = () => {
+    $('#item-video-wholescreen').css('display', 'flex');
+    $('#item-video-wholescreen').css('opacity', '0');
+    setTimeout(() => {
+        $('#item-video-wholescreen').css('opacity', '1')
+    }, 200)
+}
+
+const closeWholescreen = () => {
+    $('#item-video-wholescreen').css('opacity', '0');
+    setTimeout(() => {
+        $('#item-video-wholescreen').css('display', 'none')
+    }, 300)
+}

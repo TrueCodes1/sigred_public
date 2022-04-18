@@ -59,8 +59,14 @@
         <div class="item">
             <div class="item-video">
                 <video src="<%=item.video_link%>" class="item-video-video" alt="video preview" autoplay loop muted preload></video>
-                <div class="wholescreen-choice">
+                <div class="wholescreen-choice" onclick="openWholescreen()">
                     wholescreen
+                </div>
+            </div>
+            <div class="item-video-wholescreen" id="item-video-wholescreen">
+                <video src="<%=item.video_link%>" class="item-video-video" alt="video preview" autoplay loop muted preload></video>
+                <div class="close" onclick="closeWholescreen()">
+                    <img src="/general/close.svg" alt="close button">
                 </div>
             </div>
             <div class="item-info">
