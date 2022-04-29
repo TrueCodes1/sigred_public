@@ -185,4 +185,6 @@ const videoPlayOnScroll = () => {
     */
 }
 
-$(document.body).on('scroll', videoPlayOnScroll)
+if ($(window).width() < 500) {
+    $(document.body).on('scroll', videoPlayOnScroll)
+}
