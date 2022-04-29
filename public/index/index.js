@@ -161,3 +161,28 @@ function openItem(id){
 function buy_item(){
     /* */
 }
+
+let height = document.getElementById('intro').clientHeight;
+
+const videoPlayOnScroll = () => {
+
+    let currentHeight = document.body.scrollTop;
+    
+    if (currentHeight > (0.87 * height + 100)) {
+        let videoId = Math.floor((currentHeight - (0.87 * height + 100))/(((height / 88) * 100) * 0.6));
+        for (let video of document.getElementsByClassName('single-video-mobile')) {
+            if (!video.paused) {
+                video.pause()
+            }
+        }
+        document.getElementById(`video-${videoId}`).play()
+    }
+    /*
+    document.body.scrollTo({
+        top: (height+240),
+        behavior: 'smooth'
+    })
+    */
+}
+
+$(document.body).on('scroll', videoPlayOnScroll)
