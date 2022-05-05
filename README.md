@@ -76,3 +76,7 @@ Huge thank you to Samuel and Adam from [Sigred](https://www.sigred.org) ❤️
 ___
 
 🔥 Watch me on other repos as well:
+
+- [True Codes -  portfolio](https://github.com/TrueCodes1/true_codes.git)
+- [Moje Recepty](https://github.com/TrueCodes1/moje_recepty.git)
+- [Meine Verben](https://github.com/TrueCodes1/meine_verbs.git)
