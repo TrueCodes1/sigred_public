@@ -77,6 +77,6 @@ ___
 
 🔥 Watch me on other repos as well:
 
-- [True Codes -  portfolio](https://github.com/TrueCodes1/true_codes.git)
-- [Moje Recepty](https://github.com/TrueCodes1/moje_recepty.git)
-- [Meine Verben](https://github.com/TrueCodes1/meine_verbs.git)
+- [True Codes -  portfolio](https://github.com/TrueCodes1/true_codes.git) or [web](https://www.truecodes.dev)
+- [Moje Recepty](https://github.com/TrueCodes1/moje_recepty.git) or web (soon 🕚)
+- [Meine Verben](https://github.com/TrueCodes1/meine_verbs.git) or [web](http://www.meineverben.com)
